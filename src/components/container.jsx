@@ -4,8 +4,8 @@ import { Switch, Route } from "react-router-dom";
 // import HomeView from "./homeView";
 import HomeView from "./homeView";
 import Recommendation from "./Recommendation";
-import Second from "./Second";
-import Third from "./Third";
+import Categories from "./categories";
+import Registration from "./registration";
 import Error from "./Error";
 // import Footer from "./footer";
 
@@ -18,9 +18,9 @@ function Container() {
         <CSSTransition key={location.key} timeout={{ enter: 300, exit: 300 }}> */}
       <Switch>
         <Route exact path="/" component={HomeView} />
-        <Route path="/first" component={Recommendation} />
-        <Route path="/second" component={Second} />
-        <Route path="/third" component={Third} />
+        <Route path="/recommendation" component={Recommendation} />
+        <Route path="/categories" component={Categories} />
+        <Route path="/registration" component={Registration} />
         {/* <Route path="/contact" component={Footer} /> */}
         <Route component={Error} />
       </Switch>

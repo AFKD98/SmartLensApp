@@ -34,11 +34,15 @@ class HomeView extends Component {
             <a
               a
               className="btn btn-outline-light text-center mr-2 mt-2"
-              href="/second"
+              href="/categories"
             >
               Book Now
             </a>
-            <a a className=" btn btn-outline-light mr-5 mt-2" href="/first">
+            <a
+              a
+              className=" btn btn-outline-light mr-5 mt-2"
+              href="/recommendation"
+            >
               Recommendation
             </a>
           </div>

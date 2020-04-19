@@ -7,9 +7,9 @@ class NavBar extends Component {
       <React.Fragment>
         {/* Links for navigation */}
         <Link to="/" />
-        <Link to="/first" />
-        <Link to="/second" />
-        <Link to="/third" />
+        <Link to="/recommendation" />
+        <Link to="/categories" />
+        <Link to="/registration" />
         {/* <Link to="/contact" /> */}
 
         <nav className="navbar navbar-expand-sm navbar-light bg-trans fixed-top ">
@@ -39,7 +39,7 @@ class NavBar extends Component {
                 </a>
               </li>
               <li className="nav-item active">
-                <a className="nav-link text-white" href="#">
+                <a className="nav-link text-white" href="/registration">
                   Register
                 </a>
               </li>
