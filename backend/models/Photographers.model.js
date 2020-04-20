@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 // const bcrypt = require("bcrypt-nodejs");
 
-const Photographers = new Schema(
+const photographersSchema = new Schema(
   {
     //not much validations
     Name: { type: String, required: true },
@@ -19,7 +19,7 @@ const Photographers = new Schema(
     Category: { type: String, required: true }, //check number of categories
     ProfilePic: { type: String, required: true }, //profile picture link
     CoverPic: { type: String, required: true },
-    photos: [{ id: String, category: String, Link: String }],
+    photos: [{ category: String, Link: String }],
     date: { type: Date, required: true },
   },
   {
@@ -28,13 +28,13 @@ const Photographers = new Schema(
 );
 
 //hashing the password
-// Photographers.methods.generateHash = function (Password) {
+// photographers.methods.generateHash = function (Password) {
 //   return bcrypt.hashSync(Password, bcrypt.genSaltSync(8), null);
 // };
 
 // // checking if password is valid
-// Photographers.methods.validPassword = function (Password) {
+// photographers.methods.validPassword = function (Password) {
 //   return bcrypt.compareSync(Password, this.Password);
 // };
-const photographers = mongoose.model("Photographers", Photographers);
+const photographers = mongoose.model("photographers", photographersSchema);
 module.exports = photographers;
