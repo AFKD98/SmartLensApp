@@ -10,15 +10,19 @@ class Categories extends Component {
     this.state = {
       categories: [],
     };
-    this.getCategories = this.getCategories.bind(this); // function to get categories from DB
   }
 
-  getCategories() {
+  componentDidMount() {
     axios
       .get("http://localhost:5000/categories/")
       .then((res) => {
-        console.log(res.categoryname);
-        this.setState({ categories: res.categoryname });
+        res.data.map((entree) =>
+          // console.log(res.data);
+          this.setState({
+            categories: this.state.categories.concat([entree.categoryname]),
+          })
+        );
+        console.log(this.state.categories);
       })
       .catch((error) => {
         console.log(error);
@@ -60,7 +64,6 @@ class Categories extends Component {
             Choose the categories you wish to browse <br />
           </p>
           <ul style={styles}>
-            getCategories()
             {this.state.categories.map((Category) => (
               <CategoryButton className="fixed-center" value={Category} />
             ))}

@@ -22,9 +22,13 @@ connection.once("open", () => {
 //routes
 const clientsRouter = require("./routes/clients");
 const categoriesRouter = require("./routes/categories");
+const photographersRouter = require("./routes/photographers");
+const registration_photographerRouter = require("./routes/registration_photographer");
 
 app.use("/clients", clientsRouter); //it will load everything in the user
 app.use("/categories", categoriesRouter); //it will load everything in the categories
+app.use("/photographers", photographersRouter); //it will load everything in the photographers
+app.use("/registration_photographer", registration_photographerRouter); //it will load everything in the registration_photographer
 
 //Listen
 app.listen(port, () => {
