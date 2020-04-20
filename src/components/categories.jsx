@@ -1,19 +1,29 @@
 import React, { Component } from "react";
 import CategoryButton from "./categoryButton";
 import bg from "../assets/categories.jpg";
+import axios from "axios";
 
 class Categories extends Component {
-  state = {
-    categories: [
-      "category1",
-      "category2",
-      "category3",
-      "category4",
-      "category5",
-      "category6",
-      "category7",
-    ],
-  };
+  constructor(props) {
+    // constructor
+    super(props);
+    this.state = {
+      categories: [],
+    };
+    this.getCategories = this.getCategories.bind(this); // function to get categories from DB
+  }
+
+  getCategories() {
+    axios
+      .get("http://localhost:5000/categories/")
+      .then((res) => {
+        console.log(res.categoryname);
+        this.setState({ categories: res.categoryname });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 
   render() {
     let styles = {
@@ -50,6 +60,7 @@ class Categories extends Component {
             Choose the categories you wish to browse <br />
           </p>
           <ul style={styles}>
+            getCategories()
             {this.state.categories.map((Category) => (
               <CategoryButton className="fixed-center" value={Category} />
             ))}
