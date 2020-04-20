@@ -9,7 +9,6 @@ router.route("/").get((req, res) => {
 });
 
 router.route("/add").post((req, res) => {
-  const id = req.body.id;
   const Name = req.body.Name;
   const Username = req.body.Username;
   const Password = req.body.Password;
@@ -28,7 +27,6 @@ router.route("/add").post((req, res) => {
   const date = Date.parse(req.body.date);
 
   const Photographers = new Photographers({
-    id,
     Name,
     Username,
     Password,
@@ -68,7 +66,6 @@ router.route("/:id").delete((req, res) => {
 router.route("/update/:id").post((req, res) => {
   Photographers.findById(req.params.id)
     .then((Photographers) => {
-      Photographers.id = req.body.id;
       Photographers.Name = req.body.Name;
       Photographers.Username = req.body.Username;
       Photographers.Password = req.body.Password;

@@ -5,7 +5,6 @@ const Schema = mongoose.Schema;
 const Photographers = new Schema(
   {
     //not much validations
-    id: { type: String, required: true },
     Name: { type: String, required: true },
     Username: { type: String, required: true },
     Password: { type: String, required: true },
@@ -18,8 +17,7 @@ const Photographers = new Schema(
     Equipment: { type: String, required: true },
     Bio: { type: String, required: true },
     Category: { type: String, required: true }, //check number of categories
-    Category: { type: String, required: true }, //profile picture link
-    ProfilePic: { type: String, required: true },
+    ProfilePic: { type: String, required: true }, //profile picture link
     CoverPic: { type: String, required: true },
     photos: [{ id: String, category: String, Link: String }],
     date: { type: Date, required: true },
