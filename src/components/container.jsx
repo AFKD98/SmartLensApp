@@ -7,6 +7,7 @@ import Recommendation from "./Recommendation";
 import Categories from "./categories";
 import Registration from "./registration";
 import Profile from "./photographerProfile";
+import PhotoReg from "./photographerRegisteration";
 import Error from "./Error";
 // import Footer from "./footer";
 
@@ -23,6 +24,7 @@ function Container() {
         <Route path="/categories" component={Categories} />
         <Route path="/registration" component={Registration} />
         <Route path="/profile" component={Profile} />
+        <Route path="/photoreg" component={PhotoReg} />
         {/* <Route path="/contact" component={Footer} /> */}
         <Route component={Error} />
       </Switch>

@@ -21,6 +21,10 @@
     position: relative;
 }
 
+.fbutton {
+    margin-right: 200px;
+}
+
 .profilePhoto {
     position: relative;
     width:300px;

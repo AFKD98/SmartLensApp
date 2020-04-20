@@ -9,7 +9,7 @@ class NavBar extends Component {
         <Link to="/" />
         <Link to="/recommendation" />
         <Link to="/categories" />
-        <Link to="/registration" />
+        <Link to="/photoreg" />
         {/* <Link to="/contact" /> */}
 
         <nav className="navbar navbar-expand-sm navbar-light bg-trans fixed-top ">
