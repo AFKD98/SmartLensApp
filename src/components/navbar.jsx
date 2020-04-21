@@ -10,6 +10,7 @@ class NavBar extends Component {
         <Link to="/recommendation" />
         <Link to="/categories" />
         <Link to="/registration" />
+        <Link to="/adminPortal" />
         {/* <Link to="/contact" /> */}
 
         <nav className="navbar navbar-expand-lg navbar-light bg-trans fixed-top mx-auto my-auto">
@@ -54,7 +55,7 @@ class NavBar extends Component {
                 </a>
               </li>
               <li className="nav-item  active">
-                <a className="nav-link text-white" href="#">
+                <a className="nav-link text-white" href="/adminPortal">
                   Sign in
                 </a>
               </li>

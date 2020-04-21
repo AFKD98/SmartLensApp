@@ -8,21 +8,24 @@ class Categories extends Component {
     // constructor
     super(props);
     this.state = {
-      categories: [],
+      categories: [{ key: "", categoryName: "" }],
     };
   }
 
   componentDidMount() {
-    axios
+    //function runs at the start of component loading
+    axios //sending a get request to get all the categories from Mongo
       .get("http://localhost:5000/categories/")
       .then((res) => {
         res.data.map((entree) =>
-          // console.log(res.data);
           this.setState({
-            categories: this.state.categories.concat([entree.categoryname]),
+            categories: this.state.categories.concat([
+              //storing all the category ids and their name values in my local state array
+              { key: entree._id, categoryName: entree.categoryname },
+            ]),
           })
         );
-        console.log(this.state.categories);
+        // console.log(this.state.categories);
       })
       .catch((error) => {
         console.log(error);
@@ -37,6 +40,7 @@ class Categories extends Component {
     return (
       <div
         style={{
+          //jumbotron styles
           backgroundImage: "url(" + bg + ")",
           paddingTop: 50,
           padding: 50,
@@ -47,7 +51,7 @@ class Categories extends Component {
           width: "100vw",
           height: "100vh",
         }}
-        className="jumbotron jumbotron-fluid"
+        className="jumbotron jumbotron-fluid" //jumbotron
         className="text-right p-5"
       >
         <div className="container">
@@ -64,8 +68,13 @@ class Categories extends Component {
             Choose the categories you wish to browse <br />
           </p>
           <ul style={styles}>
+            {/* displays the buttons, by passing key and value parameters to categoryButton component which then stores it in its state */}
             {this.state.categories.map((Category) => (
-              <CategoryButton className="fixed-center" value={Category} />
+              <CategoryButton
+                className="fixed-center"
+                value={Category.categoryName}
+                key={Category.key}
+              />
             ))}
           </ul>
         </div>

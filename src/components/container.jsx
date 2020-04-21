@@ -6,6 +6,7 @@ import HomeView from "./homeView";
 import Recommendation from "./Recommendation";
 import Categories from "./categories";
 import Registration from "./registration";
+import Table from "./adminPortal";
 import Error from "./Error";
 // import Footer from "./footer";
 
@@ -21,7 +22,7 @@ function Container() {
         <Route path="/recommendation" component={Recommendation} />
         <Route path="/categories" component={Categories} />
         <Route path="/registration" component={Registration} />
-        {/* <Route path="/contact" component={Footer} /> */}
+        <Route path="/adminPortal" component={Table} />
         <Route component={Error} />
       </Switch>
       {/* </CSSTransition> */}
