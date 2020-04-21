@@ -9,11 +9,11 @@ const ClientsSchema = new Schema(
     Email: { type: String, required: true },
     Location: { type: String, required: true },
     Category: { type: [String], required: true }, //check number of categories
-    Photographer: { type: String, required: true }, //check id
+    Photographer: { type: String }, //check id
     Budget: { type: Number, required: true },
     Expertise: { type: String, required: true },
     Event_Description: { type: String, required: true },
-    Approved: { type: String, required: true },
+    Approved: { type: Boolean, required: true },
     date: { type: Date, required: true },
   },
   {

@@ -27,11 +27,7 @@ router.route("/add").post((req, res) => {
   const photos = req.body.photos;
   const date = Date.parse(req.body.date);
 
-<<<<<<< HEAD:backend/routes/photographer.js
-  const Photographers = new Photographers({
-=======
   const newphotographers = new photographers({
->>>>>>> f1ef7c9f6c884db23809c074790ce343338c0eff:backend/routes/photographers.js
     Name,
     Username,
     Password,
@@ -72,26 +68,6 @@ router.route("/:id").delete((req, res) => {
 });
 
 router.route("/update/:id").post((req, res) => {
-<<<<<<< HEAD:backend/routes/photographer.js
-  Photographers.findById(req.params.id)
-    .then((Photographers) => {
-      Photographers.Name = req.body.Name;
-      Photographers.Username = req.body.Username;
-      Photographers.Password = req.body.Password;
-      Photographers.ContactNumber = req.body.ContactNumber;
-      Photographers.Email = req.body.Email;
-      Photographers.Calendar = req.body.Calendar; //calendar link
-      Photographers.Level = req.body.Level;
-      Photographers.Range = req.body.Range;
-      Photographers.Address = req.body.Address;
-      Photographers.Equipment = req.body.Equipment;
-      Photographers.Bio = req.body.Bio;
-      Photographers.Category = req.body.Category; //check number of categories
-      Photographers.ProfilePic = req.body.ProfilePic; //profile picture link
-      Photographers.CoverPic = req.body.CoverPic;
-      Photographers.photos = req.body.photos;
-      Photographers.date = Date.parse(req.body.date);
-=======
   photographers
     .findById(req.params.id)
     .then((photographers) => {
@@ -111,7 +87,6 @@ router.route("/update/:id").post((req, res) => {
       photographers.CoverPic = req.body.CoverPic;
       photographers.photos = req.body.photos;
       photographers.date = Date.parse(req.body.date);
->>>>>>> f1ef7c9f6c884db23809c074790ce343338c0eff:backend/routes/photographers.js
 
       photographers
         .save()

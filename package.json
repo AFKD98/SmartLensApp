@@ -12,6 +12,7 @@
     "body-parser": "^1.19.0",
     "bootstrap": "^4.4.1",
     "cors": "^2.8.5",
+    "dateformat": "^3.0.3",
     "express": "^4.17.1",
     "mongoose": "^5.9.9",
     "react": "^16.13.1",
