@@ -12,21 +12,21 @@ class NavBar extends Component {
         <Link to="/photoreg" />
         {/* <Link to="/contact" /> */}
 
-        <nav className="navbar navbar-expand-sm navbar-light bg-trans fixed-top ">
+        <nav className="navbar navbar-expand-lg navbar-light bg-trans fixed-top mx-auto my-auto">
           <a className="navbar-brand text-white" href="/">
             SmartLens
           </a>
-          {/* <button
-          className="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarsExampleDefault"
-          aria-controls="navbarsExampleDefault"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button> */}
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarsExampleDefault"
+            aria-controls="navbarsExampleDefault"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
 
           <div
             className="collapse navbar-collapse pull-xs-right justify-content-end"
