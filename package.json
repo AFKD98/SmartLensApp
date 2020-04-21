@@ -14,11 +14,8 @@
     "cors": "^2.8.5",
     "dateformat": "^3.0.3",
     "express": "^4.17.1",
-<<<<<<< HEAD
     "material-components-web": "^5.1.0",
-=======
     "mdbreact": "^4.25.6",
->>>>>>> aade786301ba58775ec1838eaf5a009c7d8a5353
     "mongoose": "^5.9.9",
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.0",

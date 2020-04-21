@@ -6,12 +6,9 @@ import HomeView from "./homeView";
 import Recommendation from "./Recommendation";
 import Categories from "./categories";
 import Registration from "./registration";
-<<<<<<< HEAD
 import Profile from "./photographerProfile";
 import PhotoReg from "./photographerRegisteration";
-=======
 import Table from "./adminPortal";
->>>>>>> aade786301ba58775ec1838eaf5a009c7d8a5353
 import Error from "./Error";
 // import Footer from "./footer";
 
@@ -27,13 +24,10 @@ function Container() {
         <Route path="/recommendation" component={Recommendation} />
         <Route path="/categories" component={Categories} />
         <Route path="/registration" component={Registration} />
-<<<<<<< HEAD
         <Route path="/profile" component={Profile} />
         <Route path="/photoreg" component={PhotoReg} />
         {/* <Route path="/contact" component={Footer} /> */}
-=======
         <Route path="/adminPortal" component={Table} />
->>>>>>> aade786301ba58775ec1838eaf5a009c7d8a5353
         <Route component={Error} />
       </Switch>
       {/* </CSSTransition> */}

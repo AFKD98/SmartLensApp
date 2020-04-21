@@ -9,12 +9,9 @@ class NavBar extends Component {
         <Link to="/" />
         <Link to="/recommendation" />
         <Link to="/categories" />
-<<<<<<< HEAD
         <Link to="/photoreg" />
-=======
         <Link to="/registration" />
         <Link to="/adminPortal" />
->>>>>>> aade786301ba58775ec1838eaf5a009c7d8a5353
         {/* <Link to="/contact" /> */}
 
         <nav className="navbar navbar-expand-lg navbar-light bg-trans fixed-top mx-auto my-auto">
