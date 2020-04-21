@@ -39,7 +39,7 @@ class NavBar extends Component {
                 </a>
               </li>
               <li className="nav-item active">
-                <a className="nav-link text-white" href="/registration">
+                <a className="nav-link text-white" href="/photoreg">
                   Register
                 </a>
               </li>
