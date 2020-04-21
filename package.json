@@ -7,11 +7,18 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.19.2",
+    "bcrypt": "^4.0.1",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "bootstrap": "^4.4.1",
     "cors": "^2.8.5",
+    "dateformat": "^3.0.3",
     "express": "^4.17.1",
+<<<<<<< HEAD
     "material-components-web": "^5.1.0",
+=======
+    "mdbreact": "^4.25.6",
+>>>>>>> aade786301ba58775ec1838eaf5a009c7d8a5353
     "mongoose": "^5.9.9",
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.0",
