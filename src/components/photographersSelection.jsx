@@ -1,7 +1,6 @@
+//Comments by Faraz, please contact him in case of queries
+
 import React, { Component } from "react";
-import Button from "react-bootstrap/Button";
-import ToggleButton from "react-bootstrap/ToggleButton";
-import bg from "../assets/wedding_cover.jpg";
 import Recphoto from "../assets/Recommend.jpg";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -15,12 +14,12 @@ class PhotographerSelection extends Component {
     super(props);
     this.state = {
       photographers: [],
-      categoryKey: this.props.match.params.id,
+      categoryKey: this.props.match.params.id, //to catch the Category ID recieved from previous page use console.log(this.props) to see props coming from previous pages
       photographerKeys: [],
     };
 
-    this.jumbotronCode = this.jumbotronCode.bind(this);
-    this.getPhotographers = this.getPhotographers.bind(this);
+    this.jumbotronCode = this.jumbotronCode.bind(this); //renders the jumbotron
+    this.getPhotographers = this.getPhotographers.bind(this); //gets the photographer profiles of that particular category clicked
   }
 
   jumbotronCode() {
@@ -116,10 +115,11 @@ class PhotographerSelection extends Component {
     });
     return (
       <React.Fragment>
-        {/* <Col md={{ span: 4, offset: 4 }}>{`md={{ span: 4, offset: 4 }}`}</Col> */}
         {this.jumbotronCode()}
         <Container fluid>
+          {/* For a responsive grid all things set to auto */}
           <Row lg="auto" sm="auto" md="auto">
+            {/* loading the card component in the grid from PhotographersCard */}
             {cards}
           </Row>
         </Container>

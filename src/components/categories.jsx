@@ -1,3 +1,5 @@
+//Comments by Faraz, please contact him in case of queries
+
 import React, { Component } from "react";
 import CategoryButton from "./categoryButton";
 import bg from "../assets/categories.jpg";
