@@ -8,7 +8,7 @@ class Categories extends Component {
     // constructor
     super(props);
     this.state = {
-      categories: [{ key: "", categoryName: "" }],
+      categories: [],
     };
   }
 
@@ -21,11 +21,10 @@ class Categories extends Component {
           this.setState({
             categories: this.state.categories.concat([
               //storing all the category ids and their name values in my local state array
-              { key: entree._id, categoryName: entree.categoryname },
+              { Key: entree._id, categoryName: entree.categoryname },
             ]),
           })
         );
-        // console.log(this.state.categories);
       })
       .catch((error) => {
         console.log(error);
@@ -73,7 +72,7 @@ class Categories extends Component {
               <CategoryButton
                 className="fixed-center"
                 value={Category.categoryName}
-                key={Category.key}
+                Key={Category.Key}
               />
             ))}
           </ul>

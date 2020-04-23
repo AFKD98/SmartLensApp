@@ -8,6 +8,7 @@ import Categories from "./categories";
 import Registration from "./registration";
 import Profile from "./photographerProfile";
 import PhotoReg from "./photographerRegisteration";
+import PhotographerSelection from "./photographersSelection";
 import Table from "./adminPortal";
 import Error from "./Error";
 // import Footer from "./footer";
@@ -24,8 +25,12 @@ function Container() {
         <Route path="/recommendation" component={Recommendation} />
         <Route path="/categories" component={Categories} />
         <Route path="/registration" component={Registration} />
-        <Route path="/profile" component={Profile} />
+        <Route path="/profile/:id" component={Profile} />
         <Route path="/photoreg" component={PhotoReg} />
+        <Route
+          path="/photographersSelection/:id"
+          component={PhotographerSelection}
+        />
         {/* <Route path="/contact" component={Footer} /> */}
         <Route path="/adminPortal" component={Table} />
         <Route component={Error} />

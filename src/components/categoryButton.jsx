@@ -2,7 +2,7 @@ import React, { Component } from "react";
 //single button component for categories
 class CategoryButton extends Component {
   state = {
-    key: this.props.key,
+    Key: this.props.Key,
     value: this.props.value,
   };
 
@@ -15,7 +15,7 @@ class CategoryButton extends Component {
     return (
       <a
         className="btn btn-outline-light text-center mr-2 mt-5 fixed=-center"
-        href={"/photographersOfCategory:" + this.state.value} //passing the value of category to the link
+        href={"/photographersSelection/" + this.state.Key} //passing the value of category to the link
       >
         {this.getValue()}
       </a>

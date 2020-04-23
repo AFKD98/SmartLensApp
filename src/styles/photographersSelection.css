@@ -1,0 +1,9 @@
+.cardStyle {
+  /* background-image: url(../assets/homephoto3.jpg); */
+  /* background-size: 400px;
+  background-repeat: no-repeat;
+  background-position: 10% 40%; */
+  height: 50vh;
+  width: 50vmin;
+  position: relative;
+}

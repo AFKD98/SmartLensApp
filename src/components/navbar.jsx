@@ -12,6 +12,8 @@ class NavBar extends Component {
         <Link to="/photoreg" />
         <Link to="/registration" />
         <Link to="/adminPortal" />
+        <Link to="/photographersSelection/:id" />
+
         {/* <Link to="/contact" /> */}
 
         <nav className="navbar navbar-expand-lg navbar-light bg-trans fixed-top mx-auto my-auto">
