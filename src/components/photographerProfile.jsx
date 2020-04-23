@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button";
 import ToggleButton from "react-bootstrap/ToggleButton";
 import bg from "../assets/wedding_cover.jpg";
 import "../styles/photographerProfile.css";
+import axios from "axios";
 
 class Profile extends Component {
   constructor(props) {
@@ -20,6 +21,12 @@ class Profile extends Component {
         "https://www.youtube.com/embed/A6zLsU7RhX4",
         "https://www.youtube.com/embed/C0_uv535Gzw",
       ],
+      name: "",
+      aboutme: "",
+      location: "",
+      price: "",
+      equipment: "",
+      yes: "",
       displayPhotos: false,
       displayVideos: false,
     };
@@ -37,6 +44,28 @@ class Profile extends Component {
     this.setState({
       displayVideos: !this.state.displayVideos,
     });
+  }
+
+  componentDidMount() {
+    //function runs at the start of component loading
+    axios //sending a get request to get all the photographer info from Mongo
+      .get("http://localhost:5000/photographers/5e9e1e4dcceec825cc352271")
+      .then((res) => {
+        //res.data.map((entree) =>
+        this.setState({
+          name: res.data.Name,
+          aboutme: res.data.Bio,
+          location: res.data.Address,
+          price: res.data.Range,
+          equipment: res.data.Equipment,
+        });
+
+        //);
+        console.log(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   render() {
@@ -105,22 +134,16 @@ class Profile extends Component {
                 alt="Avatar"
                 className="prof1"
               ></img>
-              <h2 className="py-5">Name Surname</h2>
+              <h2 className="py-5">{this.state.name}</h2>
               <hr class="solid"></hr>
               <h2 class="pt-5">About Me</h2>
-              <p class="paratext pb-5">
-                I have shot hundreds of differnt stories (weddings, engagements,
-                parties of all kinds, family reunions etc.) around the globe.
-                The best rewards I get are those warm words about my ability to
-                capture sincere emotions in a creative way. I do love
-                photography - it's so exciting!
-              </p>
+              <p class="paratext pb-5">{this.state.aboutme}</p>
               <hr class="solid"></hr>
               <h2 class="pt-5">Details</h2>
               <p class="paratext pb-5">
-                Location: DHA Phase 5, Lahore <br />
-                Price: Rs. 25k per day <br />
-                Equipment: Nikon Coolpix S9700
+                Location: {this.state.location} <br />
+                Price: {this.state.price} <br />
+                Equipment: {this.state.equipment}
               </p>
               <hr class="solid"></hr>
               <h2 class="pt-5">My Work</h2>
