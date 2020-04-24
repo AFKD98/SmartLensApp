@@ -7,6 +7,8 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import axios from "axios";
 import PhotographersCard from "./photographersCard";
+import ToggleButton from "react-bootstrap/ToggleButton";
+import ToggleButtonGroup from "react-bootstrap/ToggleButtonGroup";
 
 class PhotographerSelection extends Component {
   constructor(props) {
@@ -16,10 +18,12 @@ class PhotographerSelection extends Component {
       photographers: [],
       categoryKey: this.props.match.params.id, //to catch the Category ID recieved from previous page use console.log(this.props) to see props coming from previous pages
       photographerKeys: [],
+      levelOfPhotographer: "All",
     };
 
     this.jumbotronCode = this.jumbotronCode.bind(this); //renders the jumbotron
     this.getPhotographers = this.getPhotographers.bind(this); //gets the photographer profiles of that particular category clicked
+    this.handleClick = this.handleClick.bind(this);
   }
 
   jumbotronCode() {
@@ -83,6 +87,13 @@ class PhotographerSelection extends Component {
         });
     });
   }
+
+  handleClick(event) {
+    this.setState({ levelOfPhotographer: event.target.value });
+  }
+  componentDidUpdate() {
+    // console.log(this.state.levelOfPhotographer);
+  }
   componentDidMount() {
     //function runs at the start of component loading
     axios //sending a get request to get all the photographers of the category from Mongo
@@ -103,19 +114,34 @@ class PhotographerSelection extends Component {
       .catch((error) => {
         console.log(error);
       });
-    // console.log(this.state.photographerKeys);
   }
   render() {
     let cards = this.state.photographers.map((Photographer) => {
       return (
         <Col lg="auto" sm="auto" md="auto">
-          <PhotographersCard Photographer={Photographer} />
+          <PhotographersCard
+            Photographer={Photographer}
+            levelOfPhotographer={this.state.levelOfPhotographer}
+          />
         </Col>
       );
     });
     return (
       <React.Fragment>
         {this.jumbotronCode()}
+        <Container fluid>
+          <ToggleButtonGroup
+            type="radio"
+            name="options"
+            defaultValue={1}
+            onClick={this.handleClick}
+          >
+            <ToggleButton value={"All"}>All</ToggleButton>
+            <ToggleButton value={"Silver"}>Silver</ToggleButton>
+            <ToggleButton value={"Gold"}>Gold</ToggleButton>
+            <ToggleButton value={"Platinum"}>Platinum</ToggleButton>
+          </ToggleButtonGroup>
+        </Container>
         <Container fluid>
           {/* For a responsive grid all things set to auto */}
           <Row lg="auto" sm="auto" md="auto">
