@@ -1,0 +1,20 @@
+.nametext {
+    position: relative;
+    bottom: -30px;
+    display: block;
+    font-size: 1.5em;
+    margin-top: 0.83em;
+    margin-bottom: 0.83em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
+}
+
+.abouttextbox {
+    width: 350px;
+}
+
+.aboutbutton {
+    position: relative;
+    top: -20px;
+}

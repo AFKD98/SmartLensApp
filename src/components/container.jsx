@@ -8,6 +8,7 @@ import Registration from "./registration";
 import Profile from "./photographerProfile";
 import PhotoReg from "./photographerRegisteration";
 import PhotographerSelection from "./photographersSelection";
+import EditProfile from "./EditphotographerProfile";
 import Table from "./adminPortal";
 import Error from "./Error";
 
@@ -21,6 +22,7 @@ function Container() {
         <Route path="/registration" component={Registration} />
         <Route path="/profile/:id" component={Profile} />
         <Route path="/photoreg" component={PhotoReg} />
+        <Route path="/editprofile" component={EditProfile} />
         <Route
           path="/photographersSelection/:id"
           component={PhotographerSelection}
