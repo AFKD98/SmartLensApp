@@ -21,8 +21,10 @@ class PhotographersCard extends Component {
 
   confirmLevel() {
     if (
-      this.state.level === this.props.levelOfPhotographer ||
-      this.props.levelOfPhotographer === "All"
+      (this.state.level === this.props.levelOfPhotographer ||
+        this.props.levelOfPhotographer === "All") &&
+      this.props.upperRange >= this.state.range &&
+      this.state.range >= this.props.lowerRange
     ) {
       return (
         <Card className="cardStyle py-auto px-auto mx-auto my-auto">

@@ -7,8 +7,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import axios from "axios";
 import PhotographersCard from "./photographersCard";
-import ToggleButton from "react-bootstrap/ToggleButton";
-import ToggleButtonGroup from "react-bootstrap/ToggleButtonGroup";
+import Filter from "./filter";
 
 class PhotographerSelection extends Component {
   constructor(props) {
@@ -19,11 +18,19 @@ class PhotographerSelection extends Component {
       categoryKey: this.props.match.params.id, //to catch the Category ID recieved from previous page use console.log(this.props) to see props coming from previous pages
       photographerKeys: [],
       levelOfPhotographer: "All",
+      cards: [],
+      lowerRange: 0,
+      upperRange: 300000,
+      min: 0,
+      max: 10000000,
     };
 
     this.jumbotronCode = this.jumbotronCode.bind(this); //renders the jumbotron
     this.getPhotographers = this.getPhotographers.bind(this); //gets the photographer profiles of that particular category clicked
+    // this.getCards = this.getCards.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.handleRangeChange = this.handleRangeChange.bind(this);
+    this.handleSortby = this.handleSortby.bind(this);
   }
 
   jumbotronCode() {
@@ -77,6 +84,14 @@ class PhotographerSelection extends Component {
                 name: res.data.Name,
                 level: res.data.Level,
                 range: res.data.Range,
+                rangeNumber:
+                  res.data.Range === "Silver"
+                    ? 0
+                    : "Gold"
+                    ? 1
+                    : "Platinum"
+                    ? 2
+                    : -1,
               },
             ]),
           });
@@ -86,15 +101,41 @@ class PhotographerSelection extends Component {
           console.log(error);
         });
     });
+    this.setState({
+      min: Math.min(...this.state.photographers.map((item) => item.range)),
+      max: Math.max(...this.state.photographers.map((item) => item.range)),
+    });
   }
-
+  // getCards() {
+  //   this.setState({
+  //     ,
+  //   });
+  //   return this.state.cards;
+  // }
   handleClick(event) {
     this.setState({ levelOfPhotographer: event.target.value });
   }
+
+  handleRangeChange(event) {
+    this.setState({ lowerRange: event[0], upperRange: event[1] });
+  }
+
+  handleSortby(event) {
+    console.log(event.target.id);
+    if (event.target.id == 0) {
+      this.setState({
+        photographers: this.state.photographers.sort((a, b) =>
+          a.range > b.range ? 1 : -1
+        ),
+      });
+      this.forceUpdate();
+    }
+  }
   componentDidUpdate() {
+    // console.log(this.state.photographers);
     // console.log(this.state.levelOfPhotographer);
   }
-  componentDidMount() {
+  componentWillMount() {
     //function runs at the start of component loading
     axios //sending a get request to get all the photographers of the category from Mongo
       .get("http://localhost:5000/categories/" + this.state.categoryKey)
@@ -116,31 +157,29 @@ class PhotographerSelection extends Component {
       });
   }
   render() {
+    console.log(this.state.photographers);
     let cards = this.state.photographers.map((Photographer) => {
       return (
         <Col lg="auto" sm="auto" md="auto">
           <PhotographersCard
             Photographer={Photographer}
             levelOfPhotographer={this.state.levelOfPhotographer}
+            lowerRange={this.state.lowerRange}
+            upperRange={this.state.upperRange}
           />
         </Col>
       );
     });
+    console.log("b");
     return (
       <React.Fragment>
         {this.jumbotronCode()}
         <Container fluid>
-          <ToggleButtonGroup
-            type="radio"
-            name="options"
-            defaultValue={1}
-            onClick={this.handleClick}
-          >
-            <ToggleButton value={"All"}>All</ToggleButton>
-            <ToggleButton value={"Silver"}>Silver</ToggleButton>
-            <ToggleButton value={"Gold"}>Gold</ToggleButton>
-            <ToggleButton value={"Platinum"}>Platinum</ToggleButton>
-          </ToggleButtonGroup>
+          <Filter
+            handleClick={this.handleClick}
+            handleRangeChange={this.handleRangeChange}
+            handleSortby={this.handleSortby}
+          />
         </Container>
         <Container fluid>
           {/* For a responsive grid all things set to auto */}
