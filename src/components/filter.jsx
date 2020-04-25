@@ -15,10 +15,10 @@ class Filter extends Component {
   }
 
   render() {
-    // let { volume } = this.state;
     return (
       <React.Fragment>
-        {/* <Dropdown>
+        {/* This is the dropdown menu for sort by, please do not delete */}
+        <Dropdown>
           <Dropdown.Toggle variant="primary" id="dropdown-basic">
             Sort by
           </Dropdown.Toggle>
@@ -35,7 +35,8 @@ class Filter extends Component {
               Expertise Level
             </Dropdown.Item>
           </Dropdown.Menu>
-        </Dropdown> */}
+        </Dropdown>
+        {/* Range filter */}
         <Range
           min={1000}
           max={300000}
@@ -59,6 +60,7 @@ class Filter extends Component {
           Choose the price range
         </Range>
 
+        {/* Level filter */}
         <ToggleButtonGroup
           type="radio"
           name="options"

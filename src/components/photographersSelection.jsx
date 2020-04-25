@@ -106,34 +106,29 @@ class PhotographerSelection extends Component {
       max: Math.max(...this.state.photographers.map((item) => item.range)),
     });
   }
-  // getCards() {
-  //   this.setState({
-  //     ,
-  //   });
-  //   return this.state.cards;
-  // }
   handleClick(event) {
+    //for setting level filter
     this.setState({ levelOfPhotographer: event.target.value });
   }
 
   handleRangeChange(event) {
+    //for setting range filter
     this.setState({ lowerRange: event[0], upperRange: event[1] });
   }
 
   handleSortby(event) {
-    console.log(event.target.id);
+    //sort by function is sorting properly but something wrong when rendering probably cause setstate is async
     if (event.target.id == 0) {
       this.setState({
         photographers: this.state.photographers.sort((a, b) =>
           a.range > b.range ? 1 : -1
         ),
       });
-      this.forceUpdate();
     }
   }
   componentDidUpdate() {
     // console.log(this.state.photographers);
-    // console.log(this.state.levelOfPhotographer);
+    console.log(this.state.min, this.state.max);
   }
   componentWillMount() {
     //function runs at the start of component loading
@@ -157,8 +152,9 @@ class PhotographerSelection extends Component {
       });
   }
   render() {
-    console.log(this.state.photographers);
+    // console.log(this.state.photographers);
     let cards = this.state.photographers.map((Photographer) => {
+      //cards that we render from the cards component
       return (
         <Col lg="auto" sm="auto" md="auto">
           <PhotographersCard
@@ -175,7 +171,7 @@ class PhotographerSelection extends Component {
       <React.Fragment>
         {this.jumbotronCode()}
         <Container fluid>
-          <Filter
+          <Filter //contains the level and range filter
             handleClick={this.handleClick}
             handleRangeChange={this.handleRangeChange}
             handleSortby={this.handleSortby}
