@@ -87,7 +87,7 @@ class photographerRegistration extends Component {
                             <Form.Check className="ml-4" label="Product" type="checkbox" id="product" />
                             <Form.Check className="ml-4" label="Event" type="checkbox" id="event" />
                             <Form.Check className="ml-4" label="Portrait" type="checkbox" id="portrait" />
-                            <Form.Check className="ml-4" label="Pornography" type="checkbox" id="pornography" />
+                            <Form.Check className="ml-4" label="Ranaography" type="checkbox" id="ranaography" />
                         </Form.Row>        
 
                         <Form.Row className="pt-3">
