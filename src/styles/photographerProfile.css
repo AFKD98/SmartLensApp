@@ -1,0 +1,41 @@
+/* Avatars must have square images */
+
+.jumbotron.one {
+    background-image: url(../assets/homephoto3.jpg);
+    background-size: 2000px;
+    background-repeat: no-repeat;
+    background-position: 10% 40%;
+    height: 50vh;
+    
+}
+
+.prof1 {
+    border-radius: 50%;
+    width: 300px;
+    position: relative;
+    /*top: -200px;*/
+}
+
+.moveup {
+    top: -200px;
+    position: relative;
+}
+
+.fbutton {
+    margin-right: 200px;
+}
+
+.profilePhoto {
+    position: relative;
+    width:300px;
+}
+
+.solid {
+    border-top: 3px solid #bbbbbb;
+}
+
+.aboutme {
+    font-size: 18pt;
+}
+    
+  

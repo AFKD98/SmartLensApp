@@ -9,7 +9,11 @@ class NavBar extends Component {
         <Link to="/" />
         <Link to="/recommendation" />
         <Link to="/categories" />
+        <Link to="/photoreg" />
         <Link to="/registration" />
+        <Link to="/adminPortal" />
+        <Link to="/photographersSelection/:id" />
+
         {/* <Link to="/contact" /> */}
 
         <nav className="navbar navbar-expand-lg navbar-light bg-trans fixed-top mx-auto my-auto">
@@ -39,7 +43,7 @@ class NavBar extends Component {
                 </a>
               </li>
               <li className="nav-item active">
-                <a className="nav-link text-white" href="/registration">
+                <a className="nav-link text-white" href="/photoreg">
                   Register
                 </a>
               </li>
@@ -54,7 +58,7 @@ class NavBar extends Component {
                 </a>
               </li>
               <li className="nav-item  active">
-                <a className="nav-link text-white" href="#">
+                <a className="nav-link text-white" href="/adminPortal">
                   Sign in
                 </a>
               </li>

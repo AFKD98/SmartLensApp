@@ -1,0 +1,19 @@
+
+
+ /* .cardStyle {
+  height: 50vh;
+  width: 50vmin;
+  position: relative;
+}  */
+
+.rangetext {
+  font-weight: bold;
+  font-size: medium;
+  position: relative;
+  text-align: center;
+}
+
+.expertise {
+  position: relative;
+  text-align: right;
+}

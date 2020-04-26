@@ -14,12 +14,21 @@
     "cors": "^2.8.5",
     "dateformat": "^3.0.3",
     "express": "^4.17.1",
+    "framework7-react": "^5.6.0",
+    "material-components-web": "^5.1.0",
+    "mdbreact": "^4.25.6",
     "mongoose": "^5.9.9",
+    "rc-slider": "^9.2.4",
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.0",
+    "react-bootstrap-range-slider": "^0.3.2",
     "react-dom": "^16.13.1",
+    "react-nouislider": "^2.0.1",
+    "react-rangeslider": "^2.2.0",
+    "react-redux": "^7.2.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1",
+    "redux": "^4.0.5",
     "styled-components": "^5.1.0"
   },
   "scripts": {
@@ -44,6 +53,7 @@
     ]
   },
   "devDependencies": {
-    "nodemon": "^2.0.3"
+    "nodemon": "^2.0.3",
+    "redux-devtools": "^3.5.0"
   }
 }
