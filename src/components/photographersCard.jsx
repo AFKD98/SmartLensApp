@@ -43,12 +43,13 @@ class PhotographersCard extends Component {
             </Card.Text>
           </Card.Body>
           <Card.Footer>
-            <a
-              className="btn btn-primary text-center mr-2 mt-5 "
+            <div className="text-center"><a
+              className="btn btn-primary my-3"
               href={"/profile/" + this.state.PhotographersID} //passing the value of category to the link
             >
-              View
-            </a>
+              <div className="cardpara">View</div>
+            </a></div>
+
           </Card.Footer>
         </Card>
       );

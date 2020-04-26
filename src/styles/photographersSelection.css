@@ -1,11 +1,19 @@
-/* Comments by Faraz, please contact him in case of queries */
 
-.cardStyle {
-  /* background-image: url(../assets/homephoto3.jpg); */
-  /* background-size: 400px;
-  background-repeat: no-repeat;
-  background-position: 10% 40%; */
+
+ /* .cardStyle {
   height: 50vh;
   width: 50vmin;
   position: relative;
+}  */
+
+.rangetext {
+  font-weight: bold;
+  font-size: medium;
+  position: relative;
+  text-align: center;
+}
+
+.expertise {
+  position: relative;
+  text-align: right;
 }
