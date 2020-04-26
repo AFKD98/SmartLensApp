@@ -14,7 +14,7 @@ class Categories extends Component {
     };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     //function runs at the start of component loading
     axios //sending a get request to get all the categories from Mongo
       .get("http://localhost:5000/categories/")
