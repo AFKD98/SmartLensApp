@@ -148,15 +148,16 @@ class PhotographerSelection extends Component {
     // console.log(this.state.photographers);
     let cards = this.state.photographers.map((Photographer) => {
       //cards that we render from the cards component
-      return (
-        <Col>
+      return ( 
+        
           <PhotographersCard
             Photographer={Photographer}
             levelOfPhotographer={this.state.levelOfPhotographer}
             lowerRange={this.state.lowerRange}
             upperRange={this.state.upperRange}
           />
-        </Col>
+        
+        
       );
     });
     console.log("b");
@@ -174,6 +175,9 @@ class PhotographerSelection extends Component {
             {/* loading the card component in the grid from PhotographersCard */}
             {cards}
           </Row>
+
+          
+
         </div>
       </React.Fragment>
     );

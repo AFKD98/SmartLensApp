@@ -4,6 +4,8 @@ import React, { Component } from "react";
 import Card from "react-bootstrap/Card";
 import "../styles/photographersSelection.css";
 import p2 from "../assets/p2.jpg";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 class PhotographersCard extends Component {
   constructor(props) {
@@ -27,6 +29,7 @@ class PhotographersCard extends Component {
       this.state.range >= this.props.lowerRange
     ) {
       return (
+        <Col className="col-4">
         <Card className="cardStyle py-auto px-auto mx-auto my-auto">
           {/* card image will come from the DB once the images storage is enabled */}
           <Card.Img top width="100%" src={p2} />
@@ -52,6 +55,7 @@ class PhotographersCard extends Component {
 
           </Card.Footer>
         </Card>
+        </Col>
       );
     } else {
       return null;
