@@ -19,7 +19,6 @@ function Container() {
         <Route exact path="/" component={HomeView} />
         <Route path="/recommendation" component={Recommendation} />
         <Route path="/categories" component={Categories} />
-        <Route path="/registration" component={Registration} />
         <Route path="/profile/:id" component={Profile} />
         <Route path="/photoreg" component={PhotoReg} />
         <Route path="/editprofile" component={EditProfile} />

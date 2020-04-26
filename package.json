@@ -10,7 +10,7 @@
     "bcrypt": "^4.0.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
-    "bootstrap": "^4.4.1",
+    "bootstrap": "^3.4.1",
     "cors": "^2.8.5",
     "dateformat": "^3.0.3",
     "express": "^4.17.1",
@@ -18,10 +18,12 @@
     "material-components-web": "^5.1.0",
     "mdbreact": "^4.25.6",
     "mongoose": "^5.9.9",
+    "prop-types": "^15.7.2",
     "rc-slider": "^9.2.4",
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.0",
     "react-bootstrap-range-slider": "^0.3.2",
+    "react-bootstrap-slider": "^2.2.3",
     "react-dom": "^16.13.1",
     "react-nouislider": "^2.0.1",
     "react-rangeslider": "^2.2.0",
@@ -54,6 +56,7 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.3",
-    "redux-devtools": "^3.5.0"
+    "redux-devtools": "^3.5.0",
+    "ws": "3.3.2"
   }
 }
