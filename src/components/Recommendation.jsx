@@ -1,47 +1,47 @@
 import React from "react";
 // import styled from "styled-components";
 import Recphoto from "../assets/Recommend.jpg";
-import axios from "axios";
+import { connect } from "react-redux";
+import { addOrder } from "../actions/orderActions";
+import PropTypes from "prop-types"; // validation
 
 class MyForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: "",
-      contact: "",
-      email: "",
-      location: "",
-      category: "",
-      photographer: "",
-      budget: 0,
-      expertise: "",
-      description: "",
-      date: new Date(),
-    };
-  }
+  state = {
+    name: "",
+    contact: "",
+    email: "",
+    location: "",
+    category: "",
+    photographer: "",
+    budget: 0,
+    expertise: "",
+    description: "",
+    date: new Date(),
+  };
+
+  static propTypes = {
+    addOrder: PropTypes.func.isRequired,
+    orders: PropTypes.object.isRequired,
+  };
+
   onSubmitHandler = (event) => {
     event.preventDefault();
 
-    axios
-      .post("http://localhost:5000/clients/add", {
-        ClientName: this.state.name, //it is getting the ClientName from the post request
-        ContactNumber: this.state.contact,
-        Email: this.state.email,
-        Location: this.state.location,
-        Category: this.state.category,
-        Photographer: this.state.photographer, //photographer id?
-        Budget: this.state.budget,
-        Expertise: this.state.expertise,
-        Event_Description: this.state.description,
-        Approved: false,
-        date: this.state.date,
-      })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    const newOrder = {
+      ClientName: this.state.name, //it is getting the ClientName from the post request
+      ContactNumber: this.state.contact,
+      Email: this.state.email,
+      Location: this.state.location,
+      Category: this.state.category,
+      Photographer: this.state.photographer, //photographer id?
+      Budget: this.state.budget,
+      Expertise: this.state.expertise,
+      Event_Description: this.state.description,
+      Approved: false,
+      date: this.state.date,
+    };
+
+    this.props.addOrder(newOrder);
 
     let contact = this.state.contact;
     if (!Number(contact)) {
@@ -134,4 +134,9 @@ class MyForm extends React.Component {
   }
 }
 
-export default MyForm;
+const mapStateToProps = (state) => ({
+  // to use the state as props
+  orders: state.orders, // orders is coming from root reducer at /reducers/index.js
+});
+
+export default connect(mapStateToProps, { addOrder })(MyForm); //exporting a component make it reusable and this is the beauty of react
