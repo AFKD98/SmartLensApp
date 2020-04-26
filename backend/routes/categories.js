@@ -4,7 +4,7 @@ let category = require("../models/category.model"); //moongoose model we created
 router.route("/").get((req, res) => {
   //this is /user url home
   category
-    .find() //mongoose database all the users
+    .find() //mongoose database all the categories
     .then((category) => res.json(category)) //results are returned in json format
     .catch((err) => res.status(400).json("Error " + err)); //error message
 });

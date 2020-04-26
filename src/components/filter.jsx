@@ -3,6 +3,10 @@ import ToggleButton from "react-bootstrap/ToggleButton";
 import ToggleButtonGroup from "react-bootstrap/ToggleButtonGroup";
 import "rc-slider/assets/index.css";
 import Dropdown from "react-bootstrap/Dropdown";
+import "../styles/photographersSelection.css";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 const Slider = require("rc-slider");
 const createSliderWithTooltip = Slider.createSliderWithTooltip;
@@ -18,63 +22,73 @@ class Filter extends Component {
     return (
       <React.Fragment>
         {/* This is the dropdown menu for sort by, please do not delete */}
-        <Dropdown>
-          <Dropdown.Toggle variant="primary" id="dropdown-basic">
-            Sort by
-          </Dropdown.Toggle>
-
-          <Dropdown.Menu flip={true} onClick={this.props.handleSortby}>
-            <Dropdown.Item
-              id={0}
-              value="Price"
-              // onSelect={this.props.handleSortby}
-            >
-              Price
-            </Dropdown.Item>
-            <Dropdown.Item id={1} value="Level">
-              Expertise Level
-            </Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
+        
         {/* Range filter */}
-        <Range
-          min={1000}
-          max={300000}
-          defaultValue={[100000, 250000]}
-          step={1000}
-          railStyle={"red"}
-          allowCross={false}
-          pushable={100}
-          handleStyle={[
-            { backgroundColor: "white" },
-            { backgroundColor: "black" },
-          ]}
-          railStyle={{ backgroundColor: "#72D0ED" }}
-          trackStyle={[
-            { backgroundColor: "gray" },
-            { backgroundColor: "gray" },
-          ]}
-          onAfterChange={this.props.handleRangeChange}
-          className="width: 200px"
-        >
-          Choose the price range
-        </Range>
+        <div className="container">
+          <div className="rangetext pb-3">Choose the price range using the drag buttons <br/></div>
+          <Range
+            min={1000}
+            max={300000}
+            defaultValue={[100000, 250000]}
+            step={1000}
+            railStyle={"red"}
+            allowCross={false}
+            pushable={100}
+            handleStyle={[{
+              backgroundColor: "white",
+              width: "24px",
+              height: "24px",
+            }
+            ]}
+            railStyle={{ backgroundColor: "#72D0ED", height: "10px" }}
+            trackStyle={[{
+              backgroundColor: "gray",
+              height: "10px"
+            } 
+            ]}
+            onAfterChange={this.props.handleRangeChange}
+          >
+            <br/>
+          </Range>
+          <Row className="pt-4">
+            <Col>
+              <Dropdown className="pb-3">
+                <Dropdown.Toggle variant="primary" id="dropdown-basic">
+                  Sort by
+                </Dropdown.Toggle>
 
-        {/* Level filter */}
-        <ToggleButtonGroup
-          type="radio"
-          name="options"
-          defaultValue={1}
-          onClick={this.props.handleClick}
-        >
-          <br />
-          Choose the level of Expertise
-          <br />
-          <ToggleButton value={"All"}>All</ToggleButton>
-          <ToggleButton value={"Silver"}>Silver</ToggleButton>
-          <ToggleButton value={"Gold"}>Gold</ToggleButton>
-          <ToggleButton value={"Platinum"}>Platinum</ToggleButton>
-        </ToggleButtonGroup>
+                <Dropdown.Menu flip={true} onClick={this.props.handleSortby}>
+                  <Dropdown.Item
+                    id={0}
+                    value="Price"
+                    // onSelect={this.props.handleSortby}
+                  >
+                    Price
+                  </Dropdown.Item>
+                  <Dropdown.Item id={1} value="Level">
+                    Expertise Level
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+              </Col>
+              {/* Level filter */}
+              <Col className="expertise">
+              <ToggleButtonGroup className="pb-5 expertise"
+                type="radio"
+                name="options"
+                defaultValue={1}
+                onClick={this.props.handleClick}
+              >
+                
+                
+                <ToggleButton value={"All"}>All</ToggleButton>
+                <ToggleButton value={"Silver"}>Silver</ToggleButton>
+                <ToggleButton value={"Gold"}>Gold</ToggleButton>
+                <ToggleButton value={"Platinum"}>Platinum</ToggleButton>
+              </ToggleButtonGroup>
+            </Col>
+          </Row>
+        </div>
       </React.Fragment>
     );
   }

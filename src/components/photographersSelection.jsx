@@ -1,4 +1,4 @@
-//Comments by Faraz, please contact him in case of queries
+//Comments by Faraz, please contact him in case of queries...marzi hai faraz sb
 
 import React, { Component } from "react";
 import Recphoto from "../assets/Recommend.jpg";
@@ -8,6 +8,7 @@ import Col from "react-bootstrap/Col";
 import axios from "axios";
 import PhotographersCard from "./photographersCard";
 import Filter from "./filter";
+import "../styles/photographersSelection.css";
 
 class PhotographerSelection extends Component {
   constructor(props) {
@@ -47,25 +48,16 @@ class PhotographerSelection extends Component {
           width: "100vw",
           height: "70vh",
         }}
-        className="jumbotron jumbotron-fluid"
-        className="text-right p-5"
+        className="jumbotron jumbotron-fluid pb-5"
       >
         <div className="container">
           <h1
             className="display-4"
             className="text-center text-white pr-auto pt-auto pb-auto mt-auto"
           >
-            Wedding
+            Wedding 
           </h1>
-          <p
-            className="lead medium"
-            className="text-center text-white pr-auto mt-auto"
-          >
-            Fill the form below and we will get back to you with a<br />
-            photographer that best suits your needs. You'll have a<br />
-            photographer in less than 24 hours!
-            <br />
-          </p>
+          
         </div>
       </div>
     );
@@ -156,7 +148,7 @@ class PhotographerSelection extends Component {
     let cards = this.state.photographers.map((Photographer) => {
       //cards that we render from the cards component
       return (
-        <Col lg="auto" sm="auto" md="auto">
+        <Col>
           <PhotographersCard
             Photographer={Photographer}
             levelOfPhotographer={this.state.levelOfPhotographer}
@@ -170,20 +162,18 @@ class PhotographerSelection extends Component {
     return (
       <React.Fragment>
         {this.jumbotronCode()}
-        <Container fluid>
+        <div className="container">
           <Filter //contains the level and range filter
             handleClick={this.handleClick}
             handleRangeChange={this.handleRangeChange}
             handleSortby={this.handleSortby}
           />
-        </Container>
-        <Container fluid>
           {/* For a responsive grid all things set to auto */}
-          <Row lg="auto" sm="auto" md="auto">
+          <Row className="pb-5">
             {/* loading the card component in the grid from PhotographersCard */}
             {cards}
           </Row>
-        </Container>
+        </div>
       </React.Fragment>
     );
   }
