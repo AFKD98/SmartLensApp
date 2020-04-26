@@ -110,7 +110,8 @@ class photographerRegistration extends Component {
         <div className="jumbotron jumbotron-fluid one">
           <div className="container">
             <h3 className="text-center text-white pr-auto pt-auto pb-auto mt-auto">
-              Hello {this.state.range} <br /> please enter your info below
+              Hello {this.state.name} <br /> Register with us and become a part
+              of SmartLens!
             </h3>
           </div>
         </div>

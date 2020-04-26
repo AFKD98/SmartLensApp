@@ -16,8 +16,8 @@ class NavBar extends Component {
 
         {/* <Link to="/contact" /> */}
 
-        <nav className="navbar navbar-expand-lg navbar-light bg-trans fixed-top mx-auto my-auto">
-          <a className="navbar-brand text-white" href="/">
+        <nav className="navbar navbar-expand-lg navbar-light bg-light px-auto py-auto mx-auto my-auto">
+          <a className="navbar-brand text-dark" href="/">
             SmartLens
           </a>
           <button
@@ -32,24 +32,21 @@ class NavBar extends Component {
             <span className="navbar-toggler-icon"></span>
           </button>
 
-          <div
-            className="collapse navbar-collapse pull-xs-right justify-content-end"
-            id="navbarsExampleDefault"
-          >
-            <ul className="navbar-nav mt-2 mt-md-0">
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul className="navbar-nav mr-auto my-auto">
               <li className="nav-item active">
-                <a className="nav-link text-white" href="/">
+                <a className="nav-link text-dark" href="/">
                   Vision <span className="sr-only">(current)</span>
                 </a>
               </li>
               <li className="nav-item active">
-                <a className="nav-link text-white" href="/photoreg">
+                <a className="nav-link text-dark" href="/photoreg">
                   Register
                 </a>
               </li>
               <li className="nav-item  active">
                 <a
-                  className="nav-link text-white"
+                  className="nav-link text-dark"
                   href="#"
                   // tabindex="-1"
                   // aria-disabled="true"
@@ -58,7 +55,7 @@ class NavBar extends Component {
                 </a>
               </li>
               <li className="nav-item  active">
-                <a className="nav-link text-white" href="/adminPortal">
+                <a className="nav-link text-dark" href="/adminPortal">
                   Sign in
                 </a>
               </li>

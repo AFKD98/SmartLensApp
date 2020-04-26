@@ -24,6 +24,7 @@ class PhotographerSelection extends Component {
       upperRange: 300000,
       min: 0,
       max: 10000000,
+      categoryName: "",
     };
 
     this.jumbotronCode = this.jumbotronCode.bind(this); //renders the jumbotron
@@ -55,9 +56,8 @@ class PhotographerSelection extends Component {
             className="display-4"
             className="text-center text-white pr-auto pt-auto pb-auto mt-auto"
           >
-            Wedding 
+            {this.state.categoryName}
           </h1>
-          
         </div>
       </div>
     );
@@ -135,6 +135,7 @@ class PhotographerSelection extends Component {
                 Key: entree,
               },
             ]),
+            categoryName: res.data.categoryname,
           })
         );
         this.getPhotographers(this.state.photographerKeys);
