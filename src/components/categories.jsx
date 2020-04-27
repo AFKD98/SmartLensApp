@@ -2,8 +2,9 @@
 
 import React, { Component } from "react";
 import CategoryButton from "./categoryButton";
-import bg from "../assets/categories.jpg";
+import bg from "../assets/sideview.jpg";
 import axios from "axios";
+import "../styles/categories.css";
 
 class Categories extends Component {
   constructor(props) {
@@ -39,36 +40,15 @@ class Categories extends Component {
       backgroundPosition: "center",
     };
     return (
-      <div
-        style={{
-          //jumbotron styles
-          backgroundImage: "url(" + bg + ")",
-          paddingTop: 50,
-          padding: 50,
-          paddingBottom: 50,
-          backgroundPosition: "center",
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
-          width: "100vw",
-          height: "100vh",
-        }}
-        className="jumbotron jumbotron-fluid" //jumbotron
-        className="text-right p-5"
-      >
-        <div className="container">
-          <h2
-            className="display-4"
-            className="text-center text-white pr-5 pt-5 mt-5"
-          >
+      <div className="jumbotron jumbotron-fluid text-center">
+        <div className="container cont">
+          <h2 className="conte">
             Lets find you a photographer
           </h2>
-          <p
-            className="lead medium"
-            className="text-center text-white pr-5 mt-1"
-          >
+          <p className="conte">
             Choose the categories you wish to browse <br />
           </p>
-          <ul style={styles}>
+          <ul className="catlist">
             {/* displays the buttons, by passing key and value parameters to categoryButton component which then stores it in its state */}
             {this.state.categories.map((Category) => (
               <CategoryButton

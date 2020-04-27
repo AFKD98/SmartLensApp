@@ -46,7 +46,6 @@ class PhotographerSelection extends Component {
           backgroundPosition: "center",
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
-          width: "100vw",
           height: "70vh",
         }}
         className="jumbotron jumbotron-fluid pb-5"
