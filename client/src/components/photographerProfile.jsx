@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Button from "react-bootstrap/Button";
-import ToggleButton from "react-bootstrap/ToggleButton";
-import bg from "../assets/wedding_cover.jpg";
+// import ToggleButton from "react-bootstrap/ToggleButton";
+// import bg from "../assets/wedding_cover.jpg";
 import "../styles/photographerProfile.css";
 import axios from "axios";
 
@@ -69,7 +69,7 @@ class Profile extends Component {
   }
 
   render() {
-    var photoCode = (
+    let photoCode = (
       <div>
         <br />
         {this.state.photos.map((photo, index) => (
@@ -87,7 +87,7 @@ class Profile extends Component {
       </div>
     );
 
-    var videoCode = (
+    let videoCode = (
       <div>
         <br />
         {this.state.videos.map((video, index) => (
@@ -120,12 +120,10 @@ class Profile extends Component {
         {/* END JUMBOTRON */}
 
         {/* START CONTENT */}
-
         <div className="container">
           <div className="row py-3">
             <div className="col-3 order-2" id="sidebar">
-              <div className="sticky-top">
-              </div>
+              <div className="sticky-top"></div>
             </div>
             <div className="col moveup" id="main">
               <img
@@ -133,19 +131,26 @@ class Profile extends Component {
                 alt="Avatar"
                 className="prof1"
               ></img>
+              <br />
+              <a
+                className="btn btn-primary text-center mr-2 mt-2"
+                href={"/recommendation/" + this.props.match.params.id}
+              >
+                Book Now
+              </a>
               <h2 className="py-5">{this.state.name}</h2>
-              <hr class="solid"></hr>
-              <h2 class="pt-5">About Me</h2>
-              <p class="paratext pb-5">{this.state.aboutme}</p>
-              <hr class="solid"></hr>
-              <h2 class="pt-5">Details</h2>
-              <p class="paratext pb-5">
+              <hr className="solid"></hr>
+              <h2 className="pt-5">About Me</h2>
+              <p className="paratext pb-5">{this.state.aboutme}</p>
+              <hr className="solid"></hr>
+              <h2 className="pt-5">Details</h2>
+              <p className="paratext pb-5">
                 Location: {this.state.location} <br />
                 Price: {this.state.price} <br />
                 Equipment: {this.state.equipment}
               </p>
-              <hr class="solid"></hr>
-              <h2 class="pt-5">My Work</h2>
+              <hr className="solid"></hr>
+              <h2 className="pt-5">My Work</h2>
               <br />
               <br />
               <Button variant="primary fbutton" onClick={this.photoClick}>

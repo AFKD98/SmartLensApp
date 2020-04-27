@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
+// import logo from "./logo.svg";
 import "./App.css";
 import NavBar from "./components/navbar";
 // import Counters from "./components/counters";
-import { render } from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
 import Footer from "./components/footer";
 import Container from "./components/container";

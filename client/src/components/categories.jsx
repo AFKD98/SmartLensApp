@@ -2,7 +2,7 @@
 
 import React, { Component } from "react";
 import CategoryButton from "./categoryButton";
-import bg from "../assets/sideview.jpg";
+// import bg from "../assets/sideview.jpg";
 import axios from "axios";
 import "../styles/categories.css";
 
@@ -15,7 +15,7 @@ class Categories extends Component {
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     //function runs at the start of component loading
     axios //sending a get request to get all the categories from Mongo
       .get("http://localhost:5000/categories/")
@@ -35,16 +35,14 @@ class Categories extends Component {
   }
 
   render() {
-    let styles = {
-      display: "inline-block",
-      backgroundPosition: "center",
-    };
+    // let styles = {
+    //   display: "inline-block",
+    //   backgroundPosition: "center",
+    // };
     return (
       <div className="jumbotron jumbotron-fluid text-center">
         <div className="container cont">
-          <h2 className="conte">
-            Lets find you a photographer
-          </h2>
+          <h2 className="conte">Lets find you a photographer</h2>
           <p className="conte">
             Choose the categories you wish to browse <br />
           </p>

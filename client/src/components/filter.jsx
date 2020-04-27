@@ -4,7 +4,7 @@ import ToggleButtonGroup from "react-bootstrap/ToggleButtonGroup";
 import "rc-slider/assets/index.css";
 import Dropdown from "react-bootstrap/Dropdown";
 import "../styles/photographersSelection.css";
-import Container from "react-bootstrap/Container";
+// import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
@@ -22,10 +22,12 @@ class Filter extends Component {
     return (
       <React.Fragment>
         {/* This is the dropdown menu for sort by, please do not delete */}
-        
+
         {/* Range filter */}
         <div className="container">
-          <div className="rangetext pb-3">Choose the price range using the drag buttons <br/></div>
+          <div className="rangetext pb-3">
+            Choose the price range using the drag buttons <br />
+          </div>
           <Range
             min={1000}
             max={300000}
@@ -34,21 +36,23 @@ class Filter extends Component {
             railStyle={"red"}
             allowCross={false}
             pushable={100}
-            handleStyle={[{
-              backgroundColor: "white",
-              width: "24px",
-              height: "24px",
-            }
+            handleStyle={[
+              {
+                backgroundColor: "white",
+                width: "24px",
+                height: "24px",
+              },
             ]}
-            railStyle={{ backgroundColor: "#72D0ED", height: "10px" }}
-            trackStyle={[{
-              backgroundColor: "gray",
-              height: "10px"
-            } 
+            // railStyle={{ backgroundColor: "#72D0ED", height: "10px" }}
+            trackStyle={[
+              {
+                backgroundColor: "gray",
+                height: "10px",
+              },
             ]}
             onAfterChange={this.props.handleRangeChange}
           >
-            <br/>
+            <br />
           </Range>
           <Row className="pt-4">
             <Col>
@@ -70,17 +74,16 @@ class Filter extends Component {
                   </Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
-              </Col>
-              {/* Level filter */}
-              <Col className="expertise">
-              <ToggleButtonGroup className="pb-5 expertise"
+            </Col>
+            {/* Level filter */}
+            <Col className="expertise">
+              <ToggleButtonGroup
+                className="pb-5 expertise"
                 type="radio"
                 name="options"
                 defaultValue={1}
                 onClick={this.props.handleClick}
               >
-                
-                
                 <ToggleButton value={"All"}>All</ToggleButton>
                 <ToggleButton value={"Silver"}>Silver</ToggleButton>
                 <ToggleButton value={"Gold"}>Gold</ToggleButton>
