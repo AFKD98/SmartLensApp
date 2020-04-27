@@ -11,7 +11,7 @@ const ClientsSchema = new Schema(
     Category: { type: [String], required: true }, //check number of categories
     Photographer: { type: String }, //check id
     Budget: { type: Number, required: true },
-    Expertise: { type: String, required: true },
+    Expertise: { type: String },
     Event_Description: { type: String, required: true },
     Approved: { type: Boolean, required: true },
     date: { type: Date, required: true },

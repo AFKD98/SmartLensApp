@@ -13,14 +13,14 @@ class MyForm extends React.Component {
     super(props);
     this.state = {
       name: "",
-      contact: "",
-      email: "",
-      location: "",
-      category: [],
+      contact: "090078601",
+      email: "af79614@gmail.com",
+      location: "Model Town",
+      category: ["Wedding", "Food", "Party"],
       photographer: this.props.match.params.type,
-      budget: 0,
-      expertise: "",
-      description: "",
+      budget: 100000,
+      expertise: "Gold",
+      description: "Give me a photographer",
       categories: [],
       date: new Date(),
     };
@@ -31,6 +31,10 @@ class MyForm extends React.Component {
   }
   onSubmitHandler = (event) => {
     event.preventDefault();
+    let budget = this.state.budget;
+    if (!Number(budget)) {
+      alert("Your budget must be a number");
+    }
 
     axios
       .post("http://localhost:5000/clients/add", {
@@ -52,11 +56,6 @@ class MyForm extends React.Component {
       .catch(function (error) {
         console.log(error);
       });
-
-    let contact = this.state.contact;
-    if (!Number(contact)) {
-      alert("Your contact must be a number");
-    }
   };
   onChangeHandler = (event) => {
     let nam = event.target.name;
@@ -68,7 +67,6 @@ class MyForm extends React.Component {
   }
   getExpertise() {
     if (this.props.match.params.type === "none") {
-    } else {
       return (
         <Form.Group controlId="expertise">
           <Form.Label>Expertise</Form.Label>
@@ -94,7 +92,6 @@ class MyForm extends React.Component {
   }
 
   categoryHandler(event) {
-    console.log(event.target.value);
     this.setState({
       category: this.state.category.concat([event.target.value]),
     });
@@ -129,28 +126,48 @@ class MyForm extends React.Component {
         {/* END JUMBOTRON */}
 
         <div className="container farm">
-          <Form>
+          <Form onSubmit={this.onSubmitHandler}>
             <Form.Row>
               <Col>
-                <Form.Group controlId="fullname">
+                <Form.Group
+                  controlId="fullname"
+                  onChange={this.onChangeHandler}
+                >
                   <Form.Label>Full Name</Form.Label>
-                  <Form.Control type="text" placeholder="Enter name" />
+                  <Form.Control
+                    name="name"
+                    type="text"
+                    placeholder="Enter name"
+                  />
                 </Form.Group>
               </Col>
             </Form.Row>
 
             <Form.Row>
               <Col>
-                <Form.Group controlId="email" className="pr-2">
+                <Form.Group
+                  controlId="email"
+                  className="pr-2"
+                  onChange={this.onChangeHandler}
+                >
                   <Form.Label>Email</Form.Label>
-                  <Form.Control type="email" placeholder="Enter email" />
+                  <Form.Control
+                    name="email"
+                    type="text"
+                    placeholder="Enter email"
+                  />
                 </Form.Group>
               </Col>
 
               <Col>
-                <Form.Group controlId="contact" className="pl-2">
+                <Form.Group
+                  controlId="contact"
+                  className="pl-2"
+                  onChange={this.onChangeHandler}
+                >
                   <Form.Label>Contact Number</Form.Label>
                   <Form.Control
+                    name="contact"
                     type="text"
                     placeholder="Enter contact number"
                   />
@@ -160,16 +177,32 @@ class MyForm extends React.Component {
 
             <Form.Row>
               <Col>
-                <Form.Group controlId="location" className="pr-2">
+                <Form.Group
+                  controlId="location"
+                  className="pr-2"
+                  onChange={this.onChangeHandler}
+                >
                   <Form.Label>Location</Form.Label>
-                  <Form.Control type="text" placeholder="Enter location" />
+                  <Form.Control
+                    name="location"
+                    type="text"
+                    placeholder="Enter location"
+                  />
                 </Form.Group>
               </Col>
 
               <Col>
-                <Form.Group controlId="budget" className="pl-2">
+                <Form.Group
+                  controlId="budget"
+                  className="pl-2"
+                  onChange={this.onChangeHandler}
+                >
                   <Form.Label>Budget</Form.Label>
-                  <Form.Control type="text" placeholder="Enter budget" />
+                  <Form.Control
+                    name="budget"
+                    type="Number"
+                    placeholder="Enter budget"
+                  />
                 </Form.Group>
               </Col>
             </Form.Row>
@@ -182,6 +215,7 @@ class MyForm extends React.Component {
             <Form.Row className="pb-3" onChange={this.categoryHandler}>
               {this.state.categories.map((Category) => (
                 <Form.Check
+                  name="category"
                   className="ml-2"
                   value={Category.categoryName}
                   label={Category.categoryName}
@@ -194,20 +228,24 @@ class MyForm extends React.Component {
 
             <Form.Row>
               <Col className="col-6">
-                <Form.Group controlId="date">
+                <Form.Group controlId="date" onChange={this.onChangeHandler}>
                   <Form.Label>Date</Form.Label>
-                  <Form.Control type="date" placeholder="mm/dd/yyyy" />
+                  <Form.Control
+                    name="date"
+                    type="date"
+                    placeholder="mm/dd/yyyy"
+                  />
                 </Form.Group>
               </Col>
 
-              <Col>{this.getExpertise}</Col>
+              <Col>{this.getExpertise()}</Col>
             </Form.Row>
 
             <Form.Row>
               <Col>
-                <Form.Group>
+                <Form.Group onChange={this.onChangeHandler}>
                   <Form.Label>Comments</Form.Label>
-                  <Form.Control as="textarea" rows="3" />
+                  <Form.Control name="description" as="textarea" rows="3" />
                 </Form.Group>
               </Col>
             </Form.Row>
