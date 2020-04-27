@@ -1,0 +1,42 @@
+{
+  "files": {
+    "main.css": "/static/css/main.46f24102.chunk.css",
+    "main.js": "/static/js/main.814f4f41.chunk.js",
+    "main.js.map": "/static/js/main.814f4f41.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.e4562ba2.js",
+    "runtime-main.js.map": "/static/js/runtime-main.e4562ba2.js.map",
+    "static/css/2.4520814f.chunk.css": "/static/css/2.4520814f.chunk.css",
+    "static/js/2.bda09fa5.chunk.js": "/static/js/2.bda09fa5.chunk.js",
+    "static/js/2.bda09fa5.chunk.js.map": "/static/js/2.bda09fa5.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.ef6fc6a8c797a4bf816377310b4551d1.js": "/precache-manifest.ef6fc6a8c797a4bf816377310b4551d1.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.4520814f.chunk.css.map": "/static/css/2.4520814f.chunk.css.map",
+    "static/css/main.46f24102.chunk.css.map": "/static/css/main.46f24102.chunk.css.map",
+    "static/js/2.bda09fa5.chunk.js.LICENSE.txt": "/static/js/2.bda09fa5.chunk.js.LICENSE.txt",
+    "static/media/222129.jpg": "/static/media/222129.46d3229b.jpg",
+    "static/media/Recommend.jpg": "/static/media/Recommend.674d51a9.jpg",
+    "static/media/abc.jpg": "/static/media/abc.5feffaa5.jpg",
+    "static/media/abcd.jpg": "/static/media/abcd.b87e901c.jpg",
+    "static/media/anastasia-dulgier-cZ-fHzucmxk-unsplash.jpg": "/static/media/anastasia-dulgier-cZ-fHzucmxk-unsplash.ffb6133b.jpg",
+    "static/media/categories.jpg": "/static/media/categories.c041ce10.jpg",
+    "static/media/bootstrap.css": "/static/media/glyphicons-halflings-regular.fa277232.woff",
+    "static/media/home2.jpg": "/static/media/home2.3c345f34.jpg",
+    "static/media/homephoto2.png": "/static/media/homephoto2.9d3229b6.png",
+    "static/media/homephoto3.jpg": "/static/media/homephoto3.5ea9010c.jpg",
+    "static/media/logo.svg": "/static/media/logo.5d5d9eef.svg",
+    "static/media/p1.jpg": "/static/media/p1.27a397da.jpg",
+    "static/media/p2.jpg": "/static/media/p2.98c88ba2.jpg",
+    "static/media/prof1.jpeg": "/static/media/prof1.ed3a84fc.jpeg",
+    "static/media/categories.css": "/static/media/sideview.e7d2306c.jpg",
+    "static/media/this2.jpg": "/static/media/this2.8e952edf.jpg",
+    "static/media/wedding_cover.jpg": "/static/media/wedding_cover.cd4b5e92.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.e4562ba2.js",
+    "static/css/2.4520814f.chunk.css",
+    "static/js/2.bda09fa5.chunk.js",
+    "static/css/main.46f24102.chunk.css",
+    "static/js/main.814f4f41.chunk.js"
+  ]
+}
