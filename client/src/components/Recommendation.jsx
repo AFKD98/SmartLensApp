@@ -4,6 +4,10 @@ import Form from "react-bootstrap/Form";
 import { Col } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import "../styles/photographerRegisteration.css";
+import "react-bootstrap-range-slider/dist/react-bootstrap-range-slider.css";
+import ToggleButton from "react-bootstrap/ToggleButton";
+import ToggleButtonGroup from "react-bootstrap/ToggleButtonGroup";
+
 class MyForm extends React.Component {
   constructor(props) {
     super(props);
@@ -12,13 +16,18 @@ class MyForm extends React.Component {
       contact: "",
       email: "",
       location: "",
-      category: "",
-      photographer: this.props.match.params.id,
+      category: [],
+      photographer: this.props.match.params.type,
       budget: 0,
       expertise: "",
       description: "",
+      categories: [],
       date: new Date(),
     };
+    this.onChangeHandler = this.onChangeHandler.bind(this);
+    this.onExpertiseChange = this.onExpertiseChange.bind(this);
+    this.categoryHandler = this.categoryHandler.bind(this);
+    this.getExpertise = this.getExpertise.bind(this);
   }
   onSubmitHandler = (event) => {
     event.preventDefault();
@@ -54,6 +63,61 @@ class MyForm extends React.Component {
     let val = event.target.value;
     this.setState({ [nam]: val });
   };
+  onExpertiseChange(event) {
+    this.setState({ expertise: parseInt(event.target.value, 10) });
+  }
+  getExpertise() {
+    if (this.props.match.params.type === "none") {
+    } else {
+      return (
+        <Form.Group controlId="expertise">
+          <Form.Label>Expertise</Form.Label>
+          <Form.Row>
+            <Col className="expertise">
+              <ToggleButtonGroup
+                className="pb-5 expertise"
+                type="radio"
+                name="options"
+                defaultValue={1}
+                onClick={this.onExpertiseChange}
+              >
+                <ToggleButton value={"All"}>All</ToggleButton>
+                <ToggleButton value={"Silver"}>Silver</ToggleButton>
+                <ToggleButton value={"Gold"}>Gold</ToggleButton>
+                <ToggleButton value={"Platinum"}>Platinum</ToggleButton>
+              </ToggleButtonGroup>
+            </Col>
+          </Form.Row>
+        </Form.Group>
+      );
+    }
+  }
+
+  categoryHandler(event) {
+    console.log(event.target.value);
+    this.setState({
+      category: this.state.category.concat([event.target.value]),
+    });
+  }
+
+  componentWillMount() {
+    //function runs at the start of component loading
+    axios //sending a get request to get all the categories from Mongo
+      .get("http://localhost:5000/categories/")
+      .then((res) => {
+        res.data.map((entree) =>
+          this.setState({
+            categories: this.state.categories.concat([
+              //storing all the category ids and their name values in my local state array
+              { Key: entree._id, categoryName: entree.categoryname },
+            ]),
+          })
+        );
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 
   render() {
     return (
@@ -115,37 +179,17 @@ class MyForm extends React.Component {
                 Categories (tick all that apply){" "}
               </Form.Label>
             </Form.Row>
-            <Form.Row className="pb-3">
-              <Form.Check
-                className="ml-2"
-                label="Wedding"
-                type="checkbox"
-                id="wedding"
-              />
-              <Form.Check
-                className="ml-4"
-                label="Product"
-                type="checkbox"
-                id="product"
-              />
-              <Form.Check
-                className="ml-4"
-                label="Event"
-                type="checkbox"
-                id="event"
-              />
-              <Form.Check
-                className="ml-4"
-                label="Portrait"
-                type="checkbox"
-                id="portrait"
-              />
-              <Form.Check
-                className="ml-4"
-                label="Ranaography"
-                type="checkbox"
-                id="ranaography"
-              />
+            <Form.Row className="pb-3" onChange={this.categoryHandler}>
+              {this.state.categories.map((Category) => (
+                <Form.Check
+                  className="ml-2"
+                  value={Category.categoryName}
+                  label={Category.categoryName}
+                  type="checkbox"
+                  id={Category.Key}
+                  Key={Category.Key}
+                />
+              ))}
             </Form.Row>
 
             <Form.Row>
@@ -156,23 +200,7 @@ class MyForm extends React.Component {
                 </Form.Group>
               </Col>
 
-              <Col>
-                <Form.Group controlId="expertise">
-                  <Form.Label>Expertise</Form.Label>
-                  <Form.Control as="select" value="Expertise...">
-                    <option>1 (beginner)</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10 (expert)</option>
-                  </Form.Control>
-                </Form.Group>
-              </Col>
+              <Col>{this.getExpertise}</Col>
             </Form.Row>
 
             <Form.Row>
