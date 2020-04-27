@@ -1,22 +1,37 @@
 import React, { Component } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Button, Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
+import Scroll from 'react-scroll'
+const ScrollLink = Scroll.ScrollLink
+
 
 class NavBar extends Component {
   render() {
     return (
       <React.Fragment>
-        {/* Links for navigation */}
-        <Link to="/" />
-        <Link to="/recommendation" />
-        <Link to="/categories" />
-        <Link to="/photoreg" />
-        <Link to="/registration" />
-        <Link to="/adminPortal" />
-        <Link to="/photographersSelection/:id" />
+
+        <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
+          <Navbar.Brand href="/">SmartLens</Navbar.Brand>
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Collapse id="responsive-navbar-nav">
+            <Nav className="ml-auto">
+              <Nav.Link href="/photoreg">Register</Nav.Link>
+              <Nav.Link href="/adminportal">Sign In</Nav.Link>
+              <Nav.Link href="#">Vision</Nav.Link>
+              <Nav.Link href="#">About</Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
+        </Navbar>
+
+
+
+
+
+
+
 
         {/* <Link to="/contact" /> */}
 
-        <nav className="navbar navbar-expand-lg navbar-light bg-light px-auto py-auto mx-auto my-auto">
+        {/*<nav className="navbar navbar-expand-lg navbar-light bg-light px-auto py-auto mx-auto my-auto">
           <a className="navbar-brand text-dark" href="/">
             SmartLens
           </a>
@@ -59,32 +74,9 @@ class NavBar extends Component {
                   Sign in
                 </a>
               </li>
-              {/* <li className="nav-item dropdown">
-              <a
-                className="nav-link dropdown-toggle"
-                href="#"
-                id="dropdown01"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                Sign in
-              </a>
-              <div className="dropdown-menu" aria-labelledby="dropdown01">
-                <a className="dropdown-item" href="#">
-                  Action
-                </a>
-                <a className="dropdown-item" href="#">
-                  Another action
-                </a>
-                <a className="dropdown-item" href="#">
-                  Something else here
-                </a>
-              </div>
-            </li> */}
             </ul>
           </div>
-        </nav>
+        </nav>*/}
       </React.Fragment>
     );
   }

@@ -16,7 +16,6 @@ class HomeView extends Component {
             backgroundPosition: "center",
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
-            width: "100vw",
             height: "100vh",
           }}
           className="jumbotron jumbotron-fluid"
@@ -57,7 +56,6 @@ class HomeView extends Component {
             backgroundPosition: "center",
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
-            width: "100vw",
             height: "100vh",
           }}
           className="jumbotron jumbotron-fluid"
@@ -90,7 +88,6 @@ class HomeView extends Component {
             backgroundPosition: "center",
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
-            width: "100vw",
             height: "100vh",
           }}
           className="jumbotron jumbotron-fluid"
