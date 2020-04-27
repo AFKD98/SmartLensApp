@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+// import styled from "styled-components";
 import Recphoto from "../assets/Recommend.jpg";
 
 class Registration extends React.Component {
@@ -43,23 +43,16 @@ class Registration extends React.Component {
             width: "100vw",
             height: "70vh",
           }}
-          className="jumbotron jumbotron-fluid"
-          className="text-right p-5"
+          className="jumbotron jumbotron-fluid text-right p-5"
         >
           <div className="container">
             <h3 className="text-center text-white pr-5 pt-5 pb-2 mt-5">
               Hello {this.state.username} <br /> please enter your info below
             </h3>
-            <h1
-              className="display-4"
-              className="text-center text-white pr-1 pt-5 pb-4 mt-1"
-            >
+            <h1 className="display-4 text-center text-white pr-1 pt-5 pb-4 mt-1">
               Work with us
             </h1>
-            <p
-              className="lead medium"
-              className="text-center text-white pr-5 mt-1"
-            >
+            <p className="lead medium text-center text-white pr-5 mt-1">
               For photographers who want to join SmartLens
               <br />
             </p>

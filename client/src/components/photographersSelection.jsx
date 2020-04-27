@@ -2,9 +2,9 @@
 
 import React, { Component } from "react";
 import Recphoto from "../assets/Recommend.jpg";
-import Container from "react-bootstrap/Container";
+// import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+// import Col from "react-bootstrap/Col";
 import axios from "axios";
 import PhotographersCard from "./photographersCard";
 import Filter from "./filter";
@@ -51,10 +51,7 @@ class PhotographerSelection extends Component {
         className="jumbotron jumbotron-fluid pb-5"
       >
         <div className="container">
-          <h1
-            className="display-4"
-            className="text-center text-white pr-auto pt-auto pb-auto mt-auto"
-          >
+          <h1 className="display-4 text-center text-white pr-auto pt-auto pb-auto mt-auto">
             {this.state.categoryName}
           </h1>
         </div>
@@ -109,7 +106,7 @@ class PhotographerSelection extends Component {
 
   handleSortby(event) {
     //sort by function is sorting properly but something wrong when rendering probably cause setstate is async
-    if (event.target.id == 0) {
+    if (event.target.id === 0) {
       this.setState({
         photographers: this.state.photographers.sort((a, b) =>
           a.range > b.range ? 1 : -1
@@ -119,9 +116,9 @@ class PhotographerSelection extends Component {
   }
   componentDidUpdate() {
     // console.log(this.state.photographers);
-    console.log(this.state.min, this.state.max);
+    // console.log(this.state.min, this.state.max);
   }
-  componentWillMount() {
+  componentDidMount() {
     //function runs at the start of component loading
     axios //sending a get request to get all the photographers of the category from Mongo
       .get("http://localhost:5000/categories/" + this.state.categoryKey)
@@ -147,19 +144,15 @@ class PhotographerSelection extends Component {
     // console.log(this.state.photographers);
     let cards = this.state.photographers.map((Photographer) => {
       //cards that we render from the cards component
-      return ( 
-        
-          <PhotographersCard
-            Photographer={Photographer}
-            levelOfPhotographer={this.state.levelOfPhotographer}
-            lowerRange={this.state.lowerRange}
-            upperRange={this.state.upperRange}
-          />
-        
-        
+      return (
+        <PhotographersCard
+          Photographer={Photographer}
+          levelOfPhotographer={this.state.levelOfPhotographer}
+          lowerRange={this.state.lowerRange}
+          upperRange={this.state.upperRange}
+        />
       );
     });
-    console.log("b");
     return (
       <React.Fragment>
         {this.jumbotronCode()}
@@ -174,9 +167,6 @@ class PhotographerSelection extends Component {
             {/* loading the card component in the grid from PhotographersCard */}
             {cards}
           </Row>
-
-          
-
         </div>
       </React.Fragment>
     );

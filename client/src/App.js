@@ -2,13 +2,21 @@ import React, { Component } from "react";
 // import logo from "./logo.svg";
 import "./App.css";
 import NavBar from "./components/navbar";
-// import { render } from "react-dom";
+// import Counters from "./components/counters";
 import { BrowserRouter as Router } from "react-router-dom";
 import Footer from "./components/footer";
 import Container from "./components/container";
 
 class App extends Component {
-  state = {};
+  state = {
+    counters: [
+      { id: 1, value: 0 },
+      { id: 2, value: 0 },
+      { id: 3, value: 0 },
+      { id: 4, value: 0 },
+      { id: 5, value: 0 },
+    ],
+  };
 
   handleDelete = (counterId) => {
     const counters = this.state.counters.filter((c) => c.id !== counterId);

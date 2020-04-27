@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import Form from "react-bootstrap/Form";
-import { Row, Col, Grid } from "react-bootstrap";
-import FormControl from "react-bootstrap/FormControl";
-import FormFile from "react-bootstrap/FormFile";
+import { Col } from "react-bootstrap";
+// import FormControl from "react-bootstrap/FormControl";
+// import FormFile from "react-bootstrap/FormFile";
 import axios from "axios";
-import FormCheck from "react-bootstrap/FormCheck";
+// import FormCheck from "react-bootstrap/FormCheck";
 import Button from "react-bootstrap/Button";
 import "../styles/photographerRegisteration.css";
 import "react-bootstrap-range-slider/dist/react-bootstrap-range-slider.css";
@@ -36,6 +36,7 @@ class photographerRegistration extends Component {
     let nam = event.target.name;
     let val = event.target.value;
     this.setState({ [nam]: val });
+    // console.log(nam, val);
   }
   ratingHandler(event) {
     this.setState({ rating: parseInt(event.target.value, 10) });

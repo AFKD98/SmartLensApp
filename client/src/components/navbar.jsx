@@ -1,14 +1,12 @@
 import React, { Component } from "react";
-import { Button, Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
-import Scroll from 'react-scroll'
-const ScrollLink = Scroll.ScrollLink
-
+import { Navbar, Nav } from "react-bootstrap";
+import Scroll from "react-scroll";
+const ScrollLink = Scroll.ScrollLink;
 
 class NavBar extends Component {
   render() {
     return (
       <React.Fragment>
-
         <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
           <Navbar.Brand href="/">SmartLens</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -21,13 +19,6 @@ class NavBar extends Component {
             </Nav>
           </Navbar.Collapse>
         </Navbar>
-
-
-
-
-
-
-
 
         {/* <Link to="/contact" /> */}
 
@@ -48,7 +39,7 @@ class NavBar extends Component {
           </button>
 
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav mr-auto my-auto ">
+            <ul className="navbar-nav mr-auto my-auto">
               <li className="nav-item active">
                 <a className="nav-link text-dark" href="/">
                   Vision <span className="sr-only">(current)</span>
