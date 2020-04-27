@@ -36,6 +36,7 @@ class photographerRegistration extends Component {
     let nam = event.target.name;
     let val = event.target.value;
     this.setState({ [nam]: val });
+    // console.log(nam, val);
   }
   ratingHandler(event) {
     this.setState({ rating: parseInt(event.target.value, 10) });
