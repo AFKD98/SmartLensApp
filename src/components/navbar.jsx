@@ -33,7 +33,7 @@ class NavBar extends Component {
           </button>
 
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav mr-auto my-auto">
+            <ul className="navbar-nav mr-auto my-auto ">
               <li className="nav-item active">
                 <a className="nav-link text-dark" href="/">
                   Vision <span className="sr-only">(current)</span>
