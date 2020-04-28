@@ -52,7 +52,7 @@ class Filter extends Component {
           </Range>
           <Row className="pt-4">
             <Col>
-              <Dropdown className="pb-3">
+              {/*<Dropdown className="pb-3">
                 <Dropdown.Toggle variant="primary" id="dropdown-basic">
                   Sort by
                 </Dropdown.Toggle>
@@ -69,7 +69,7 @@ class Filter extends Component {
                     Expertise Level
                   </Dropdown.Item>
                 </Dropdown.Menu>
-              </Dropdown>
+          </Dropdown>*/}
               </Col>
               {/* Level filter */}
               <Col className="expertise">
