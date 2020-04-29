@@ -1,59 +1,19 @@
 {
-  "name": "myapp",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.5.0",
-    "@testing-library/user-event": "^7.2.1",
-    "axios": "^0.19.2",
-    "bcrypt": "^4.0.1",
-    "bcryptjs": "^2.4.3",
-    "body-parser": "^1.19.0",
-    "bootstrap": "^4.4.1",
-    "cors": "^2.8.5",
-    "dateformat": "^3.0.3",
-    "express": "^4.17.1",
-    "framework7-react": "^5.6.0",
-    "material-components-web": "^5.1.0",
-    "mdbreact": "^4.25.6",
-    "mongoose": "^5.9.9",
-    "rc-slider": "^9.2.4",
-    "react": "^16.13.1",
-    "react-bootstrap": "^1.0.0",
-    "react-bootstrap-range-slider": "^0.3.2",
-    "react-dom": "^16.13.1",
-    "react-nouislider": "^2.0.1",
-    "react-rangeslider": "^2.2.0",
-    "react-redux": "^7.2.0",
-    "react-router-dom": "^5.1.2",
-    "react-scripts": "3.4.1",
-    "redux": "^4.0.5",
-    "styled-components": "^5.1.0"
-  },
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.7"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.3",
-    "redux-devtools": "^3.5.0"
-  }
+  "devDependencies": {}
 }
