@@ -4,7 +4,7 @@ import ToggleButtonGroup from "react-bootstrap/ToggleButtonGroup";
 import "rc-slider/assets/index.css";
 import Dropdown from "react-bootstrap/Dropdown";
 import "../styles/photographersSelection.css";
-import Container from "react-bootstrap/Container";
+// import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
@@ -43,7 +43,7 @@ class Filter extends Component {
                 height: "24px",
               },
             ]}
-            railStyle={{ backgroundColor: "#72D0ED", height: "10px" }}
+            // railStyle={{ backgroundColor: "#72D0ED", height: "10px" }}
             trackStyle={[
               {
                 backgroundColor: "gray",
@@ -55,8 +55,8 @@ class Filter extends Component {
             <br />
           </Range>
           <Row className="pt-4">
-            {/* <Col>
-              <Dropdown className="pb-3">
+            {/* <Col> */}
+            {/* <Dropdown className="pb-3">
                 <Dropdown.Toggle variant="primary" id="dropdown-basic">
                   Sort by
                 </Dropdown.Toggle>
@@ -73,8 +73,8 @@ class Filter extends Component {
                     Expertise Level
                   </Dropdown.Item>
                 </Dropdown.Menu>
-              </Dropdown>
-            </Col> */}
+              </Dropdown> */}
+            {/* </Col> */}
             {/* Level filter */}
             <Col className="expertise">
               <ToggleButtonGroup

@@ -2,9 +2,9 @@
 
 import React, { Component } from "react";
 import Recphoto from "../assets/Recommend.jpg";
-import Container from "react-bootstrap/Container";
+// import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+// import Col from "react-bootstrap/Col";
 import axios from "axios";
 import PhotographersCard from "./photographersCard";
 import Filter from "./filter";
@@ -24,6 +24,7 @@ class PhotographerSelection extends Component {
       upperRange: 300000,
       min: 0,
       max: 10000000,
+      categoryName: "",
     };
 
     this.jumbotronCode = this.jumbotronCode.bind(this); //renders the jumbotron
@@ -45,19 +46,14 @@ class PhotographerSelection extends Component {
           backgroundPosition: "center",
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
-          width: "100vw",
           height: "70vh",
         }}
         className="jumbotron jumbotron-fluid pb-5"
       >
         <div className="container">
-          <h1
-            className="display-4"
-            className="text-center text-white pr-auto pt-auto pb-auto mt-auto"
-          >
-            Wedding 
+          <h1 className="display-4 text-center text-white pr-auto pt-auto pb-auto mt-auto">
+            {this.state.categoryName}
           </h1>
-          
         </div>
       </div>
     );
@@ -66,13 +62,14 @@ class PhotographerSelection extends Component {
   getPhotographers(photographerKeys) {
     photographerKeys.map((photographerKey) => {
       axios //sending a get request to get all the photographers of the category from Mongo
-        .get("http://localhost:5000/photographers/" + photographerKey.Key)
+        .get("http://localhost:5000/photographers/" + photographerKey.id)
         .then((res) => {
           this.setState({
             photographers: this.state.photographers.concat([
               //storing all the photographer ids and their name values in my local state array
               {
-                Key: res.data._id,
+                key: res.data._id,
+                id: res.data._id,
                 name: res.data.Name,
                 level: res.data.Level,
                 range: res.data.Range,
@@ -93,10 +90,10 @@ class PhotographerSelection extends Component {
           console.log(error);
         });
     });
-    this.setState({
-      min: Math.min(...this.state.photographers.map((item) => item.range)),
-      max: Math.max(...this.state.photographers.map((item) => item.range)),
-    });
+    // this.setState({
+    //   min: Math.min(...this.state.photographers.map((item) => item.range)),
+    //   max: Math.max(...this.state.photographers.map((item) => item.range)),
+    // });
   }
   handleClick(event) {
     //for setting level filter
@@ -110,7 +107,7 @@ class PhotographerSelection extends Component {
 
   handleSortby(event) {
     //sort by function is sorting properly but something wrong when rendering probably cause setstate is async
-    if (event.target.id == 0) {
+    if (event.target.id === 0) {
       this.setState({
         photographers: this.state.photographers.sort((a, b) =>
           a.range > b.range ? 1 : -1
@@ -120,9 +117,9 @@ class PhotographerSelection extends Component {
   }
   componentDidUpdate() {
     // console.log(this.state.photographers);
-    console.log(this.state.min, this.state.max);
+    // console.log(this.state.min, this.state.max);
   }
-  componentWillMount() {
+  componentDidMount() {
     //function runs at the start of component loading
     axios //sending a get request to get all the photographers of the category from Mongo
       .get("http://localhost:5000/categories/" + this.state.categoryKey)
@@ -132,9 +129,11 @@ class PhotographerSelection extends Component {
             photographerKeys: this.state.photographerKeys.concat([
               //storing all the photographer ids of a particular category in my local state array
               {
-                Key: entree,
+                key: entree,
+                id: entree,
               },
             ]),
+            categoryName: res.data.categoryname,
           })
         );
         this.getPhotographers(this.state.photographerKeys);
@@ -147,19 +146,17 @@ class PhotographerSelection extends Component {
     // console.log(this.state.photographers);
     let cards = this.state.photographers.map((Photographer) => {
       //cards that we render from the cards component
-      return ( 
-        
-          <PhotographersCard
-            Photographer={Photographer}
-            levelOfPhotographer={this.state.levelOfPhotographer}
-            lowerRange={this.state.lowerRange}
-            upperRange={this.state.upperRange}
-          />
-        
-        
+      return (
+        <PhotographersCard
+          key={Photographer.id}
+          id={Photographer.id}
+          Photographer={Photographer}
+          levelOfPhotographer={this.state.levelOfPhotographer}
+          lowerRange={this.state.lowerRange}
+          upperRange={this.state.upperRange}
+        />
       );
     });
-    console.log("b");
     return (
       <React.Fragment>
         {this.jumbotronCode()}
@@ -174,9 +171,6 @@ class PhotographerSelection extends Component {
             {/* loading the card component in the grid from PhotographersCard */}
             {cards}
           </Row>
-
-          
-
         </div>
       </React.Fragment>
     );
