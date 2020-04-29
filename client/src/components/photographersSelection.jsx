@@ -160,7 +160,7 @@ class PhotographerSelection extends Component {
     return (
       <React.Fragment>
         {this.jumbotronCode()}
-        <div className="container">
+        <div className="container rangetext">
           <Filter //contains the level and range filter
             handleClick={this.handleClick}
             handleRangeChange={this.handleRangeChange}
