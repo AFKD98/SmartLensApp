@@ -17,25 +17,25 @@ class Categories extends Component {
 
   componentDidMount() {
     //function runs at the start of component loading
-    //   axios //sending a get request to get all the categories from Mongo
-    //     .get("http://localhost:5000/categories/")
-    //     .then((res) => {
-    //       res.data.map((entree) =>
-    //         this.setState({
-    //           categories: this.state.categories.concat([
-    //             //storing all the category ids and their name values in my local state array
-    //             {
-    //               key: entree._id,
-    //               id: entree._id,
-    //               categoryName: entree.categoryname,
-    //             },
-    //           ]),
-    //         })
-    //       );
-    //     })
-    //     .catch((error) => {
-    //       console.log(error);
-    //     });
+    axios //sending a get request to get all the categories from Mongo
+      .get("http://localhost:5000/categories/")
+      .then((res) => {
+        res.data.map((entree) =>
+          this.setState({
+            categories: this.state.categories.concat([
+              //storing all the category ids and their name values in my local state array
+              {
+                key: entree._id,
+                id: entree._id,
+                categoryName: entree.categoryname,
+              },
+            ]),
+          })
+        );
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   render() {
