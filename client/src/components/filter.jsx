@@ -78,7 +78,7 @@ class Filter extends Component {
             {/* Level filter */}
             <Col className="expertise">
               <ToggleButtonGroup
-                className="pb-5 expertise"
+                className="pb-5 pt-2 expertise"
                 type="radio"
                 name="options"
                 defaultValue={1}
