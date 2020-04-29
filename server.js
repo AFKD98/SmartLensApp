@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const path = require("path");
 
 require("dotenv").config(); //environment variables in the .env file
 
@@ -30,6 +31,12 @@ app.use("/categories", categoriesRouter); //it will load everything in the categ
 app.use("/photographers", photographersRouter); //it will load everything in the photographers
 app.use("/registration_photographer", registration_photographerRouter); //it will load everything in the registration_photographer
 
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+}
 //Listen
 app.listen(port, () => {
   //server is listening on the port
