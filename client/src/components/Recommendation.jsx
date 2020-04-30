@@ -37,7 +37,7 @@ class MyForm extends React.Component {
     }
 
     axios
-      .post("http://localhost:5000/clients/add", {
+      .post("https://smartlensapplication.herokuapp.com/clients/add", {
         ClientName: this.state.name, //it is getting the ClientName from the post request
         ContactNumber: this.state.contact,
         Email: this.state.email,
@@ -108,7 +108,7 @@ class MyForm extends React.Component {
   componentWillMount() {
     //function runs at the start of component loading
     axios //sending a get request to get all the categories from Mongo
-      .get("http://localhost:5000/categories/")
+      .get("https://smartlensapplication.herokuapp.com/categories/")
       .then((res) => {
         res.data.map((entree) =>
           this.setState({

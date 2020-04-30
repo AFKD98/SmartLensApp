@@ -49,7 +49,10 @@ class Profile extends Component {
   componentDidMount() {
     //function runs at the start of component loading
     axios //sending a get request to get all the photographer info from Mongo
-      .get("http://localhost:5000/photographers/" + this.props.match.params.id)
+      .get(
+        "https://smartlensapplication.herokuapp.com/photographers/" +
+          this.props.match.params.id
+      )
       .then((res) => {
         //res.data.map((entree) =>
         this.setState({

@@ -62,7 +62,10 @@ class PhotographerSelection extends Component {
   getPhotographers(photographerKeys) {
     photographerKeys.map((photographerKey) => {
       axios //sending a get request to get all the photographers of the category from Mongo
-        .get("http://localhost:5000/photographers/" + photographerKey.id)
+        .get(
+          "https://smartlensapplication.herokuapp.com/photographers/" +
+            photographerKey.id
+        )
         .then((res) => {
           this.setState({
             photographers: this.state.photographers.concat([
@@ -122,7 +125,10 @@ class PhotographerSelection extends Component {
   componentDidMount() {
     //function runs at the start of component loading
     axios //sending a get request to get all the photographers of the category from Mongo
-      .get("http://localhost:5000/categories/" + this.state.categoryKey)
+      .get(
+        "https://smartlensapplication.herokuapp.com/categories/" +
+          this.state.categoryKey
+      )
       .then((res) => {
         res.data.photographers.map((entree) =>
           this.setState({
