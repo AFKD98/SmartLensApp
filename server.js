@@ -5,7 +5,7 @@ const path = require("path");
 require("dotenv").config(); //environment variables in the .env file
 
 const app = express(); //express server
-const port = 5000; //port for server
+const port = process.env.PORT || 5000; //port for server
 
 app.use(cors()); //middleware Cross origin resource sharing
 app.use(express.json()); //middleware to parse json
