@@ -8,15 +8,12 @@ class HomeView extends Component {
         <div
           style={{
             backgroundImage: "url(" + HomePhoto + ")",
-            paddingTop: 50,
-            padding: 50,
-            paddingBottom: 50,
             backgroundPosition: "center",
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
-            height: "100vh",
+            marginBottom: "0px",
           }}
-          className="jumbotron jumbotron-fluid text-right p-5"
+          className="jumbotron jumbotron-fluid text-right"
         >
           <div className="container">
             <h2 className="display-4 text-right pr-5 pt-5 mt-5">
@@ -28,7 +25,7 @@ class HomeView extends Component {
               photographers or let us find one for you
             </p>
             <a
-              className="btn btn-outline-light text-center mr-2 mt-2"
+              className="btn btn-outline-light text-center mr-4 mt-2"
               href="/categories"
             >
               Book Now

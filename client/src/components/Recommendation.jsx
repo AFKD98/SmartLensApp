@@ -69,11 +69,11 @@ class MyForm extends React.Component {
     if (this.props.match.params.type === "none") {
       return (
         <Form.Group controlId="expertise">
-          <Form.Label>Expertise</Form.Label>
+          <Form.Label className="expert">Expertise</Form.Label>
           <Form.Row>
             <Col className="expertise">
               <ToggleButtonGroup
-                className="pb-5 expertise"
+                className="pb-2"
                 type="radio"
                 name="options"
                 defaultValue={1}
@@ -217,7 +217,7 @@ class MyForm extends React.Component {
 
             <Form.Row>
               <Form.Label className="pb-2">
-                Categories (tick all that apply){" "}
+                Categories (tick all that apply)
               </Form.Label>
             </Form.Row>
             <Form.Row className="pb-3" onChange={this.categoryHandler}>

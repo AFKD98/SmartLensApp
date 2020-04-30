@@ -44,7 +44,7 @@ class Categories extends Component {
     //   backgroundPosition: "center",
     // };
     return (
-      <div className="jumbotron jumbotron-fluid text-center">
+      <div className="jumbotron jumbotron-fluid text-center cats">
         <div className="container cont">
           <h2 className="conte">Lets find you a photographer</h2>
           <p className="conte">
