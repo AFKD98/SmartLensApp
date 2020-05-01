@@ -29,8 +29,8 @@ class PhotographersCard extends Component {
       this.state.range >= this.props.lowerRange
     ) {
       return (
-        <Col className="col-4">
-          <Card className="cardStyle py-auto px-auto mx-auto my-auto">
+        <Col className="col-12 col-md-4">
+          <Card>
             {/* card image will come from the DB once the images storage is enabled */}
             <Card.Img width="100%" src={p2} />
             <Card.Body className="py-auto px-auto mx-auto my-auto">
@@ -38,9 +38,9 @@ class PhotographersCard extends Component {
                 {this.state.name}
               </Card.Title>
               <Card.Text className="py-auto px-auto mx-auto my-auto">
-                Level {this.state.level}
+                Level: {this.state.level}
                 <br />
-                Price {this.state.range}
+                Price: {this.state.range}
               </Card.Text>
             </Card.Body>
             <Card.Footer>

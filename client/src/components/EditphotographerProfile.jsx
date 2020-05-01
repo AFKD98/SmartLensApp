@@ -190,7 +190,6 @@ class Profile extends Component {
           <div className="row py-3">
             <div className="col-3 order-2" id="sidebar">
               <div className="sticky-top">
-                <h1>Calender here</h1>
               </div>
             </div>
             <div className="col moveup" id="main">

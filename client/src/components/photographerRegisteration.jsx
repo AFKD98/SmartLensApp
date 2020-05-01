@@ -93,15 +93,15 @@ class photographerRegistration extends Component {
         {/* START JUMBOTRON */}
         <div className="jumbotron jumbotron-fluid one">
           <div className="container">
-            <h3 className="text-center text-white pr-auto pt-auto pb-auto mt-auto">
-              Hello {this.state.name} <br /> Register with us and become a part
-              of SmartLens!
-            </h3>
+            <h1 className="display-4 text-center mt-5">Hello</h1>
+              <p className="text-center lead">
+                Register with us and become a part of SmartLens!
+              </p>
           </div>
         </div>
         {/* END JUMBOTRON */}
 
-        <div className="container farm">
+        <div className="container-md farm">
           <Form onSubmit={this.onSubmitHandler}>
             <Form.Row>
               <Col>
@@ -118,8 +118,8 @@ class photographerRegistration extends Component {
             </Form.Row>
 
             <Form.Row>
-              <Col>
-                <Form.Group controlId="email" className="pr-2">
+              <Col className="col-12 col-md-6">
+                <Form.Group controlId="email" className="pr-md-2">
                   <Form.Label>Email</Form.Label>
                   <Form.Control
                     type="text"
@@ -131,7 +131,7 @@ class photographerRegistration extends Component {
               </Col>
 
               <Col>
-                <Form.Group controlId="username" className="pl-2">
+                <Form.Group controlId="username" className="pl-md-2">
                   <Form.Label>Username</Form.Label>
                   <Form.Control
                     type="text"
@@ -158,8 +158,8 @@ class photographerRegistration extends Component {
             </Form.Row>
 
             <Form.Row>
-              <Col>
-                <Form.Group controlId="contact" className="pr-2">
+              <Col className="col-12 col-md-6">
+                <Form.Group controlId="contact" className="pr-md-2">
                   <Form.Label>Contact Number</Form.Label>
                   <Form.Control
                     type="text"
@@ -171,7 +171,7 @@ class photographerRegistration extends Component {
               </Col>
 
               <Col>
-                <Form.Group controlId="occupation" className="pl-2">
+                <Form.Group controlId="occupation" className="pl-md-2">
                   <Form.Label>Occupation</Form.Label>
                   <Form.Control
                     type="text"
@@ -229,7 +229,7 @@ class photographerRegistration extends Component {
             </Form.Row>
 
             <Form.Row>
-              <Col className="col-8">
+              <Col className="col-12 col-md-8">
                 <Form.Group controlId="samplework">
                   <Form.Label>
                     Sample Work (insert link to portfolio)

@@ -15,16 +15,17 @@ class Vision extends Component {
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
           height: "100vh",
+          marginBottom: "0px",
         }}
         className="jumbotron jumbotron-fluid text-right p-5"
       >
         <div className="container">
-          <h2 className="display-4 text-left text-white pr-5 pt-5 mt-5">
+          <h2 className="display-4 text-left text-white pt-5 mt-5">
             Our Vision
           </h2>
-          <p className="lead medium text-left text-white pr-5 mt-1">
-            Need a talented individual to cover an <br />
-            occasion? Browse through our list of curated <br />
+          <p className="lead medium text-left text-white mt-1">
+            Need a talented individual to cover an 
+            occasion? Browse through our list of curated 
             photographers or let us find one for you
           </p>
         </div>
