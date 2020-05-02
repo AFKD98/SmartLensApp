@@ -7,12 +7,15 @@ import "../styles/photographerRegisteration.css";
 import "react-bootstrap-range-slider/dist/react-bootstrap-range-slider.css";
 import ToggleButton from "react-bootstrap/ToggleButton";
 import ToggleButtonGroup from "react-bootstrap/ToggleButtonGroup";
+import { connect } from "react-redux";
+import { addOrder } from "../actions/orderActions";
+import PropTypes from "prop-types"; // validation
 
 class MyForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
+      name: "Name from",
       contact: "090078601",
       email: "af79614@gmail.com",
       location: "Model Town",
@@ -29,42 +32,45 @@ class MyForm extends React.Component {
     this.categoryHandler = this.categoryHandler.bind(this);
     this.getExpertise = this.getExpertise.bind(this);
   }
+
+  static propTypes = {
+    addOrder: PropTypes.func.isRequired,
+    orders: PropTypes.object.isRequired,
+  };
+
   onSubmitHandler = (event) => {
     event.preventDefault();
-    let budget = this.state.budget;
-    if (!Number(budget)) {
-      alert("Your budget must be a number");
-    }
 
-    axios
-      .post("https://smartlensapplication.herokuapp.com/clients/add", {
-        ClientName: this.state.name, //it is getting the ClientName from the post request
-        ContactNumber: this.state.contact,
-        Email: this.state.email,
-        Location: this.state.location,
-        Category: this.state.category,
-        Photographer: this.state.photographer, //photographer id?
-        Budget: this.state.budget,
-        Expertise: this.state.expertise,
-        Event_Description: this.state.description,
-        Approved: false,
-        date: this.state.date,
-      })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    const newOrder = {
+      ClientName: this.state.name, //it is getting the ClientName from the post request
+      ContactNumber: this.state.contact,
+      Email: this.state.email,
+      Location: this.state.location,
+      Category: this.state.category,
+      Photographer: this.state.photographer, //photographer id?
+      Budget: this.state.budget,
+      Expertise: this.state.expertise,
+      Event_Description: this.state.description,
+      Approved: false,
+      date: this.state.date,
+    };
+    this.props.addOrder(newOrder);
+    let contact = this.state.contact;
+    if (!Number(contact)) {
+      alert("Your contact must be a number");
+    }
   };
+
   onChangeHandler = (event) => {
     let nam = event.target.name;
     let val = event.target.value;
     this.setState({ [nam]: val });
   };
+
   onExpertiseChange(event) {
     this.setState({ expertise: parseInt(event.target.value, 10) });
   }
+
   getExpertise() {
     if (this.props.match.params.type === "none") {
       return (
@@ -272,4 +278,9 @@ class MyForm extends React.Component {
   }
 }
 
-export default MyForm;
+const mapStateToProps = (state) => ({
+  // to use the state as props
+  orders: state.orders, // orders is coming from root reducer at /reducers/index.js
+});
+
+export default connect(mapStateToProps, { addOrder })(MyForm); //exporting a component make it reusable and this is the beauty of react

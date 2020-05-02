@@ -13,7 +13,7 @@ class NavBar extends Component {
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="ml-auto">
               <Nav.Link href="/photoreg">Register</Nav.Link>
-              <Nav.Link href="/adminportal">Sign In</Nav.Link>
+              <Nav.Link href="/login">Sign In</Nav.Link>
               <Nav.Link href="/vision">Vision</Nav.Link>
               <Nav.Link href="/about">About</Nav.Link>
             </Nav>

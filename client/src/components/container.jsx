@@ -13,6 +13,8 @@ import Vision from "./vision";
 import About from "./about";
 import Table from "./adminPortal";
 import Error from "./Error";
+import login from "./login";
+import signup from "./signup";
 
 function Container() {
   return (
@@ -31,6 +33,8 @@ function Container() {
         component={PhotographerSelection}
       />
       <Route path="/adminPortal" component={Table} />
+      <Route path="/login" component={login} />
+      <Route path="/signup" component={signup} />
       <Route component={Error} />
     </Switch>
     // </Wrapper>
