@@ -1,45 +1,52 @@
-import React, { Component } from "react";
-import { withStyles, makeStyles } from "@material-ui/core/styles";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import Paper from "@material-ui/core/Paper";
+import React, { Component, forwardRef } from "react";
+import { Typography } from "@material-ui/core";
+import MaterialTable from "material-table";
 import Container from "@material-ui/core/Container";
+import AddBox from "@material-ui/icons/AddBox";
+import ArrowUpward from "@material-ui/icons/ArrowUpward";
+import Check from "@material-ui/icons/Check";
+import ChevronLeft from "@material-ui/icons/ChevronLeft";
+import ChevronRight from "@material-ui/icons/ChevronRight";
+import Clear from "@material-ui/icons/Clear";
+import DeleteOutline from "@material-ui/icons/DeleteOutline";
+import Edit from "@material-ui/icons/Edit";
+import FilterList from "@material-ui/icons/FilterList";
+import FirstPage from "@material-ui/icons/FirstPage";
+import LastPage from "@material-ui/icons/LastPage";
+import Print from "@material-ui/icons/Print";
+import Remove from "@material-ui/icons/Remove";
+import SaveAlt from "@material-ui/icons/SaveAlt";
+import Search from "@material-ui/icons/Search";
+import ViewColumn from "@material-ui/icons/ViewColumn";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { getOrders } from "../actions/orderActions"; //stored as a prop
 import PropTypes from "prop-types"; // validation
 
-const StyledTableCell = withStyles((theme) => ({
-  head: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
-  },
-  body: {
-    fontSize: 14,
-  },
-}))(TableCell);
-
-const StyledTableRow = withStyles((theme) => ({
-  root: {
-    "&:nth-of-type(odd)": {
-      backgroundColor: theme.palette.background.default,
-    },
-  },
-}))(TableRow);
-
-const useStyles = makeStyles({
-  table: {
-    minWidth: 700,
-  },
-});
-
 class OrdersList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      columns: [
+        { title: "Name", field: "ClientName" },
+        { title: "Contact", field: "ContactNumber" },
+        { title: "Budget", field: "Budget", type: "numeric" },
+        { title: "Date", field: "date", type: "date" },
+        {
+          title: "Approved",
+          field: "Approved",
+          lookup: { 1: "Yes", 2: "No" },
+        },
+      ],
+      data: [],
+    };
+  }
+
   componentDidMount() {
     this.props.getOrders();
+    this.setState({
+      data: this.props.orders.ordersList,
+    });
   }
 
   static propTypes = {
@@ -50,45 +57,81 @@ class OrdersList extends Component {
   };
 
   render() {
-    const { ordersList } = this.props.orders;
-    const { classes } = this.props;
+    const tableIcons = {
+      // Add: forwardRef((props, ref) => <Add {...props} ref={ref} color='action' />),
+      Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
+      Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
+      Clear: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
+      Delete: forwardRef((props, ref) => (
+        <DeleteOutline {...props} ref={ref} />
+      )),
+      DetailPanel: forwardRef((props, ref) => (
+        <ChevronRight {...props} ref={ref} />
+      )),
+      Edit: forwardRef((props, ref) => <Edit {...props} ref={ref} />),
+      Export: forwardRef((props, ref) => <SaveAlt {...props} ref={ref} />),
+      Filter: forwardRef((props, ref) => <FilterList {...props} ref={ref} />),
+      FirstPage: forwardRef((props, ref) => <FirstPage {...props} ref={ref} />),
+      LastPage: forwardRef((props, ref) => <LastPage {...props} ref={ref} />),
+      NextPage: forwardRef((props, ref) => (
+        <ChevronRight {...props} ref={ref} />
+      )),
+      PreviousPage: forwardRef((props, ref) => (
+        <ChevronLeft {...props} ref={ref} />
+      )),
+      Print: forwardRef((props, ref) => <Print {...props} ref={ref} />),
+      ResetSearch: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
+      Search: forwardRef((props, ref) => <Search {...props} ref={ref} />),
+      SortArrow: forwardRef((props, ref) => (
+        <ArrowUpward {...props} ref={ref} />
+      )),
+      ThirdStateCheck: forwardRef((props, ref) => (
+        <Remove {...props} ref={ref} />
+      )),
+      ViewColumn: forwardRef((props, ref) => (
+        <ViewColumn {...props} ref={ref} />
+      )),
+    };
     return (
-      <Container maxWidth="lg">
+      <Container maxWidth="xl">
         {this.props.isAuthenticated ? (
-          <TableContainer component={Paper}>
-            <Table className={classes.table} aria-label="customized table">
-              <TableHead>
-                <TableRow>
-                  <StyledTableCell>Name</StyledTableCell>
-                  <StyledTableCell align="right">Contact</StyledTableCell>
-                  <StyledTableCell align="right">Location</StyledTableCell>
-                  <StyledTableCell align="right">Budget</StyledTableCell>
-                  <StyledTableCell align="right">Date</StyledTableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {ordersList.map((order) => (
-                  <StyledTableRow key={order.ClientName}>
-                    <StyledTableCell component="th" scope="row">
-                      {order.ClientName}
-                    </StyledTableCell>
-                    <StyledTableCell align="right">
-                      {order.ContactNumber}
-                    </StyledTableCell>
-                    <StyledTableCell align="right">
-                      {order.Location}
-                    </StyledTableCell>
-                    <StyledTableCell align="right">
-                      {order.Budget}
-                    </StyledTableCell>
-                    <StyledTableCell align="right">
-                      {order.date}
-                    </StyledTableCell>
-                  </StyledTableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
+          <React.Fragment>
+            <Typography component="h1" variant="h4" gutterBottom="true">
+              Welcome!
+            </Typography>
+            <MaterialTable
+              title="Booking requests"
+              columns={this.state.columns}
+              data={this.state.data}
+              editable={{
+                onRowUpdate: (newData, oldData) =>
+                  new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                      {
+                        const data = this.state.data;
+                        const index = data.indexOf(oldData);
+                        data[index] = newData;
+                        this.setState({ data }, () => resolve());
+                      }
+                      resolve();
+                    }, 1000);
+                  }),
+                onRowDelete: (oldData) =>
+                  new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                      {
+                        let data = this.state.data;
+                        const index = data.indexOf(oldData);
+                        data.splice(index, 1);
+                        this.setState({ data }, () => resolve());
+                      }
+                      resolve();
+                    }, 1000);
+                  }),
+              }}
+              icons={tableIcons}
+            />
+          </React.Fragment>
         ) : (
           <Redirect to="/login" />
         )}
@@ -104,6 +147,4 @@ const mapStateToProps = (state) => ({
   error: state.error,
 });
 
-export default connect(mapStateToProps, { getOrders })(
-  withStyles(useStyles)(OrdersList)
-); //exporting a component make it reusable and this is the beauty of react
+export default connect(mapStateToProps, { getOrders })(OrdersList); //exporting a component make it reusable and this is the beauty of react
