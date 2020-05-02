@@ -1,11 +1,24 @@
 import React, { Component } from "react";
 import { Navbar, Nav } from "react-bootstrap";
-import Scroll from "react-scroll";
-const ScrollLink = Scroll.ScrollLink;
+import { connect } from "react-redux";
+import PropTypes from "prop-types"; // validation
+import { logout } from "../actions/authActions";
 
 class NavBar extends Component {
+  constructor(props) {
+    super(props);
+    this.wrapper = React.createRef();
+  }
+
+  static propTypes = {
+    auth: PropTypes.object.isRequired,
+    logout: PropTypes.func.isRequired,
+  };
+
   render() {
-    return (
+    const { isAuthenticated } = this.props.auth;
+
+    const guestLinks = (
       <React.Fragment>
         <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
           <Navbar.Brand href="/">SmartLens</Navbar.Brand>
@@ -19,58 +32,34 @@ class NavBar extends Component {
             </Nav>
           </Navbar.Collapse>
         </Navbar>
+      </React.Fragment>
+    );
 
-        {/* <Link to="/contact" /> */}
+    const authLinks = (
+      <React.Fragment>
+        <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
+          <Navbar.Brand href="/">SmartLens</Navbar.Brand>
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Collapse id="responsive-navbar-nav">
+            <Nav className="ml-auto">
+              <Nav.Link onClick={this.props.logout}>Log out</Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
+        </Navbar>
+      </React.Fragment>
+    );
 
-        {/*<nav className="navbar navbar-expand-lg navbar-light bg-light px-auto py-auto mx-auto my-auto">
-          <a className="navbar-brand text-dark" href="/">
-            SmartLens
-          </a>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarsExampleDefault"
-            aria-controls="navbarsExampleDefault"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav mr-auto my-auto">
-              <li className="nav-item active">
-                <a className="nav-link text-dark" href="/">
-                  Vision <span className="sr-only">(current)</span>
-                </a>
-              </li>
-              <li className="nav-item active">
-                <a className="nav-link text-dark" href="/photoreg">
-                  Register
-                </a>
-              </li>
-              <li className="nav-item  active">
-                <a
-                  className="nav-link text-dark"
-                  href="#"
-                  // tabindex="-1"
-                  // aria-disabled="true"
-                >
-                  Contact
-                </a>
-              </li>
-              <li className="nav-item  active">
-                <a className="nav-link text-dark" href="/adminPortal">
-                  Sign in
-                </a>
-              </li>
-            </ul>
-          </div>
-        </nav>*/}
+    return (
+      <React.Fragment>
+        {isAuthenticated ? authLinks : guestLinks}
       </React.Fragment>
     );
   }
 }
 
-export default NavBar;
+const mapStateToProps = (state) => ({
+  // to use the state as props
+  auth: state.auth, // auth is coming from root reducer at /reducers/index.js
+});
+
+export default connect(mapStateToProps, { logout })(NavBar);

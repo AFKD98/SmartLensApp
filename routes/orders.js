@@ -1,11 +1,11 @@
 const router = require("express").Router();
-
+const auth = require("../middleware/auth");
 const Order = require("../models/order.model"); //moongoose model we created
 
 // @route   GET /clients
 // @desc    Get All clients
-// @access  Public
-router.route("/").get((req, res) => {
+// @access  Private
+router.route("/").get(auth, (req, res) => {
   Order.find() //mongoose database all the users
     .then((orders) => res.json(orders)) //results are returned in json format
     .catch((err) => res.status(400).json("orders.js Error " + err)); //error message
@@ -45,21 +45,21 @@ router.route("/add").post((req, res) => {
     }); //else error message
 });
 
-router.route("/:id").get((req, res) => {
+router.route("/:id").get(auth, (req, res) => {
   //clients return by id
   Order.findById(req.params.id)
     .then((orders) => res.json(orders))
     .catch((err) => res.status(400).json("orders.js Error " + err));
 });
 
-router.route("/:id").delete((req, res) => {
+router.route("/:id").delete(auth, (req, res) => {
   //delete clients by id
   Order.findByIdAndDelete(req.params.id)
-    .then((orders) => res.json("orders deleted."))
+    .then(() => res.json("orders deleted."))
     .catch((err) => res.status(400).json("orders.js Error " + err));
 });
 
-router.route("/update/:id").post((req, res) => {
+router.route("/update/:id").post(auth, (req, res) => {
   Order.findById(req.params.id)
     .then((Order) => {
       Order.ClientName = req.body.ClientName; //it is getting the ClientName from the post request
