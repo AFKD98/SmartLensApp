@@ -18,7 +18,7 @@ class Categories extends Component {
   componentDidMount() {
     //function runs at the start of component loading
     axios //sending a get request to get all the categories from Mongo
-      .get(process.env.baseURL + "/categories/")
+      .get("http://localhost:5000/categories/")
       .then((res) => {
         res.data.map((entree) =>
           this.setState({
