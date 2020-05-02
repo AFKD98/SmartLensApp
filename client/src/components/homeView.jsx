@@ -32,7 +32,7 @@ class HomeView extends Component {
 
                     <a
                       className="btn btn-outline-light buts mr-3 mb-2 d-md-inline"
-                      href="/CategoriesPage"
+                      href="/CategoryPage"
                     >
                       Book Now
                     </a>
