@@ -18,7 +18,6 @@ class HomeView extends Component {
           }}
           className="jumbotron jumbotron-fluid"
         >
-
           <div className="container">
             <Row className="row-md-12 mt-5 justify-content-md-end">
               <Col className="col-md-8">
@@ -26,35 +25,28 @@ class HomeView extends Component {
                 <Row>
                   <Col className="col-8">
                     <p className="lead">
-                    Need a talented individual to cover an
-                    occasion? Browse through our list of curated
-                    photographers or let us find one for you
+                      Need a talented individual to cover an occasion? Browse
+                      through our list of curated photographers or let us find
+                      one for you
                     </p>
 
-                    <a className="btn btn-outline-light buts mr-3 mb-2 d-md-inline" href="/categories">
+                    <a
+                      className="btn btn-outline-light buts mr-3 mb-2 d-md-inline"
+                      href="/CategoriesPage"
+                    >
                       Book Now
                     </a>
-                    <a className=" btn btn-outline-light buts d-md-inline" href="/recommendation/none">
+                    <a
+                      className=" btn btn-outline-light buts d-md-inline"
+                      href="/recommendation/none"
+                    >
                       Recommendation
                     </a>
                   </Col>
                 </Row>
-                
               </Col>
-
             </Row>
           </div>
-
-
-
-
-
-
-
-
-
-
-
 
           {/*<Row className="justify-content-right">
             <Col className="col-lg-6 col-sm-0"></Col>
