@@ -13,13 +13,12 @@ import {
 } from "./types";
 
 // Check token & load user
-
 export const loadUser = () => (dispatch, getState) => {
   // USer loading
   dispatch({ type: USER_LOADING });
 
   axios
-    .get("http://localhost:5000/users", tokenConfig(getState))
+    .get("http://localhost:5000/users/getuser", tokenConfig(getState))
     .then((res) =>
       dispatch({
         type: USER_LOADED,

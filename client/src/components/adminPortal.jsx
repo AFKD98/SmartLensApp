@@ -1,6 +1,7 @@
 import React, { Component, forwardRef } from "react";
 import { Typography } from "@material-ui/core";
 import MaterialTable from "material-table";
+import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
 import AddBox from "@material-ui/icons/AddBox";
 import ArrowUpward from "@material-ui/icons/ArrowUpward";
@@ -21,6 +22,7 @@ import ViewColumn from "@material-ui/icons/ViewColumn";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { getOrders, deleteOrder, updateOrder } from "../actions/orderActions"; //stored as a prop
+import { loadUser } from "../actions/authActions";
 import PropTypes from "prop-types"; // validation
 
 class OrdersList extends Component {
@@ -35,7 +37,7 @@ class OrdersList extends Component {
         {
           title: "Approved",
           field: "Approved",
-          lookup: { 1: "Yes", 2: "No" },
+          lookup: { true: "Yes", false: "No" },
         },
       ],
       data: [],
@@ -161,4 +163,5 @@ export default connect(mapStateToProps, {
   getOrders,
   deleteOrder,
   updateOrder,
+  loadUser,
 })(OrdersList); //exporting a component make it reusable and this is the beauty of react
