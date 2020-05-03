@@ -55,7 +55,7 @@ router.route("/:id").get(auth, (req, res) => {
 router.route("/:id").delete(auth, (req, res) => {
   //delete clients by id
   Order.findByIdAndDelete(req.params.id)
-    .then(() => res.json("orders deleted."))
+    .then(() => res.json("order deleted"))
     .catch((err) => res.status(400).json("orders.js Error " + err));
 });
 
@@ -66,14 +66,12 @@ router.route("/update/:id").post(auth, (req, res) => {
       Order.ContactNumber = req.body.ContactNumber;
       Order.Email = req.body.Email;
       Order.Location = req.body.Location;
-
       Order.Category = req.body.Category;
       Order.Photographer = req.body.Photographer; //photographer id?
       Order.Budget = Number(req.body.Budget);
       Order.Expertise = req.body.Expertise;
       Order.Event_Description = req.body.Event_Description;
       Order.Approved = req.body.Approved;
-
       Order.date = Date.parse(req.body.date);
 
       Order.save()

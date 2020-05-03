@@ -20,7 +20,7 @@ import Search from "@material-ui/icons/Search";
 import ViewColumn from "@material-ui/icons/ViewColumn";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { getOrders } from "../actions/orderActions"; //stored as a prop
+import { getOrders, deleteOrder, updateOrder } from "../actions/orderActions"; //stored as a prop
 import PropTypes from "prop-types"; // validation
 
 class OrdersList extends Component {
@@ -51,6 +51,8 @@ class OrdersList extends Component {
 
   static propTypes = {
     getOrders: PropTypes.func.isRequired,
+    deleteOrder: PropTypes.func.isRequired,
+    updateOrder: PropTypes.func.isRequired,
     orders: PropTypes.object.isRequired,
     isAuthenticated: PropTypes.bool,
     error: PropTypes.object.isRequired,
@@ -96,7 +98,7 @@ class OrdersList extends Component {
       <Container maxWidth="xl">
         {this.props.isAuthenticated ? (
           <React.Fragment>
-            <Typography component="h1" variant="h4" gutterBottom="true">
+            <Typography component="h1" variant="h4">
               Welcome!
             </Typography>
             <MaterialTable
@@ -108,10 +110,15 @@ class OrdersList extends Component {
                   new Promise((resolve, reject) => {
                     setTimeout(() => {
                       {
-                        const data = this.state.data;
+                        let data = this.state.data;
                         const index = data.indexOf(oldData);
-                        data[index] = newData;
-                        this.setState({ data }, () => resolve());
+                        const temp_old = data.filter(
+                          (order) => order._id !== data[index]._id
+                        );
+                        this.props.updateOrder(newData);
+                        this.setState((prevState) => ({
+                          data: [...temp_old, newData],
+                        }));
                       }
                       resolve();
                     }, 1000);
@@ -122,8 +129,11 @@ class OrdersList extends Component {
                       {
                         let data = this.state.data;
                         const index = data.indexOf(oldData);
-                        data.splice(index, 1);
-                        this.setState({ data }, () => resolve());
+                        const del_id = data[index]._id;
+                        this.props.deleteOrder(del_id);
+                        this.setState({
+                          data: data.filter((order) => order._id !== del_id),
+                        });
                       }
                       resolve();
                     }, 1000);
@@ -147,4 +157,8 @@ const mapStateToProps = (state) => ({
   error: state.error,
 });
 
-export default connect(mapStateToProps, { getOrders })(OrdersList); //exporting a component make it reusable and this is the beauty of react
+export default connect(mapStateToProps, {
+  getOrders,
+  deleteOrder,
+  updateOrder,
+})(OrdersList); //exporting a component make it reusable and this is the beauty of react

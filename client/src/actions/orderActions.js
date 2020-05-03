@@ -1,4 +1,10 @@
-import { GET_ORDERS, ORDERS_LOADING, ADD_ORDER, DELETE_ORDER } from "./types";
+import {
+  GET_ORDERS,
+  ORDERS_LOADING,
+  ADD_ORDER,
+  DELETE_ORDER,
+  UPDATE_ORDER,
+} from "./types";
 import { returnErrors } from "./errorActions";
 import { tokenConfig } from "./authActions";
 import axios from "axios";
@@ -39,6 +45,25 @@ export const deleteOrder = (id) => (dispatch, getState) => {
       dispatch({
         type: DELETE_ORDER,
         payload: id,
+      })
+    )
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const updateOrder = (order) => (dispatch, getState) => {
+  const id = order._id;
+  axios
+    .post(
+      `http://localhost:5000/orders/update/${id}`,
+      order,
+      tokenConfig(getState)
+    )
+    .then((res) =>
+      dispatch({
+        type: UPDATE_ORDER,
+        payload: res.data,
       })
     )
     .catch((err) =>
