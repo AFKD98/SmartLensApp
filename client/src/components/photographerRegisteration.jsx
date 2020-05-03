@@ -33,14 +33,17 @@ class photographerRegistration extends Component {
     this.ratingHandler = this.ratingHandler.bind(this);
   }
   onChangeHandler(event) {
+    event.preventDefault();
     let nam = event.target.name;
     let val = event.target.value;
     this.setState({ [nam]: val });
   }
   ratingHandler(event) {
+    event.preventDefault();
     this.setState({ rating: parseInt(event.target.value, 10) });
   }
   onCategoryChange(event) {
+    event.preventDefault();
     this.setState({
       category: this.state.category.concat([event.target.value]),
     });
@@ -94,9 +97,9 @@ class photographerRegistration extends Component {
         <div className="jumbotron jumbotron-fluid one">
           <div className="container">
             <h1 className="display-4 text-center mt-5">Hello</h1>
-              <p className="text-center lead">
-                Register with us and become a part of SmartLens!
-              </p>
+            <p className="text-center lead">
+              Register with us and become a part of SmartLens!
+            </p>
           </div>
         </div>
         {/* END JUMBOTRON */}
