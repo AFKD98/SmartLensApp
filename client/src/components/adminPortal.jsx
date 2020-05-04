@@ -1,7 +1,6 @@
 import React, { Component, forwardRef } from "react";
 import { Typography } from "@material-ui/core";
 import MaterialTable from "material-table";
-import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
 import AddBox from "@material-ui/icons/AddBox";
 import ArrowUpward from "@material-ui/icons/ArrowUpward";
@@ -21,9 +20,28 @@ import Search from "@material-ui/icons/Search";
 import ViewColumn from "@material-ui/icons/ViewColumn";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
+import Grid from "@material-ui/core/Grid";
+import Paper from "@material-ui/core/Paper";
 import { getOrders, deleteOrder, updateOrder } from "../actions/orderActions"; //stored as a prop
 import { loadUser } from "../actions/authActions";
 import PropTypes from "prop-types"; // validation
+import { withStyles } from "@material-ui/core/styles";
+
+const useStyles = (theme) => ({
+  root: {
+    flexGrow: 1,
+    padding: theme.spacing(2),
+  },
+  paperBig: {
+    padding: theme.spacing(2),
+    textAlign: "center",
+    background: "lightgrey",
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: "center",
+  },
+});
 
 class OrdersList extends Component {
   constructor(props) {
@@ -31,9 +49,10 @@ class OrdersList extends Component {
     this.state = {
       columns: [
         { title: "Name", field: "ClientName" },
-        { title: "Contact", field: "ContactNumber" },
         { title: "Budget", field: "Budget", type: "numeric" },
         { title: "Date", field: "date", type: "date" },
+        { title: "Category", field: "Category" },
+        { title: "Photographer", field: "Photographer" },
         {
           title: "Approved",
           field: "Approved",
@@ -96,6 +115,7 @@ class OrdersList extends Component {
         <ViewColumn {...props} ref={ref} />
       )),
     };
+    const { classes } = this.props;
     return (
       <Container maxWidth="xl">
         {this.props.isAuthenticated ? (
@@ -142,6 +162,114 @@ class OrdersList extends Component {
                   }),
               }}
               icons={tableIcons}
+              detailPanel={(rowData) => {
+                return (
+                  console.log(rowData),
+                  (
+                    <div className={classes.root}>
+                      <Grid container item xs={12} spacing={3}>
+                        <React.Fragment>
+                          <Grid item xs={4}>
+                            <Paper className={classes.paperBig}>
+                              <Typography variant="subtitle2">
+                                ContactNumber
+                              </Typography>
+                            </Paper>
+                          </Grid>
+                          <Grid item xs={8}>
+                            <Paper className={classes.paper}>
+                              {rowData.ContactNumber}
+                            </Paper>
+                          </Grid>
+                        </React.Fragment>
+                        <React.Fragment>
+                          <Grid item xs={4}>
+                            <Paper className={classes.paperBig}>
+                              <Typography variant="subtitle2">Email</Typography>
+                            </Paper>
+                          </Grid>
+                          <Grid item xs={8}>
+                            <Paper className={classes.paper}>
+                              {rowData.Email}
+                            </Paper>
+                          </Grid>
+                        </React.Fragment>
+                        <React.Fragment>
+                          <Grid item xs={4}>
+                            <Paper className={classes.paperBig}>
+                              <Typography variant="subtitle2">
+                                Location
+                              </Typography>
+                            </Paper>
+                          </Grid>
+                          <Grid item xs={8}>
+                            <Paper className={classes.paper}>
+                              {rowData.Location}
+                            </Paper>
+                          </Grid>
+                        </React.Fragment>
+                        <React.Fragment>
+                          <Grid item xs={4}>
+                            <Paper className={classes.paperBig}>
+                              <Typography variant="subtitle2">
+                                Expertise
+                              </Typography>
+                            </Paper>
+                          </Grid>
+                          <Grid item xs={8}>
+                            <Paper className={classes.paper}>
+                              {rowData.Expertise}
+                            </Paper>
+                          </Grid>
+                        </React.Fragment>
+                        <React.Fragment>
+                          <Grid item xs={4}>
+                            <Paper className={classes.paperBig}>
+                              <Typography variant="subtitle2">
+                                Event Description
+                              </Typography>
+                            </Paper>
+                          </Grid>
+                          <Grid item xs={8}>
+                            <Paper className={classes.paper}>
+                              {rowData.Event_Description}
+                            </Paper>
+                          </Grid>
+                        </React.Fragment>
+                      </Grid>
+
+                      {/* <MaterialTable
+                      title="Details"
+                      columns={[
+                        { title: "ContactNumber", field: "ContactNumber" },
+                        { title: "Email", field: "Email" },
+                        { title: "Location", field: "Location" },
+                        { title: "Budget", field: "Budget", type: "numeric" },
+                        {
+                          title: "Expertise",
+                          field: "Expertise",
+                          type: "date",
+                        },
+                      ]}
+                      data={rowData}
+                      icons={tableIcons}
+                      ></MaterialTable> */}
+                    </div>
+                  )
+                );
+              }}
+              onRowClick={(event, rowData, togglePanel) => togglePanel()}
+              // return (
+              //   <div>
+              //     <Typography component="h4" variant="h4">
+              //       rowData.ClientName
+              //       {/* rowData.ClientName,{rowData.ContactNumber},{rowData.Email},
+              //   {rowData.Location},{rowData.Category},{rowData.Photographer},
+              //   {rowData.Budget},{rowData.Expertise},
+              //   {rowData.Event_Description},{rowData.Approved},{rowData.date} */}
+              //     </Typography>
+              //   </div>
+              // );
             />
           </React.Fragment>
         ) : (
@@ -164,4 +292,4 @@ export default connect(mapStateToProps, {
   deleteOrder,
   updateOrder,
   loadUser,
-})(OrdersList); //exporting a component make it reusable and this is the beauty of react
+})(withStyles(useStyles)(OrdersList)); //exporting a component make it reusable and this is the beauty of react

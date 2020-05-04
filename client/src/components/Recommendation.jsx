@@ -68,7 +68,7 @@ class MyForm extends React.Component {
   };
 
   onExpertiseChange(event) {
-    this.setState({ expertise: parseInt(event.target.value, 10) });
+    this.setState({ expertise: event.target.value });
   }
 
   getExpertise() {

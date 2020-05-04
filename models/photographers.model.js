@@ -19,7 +19,7 @@ const photographersSchema = new Schema(
     Category: { type: String, required: true }, //check number of categories
     ProfilePic: { type: String, required: true }, //profile picture link
     CoverPic: { type: String, required: true },
-    photos: [{ category: String, Link: String }],
+    photos: [{ type: String }],
     date: { type: Date, required: true },
   },
   {
