@@ -263,7 +263,7 @@ class photographerRegistration extends Component {
             </Form.Row>
 
             <Form.Row>
-              <Button className="mt-3" className="btn btn-dark" type="submit">
+              <Button className="mt-3 btn btn-dark" type="submit">
                 Submit
               </Button>
             </Form.Row>

@@ -21,6 +21,7 @@ const photographersSchema = new Schema(
     ProfilePic: { type: String, required: true }, //profile picture link
     CoverPic: { type: String },
     photos: [{ type: String }],
+    videos: [{ type: String }],
     //photos: [{ category: String, Link: String }],
     date: { type: Date, required: true },
   },

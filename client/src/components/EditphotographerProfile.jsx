@@ -10,17 +10,19 @@ class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      profilePic: "",
+      coverPic: "",
       photos: [
-        //   "assets/home2.jpg",
-        //   "assets/homephoto2.png",
-        //   "assets/homephoto3.jpg",
-        //   "assets/Recommend.jpg",
+        // "assets/home2.jpg",
+        // "assets/homephoto2.png",
+        // "assets/homephoto3.jpg",
+        // "assets/Recommend.jpg",
       ],
 
       videos: [
-        "https://www.youtube.com/embed/O41OuELay_A",
-        "https://www.youtube.com/embed/A6zLsU7RhX4",
-        "https://www.youtube.com/embed/C0_uv535Gzw",
+        // "https://www.youtube.com/embed/O41OuELay_A",
+        // "https://www.youtube.com/embed/A6zLsU7RhX4",
+        // "https://www.youtube.com/embed/C0_uv535Gzw",
       ],
       name: "",
       aboutme: "",
@@ -105,7 +107,7 @@ class Profile extends Component {
     //   });
   }
 
-  componentDidMount() {
+  componentWillMount() {
     //function runs at the start of component loading
     axios //sending a get request to get all the photographer info from Mongo
       .get("http://localhost:5000/photographers/5eadc2a882d5d9458437ab4d")
@@ -128,11 +130,10 @@ class Profile extends Component {
           calendar: res.data.Calendar,
           photos: res.data.photos,
           email: res.data.Email,
-
+          videos: res.data.videos,
           // photographer: res.data,
         });
-        // console.log(res.data.CoverPic);
-        // console.log(this.state.coverPic);
+        console.log(this.state.coverPic);
       })
       .catch((error) => {
         console.log(error);
@@ -144,7 +145,7 @@ class Profile extends Component {
       <div>
         <br />
         {this.state.photos.map((photo, index) => (
-          <div>
+          <div key={index}>
             <img
               key={index}
               src={require(`../${photo}`)}
@@ -162,7 +163,7 @@ class Profile extends Component {
       <div>
         <br />
         {this.state.videos.map((video, index) => (
-          <div>
+          <div key={index}>
             <iframe
               key={index}
               width="560"
@@ -250,7 +251,12 @@ class Profile extends Component {
     return (
       <div>
         {/* START JUMBOTRON */}
-        <div className="jumbotron jumbotron-fluid one">
+        <div
+          style={{
+            backgroundImage: require("../" + this.state.profilePic),
+          }}
+          className="jumbotron jumbotron-fluid edit"
+        >
           <div className="container"></div>
         </div>
         {/* END JUMBOTRON */}
@@ -264,11 +270,10 @@ class Profile extends Component {
             </div>
             <div className="col moveup" id="main">
               <img
-                src={require("../assets/p2.jpg")}
+                src={require("../" + this.state.profilePic)}
                 alt="Avatar"
                 className="prof1"
               ></img>
-
               {this.state.editname ? (
                 editNameCode
               ) : (
@@ -279,9 +284,7 @@ class Profile extends Component {
                   {this.state.name}
                 </h2>
               )}
-
               <hr className="solid nameline"></hr>
-
               <h2
                 className="pt-5"
                 onDoubleClick={(event) => this.editClick("aboutme", event)}
@@ -298,9 +301,7 @@ class Profile extends Component {
                   {this.state.aboutme}
                 </p>
               )}
-
               <hr className="solid"></hr>
-
               <h2 className="pt-5">Details</h2>
               <p className="paratext pb-5">
                 {this.state.editlocation ? (
@@ -348,7 +349,6 @@ class Profile extends Component {
                 Show Photos
               </Button>
               {this.state.displayPhotos ? photoCode : null}
-
               <Button variant="primary" onClick={this.videoClick}>
                 Show Videos
               </Button>
