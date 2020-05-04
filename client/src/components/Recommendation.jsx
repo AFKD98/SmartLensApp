@@ -63,7 +63,7 @@ class MyForm extends React.Component {
     this.setState({ [nam]: val });
   };
   onExpertiseChange(event) {
-    this.setState({ expertise: parseInt(event.target.value, 10) });
+    this.setState({ expertise: event.target.value });
   }
   getExpertise() {
     if (this.props.match.params.type === "none") {
@@ -130,7 +130,9 @@ class MyForm extends React.Component {
         {/* START JUMBOTRON */}
         <div className="jumbotron jumbotron-fluid one">
           <div className="container">
-          <h1 className="display-4 text-center mt-5">Photographer Selection</h1>
+            <h1 className="display-4 text-center mt-5">
+              Photographer Selection
+            </h1>
           </div>
         </div>
         {/* END JUMBOTRON */}
