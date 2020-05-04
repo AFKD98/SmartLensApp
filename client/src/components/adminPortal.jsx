@@ -123,19 +123,17 @@ class OrdersList extends Component {
       <Container maxWidth="xl">
         {this.props.isAuthenticated ? (
           <React.Fragment>
-            <React.Fragment>
-              <Grid container item xs={12} spacing={3}>
-                <Grid item xs={4}>
-                  <Typography
-                    component="h1"
-                    variant="h4"
-                    className={classes.heading}
-                  >
-                    Welcome!
-                  </Typography>
-                </Grid>
+            <Grid container item xs={12} spacing={3}>
+              <Grid item xs={4}>
+                <Typography
+                  component="h1"
+                  variant="h4"
+                  className={classes.heading}
+                >
+                  Welcome!
+                </Typography>
               </Grid>
-            </React.Fragment>
+            </Grid>
             <MaterialTable
               title="Booking requests"
               columns={this.state.columns}
