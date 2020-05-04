@@ -66,8 +66,8 @@ class OrdersList extends Component {
     };
   }
 
-  componentDidMount() {
-    this.props.getOrders();
+  async componentDidMount() {
+    await this.props.getOrders();
     this.setState({
       data: this.props.orders.ordersList,
     });
@@ -119,127 +119,147 @@ class OrdersList extends Component {
       )),
     };
     const { classes } = this.props;
+    const { loading } = this.props.orders;
     return (
       <Container maxWidth="xl">
         {this.props.isAuthenticated ? (
           <React.Fragment>
-            <Grid container item xs={12}>
-              <Grid item xs={4}>
-                <Typography
-                  component="h1"
-                  variant="h4"
-                  className={classes.heading}
-                >
-                  Welcome!
-                </Typography>
-              </Grid>
-            </Grid>
-            <MaterialTable
-              title="Booking requests"
-              columns={this.state.columns}
-              data={this.state.data}
-              editable={{
-                onRowUpdate: (newData, oldData) =>
-                  new Promise((resolve, reject) => {
-                    setTimeout(() => {
-                      {
-                        let data = this.state.data;
-                        const index = data.indexOf(oldData);
-                        const temp_old = data.filter(
-                          (order) => order._id !== data[index]._id
-                        );
-                        this.props.updateOrder(newData);
-                        this.setState((prevState) => ({
-                          data: [...temp_old, newData],
-                        }));
-                      }
-                      resolve();
-                    }, 1000);
-                  }),
-                onRowDelete: (oldData) =>
-                  new Promise((resolve, reject) => {
-                    setTimeout(() => {
-                      {
-                        let data = this.state.data;
-                        const index = data.indexOf(oldData);
-                        const del_id = data[index]._id;
-                        this.props.deleteOrder(del_id);
-                        this.setState({
-                          data: data.filter((order) => order._id !== del_id),
-                        });
-                      }
-                      resolve();
-                    }, 1000);
-                  }),
-              }}
-              icons={tableIcons}
-              detailPanel={(rowData) => {
-                return (
-                  console.log(rowData),
-                  (
-                    <div className={classes.root}>
-                      <Grid container spacing={3} justify="center">
-                        <Grid item xs={4}>
-                          <Paper className={classes.paperBig}>
-                            <Typography>ContactNumber</Typography>
-                          </Paper>
-                        </Grid>
-                        <Grid item xs={8}>
-                          <Paper className={classes.paper}>
-                            <Typography>{rowData.ContactNumber}</Typography>
-                          </Paper>
-                        </Grid>
+            {!loading ? (
+              <React.Fragment>
+                <Grid container item xs={12}>
+                  <Grid item xs={4}>
+                    <Typography
+                      component="h1"
+                      variant="h4"
+                      className={classes.heading}
+                    >
+                      Welcome!
+                    </Typography>
+                  </Grid>
+                </Grid>
+                <MaterialTable
+                  title="Booking requests"
+                  columns={this.state.columns}
+                  data={this.state.data}
+                  editable={{
+                    onRowUpdate: (newData, oldData) =>
+                      new Promise((resolve, reject) => {
+                        setTimeout(() => {
+                          {
+                            let data = this.state.data;
+                            const index = data.indexOf(oldData);
+                            const temp_old = data.filter(
+                              (order) => order._id !== data[index]._id
+                            );
+                            this.props.updateOrder(newData);
+                            this.setState((prevState) => ({
+                              data: [...temp_old, newData],
+                            }));
+                          }
+                          resolve();
+                        }, 1000);
+                      }),
+                    onRowDelete: (oldData) =>
+                      new Promise((resolve, reject) => {
+                        setTimeout(() => {
+                          {
+                            let data = this.state.data;
+                            const index = data.indexOf(oldData);
+                            const del_id = data[index]._id;
+                            this.props.deleteOrder(del_id);
+                            this.setState({
+                              data: data.filter(
+                                (order) => order._id !== del_id
+                              ),
+                            });
+                          }
+                          resolve();
+                        }, 1000);
+                      }),
+                  }}
+                  icons={tableIcons}
+                  detailPanel={(rowData) => {
+                    return (
+                      <div className={classes.root}>
+                        <Grid container spacing={3} justify="center">
+                          <Grid item xs={4}>
+                            <Paper className={classes.paperBig}>
+                              <Typography>ContactNumber</Typography>
+                            </Paper>
+                          </Grid>
+                          <Grid item xs={8}>
+                            <Paper className={classes.paper}>
+                              <Typography>{rowData.ContactNumber}</Typography>
+                            </Paper>
+                          </Grid>
 
-                        <Grid item xs={4}>
-                          <Paper className={classes.paperBig}>
-                            <Typography>Email</Typography>
-                          </Paper>
-                        </Grid>
-                        <Grid item xs={8}>
-                          <Paper className={classes.paper}>
-                            <Typography>{rowData.Email}</Typography>
-                          </Paper>
-                        </Grid>
+                          <Grid item xs={4}>
+                            <Paper className={classes.paperBig}>
+                              <Typography>Email</Typography>
+                            </Paper>
+                          </Grid>
+                          <Grid item xs={8}>
+                            <Paper className={classes.paper}>
+                              <Typography>{rowData.Email}</Typography>
+                            </Paper>
+                          </Grid>
 
-                        <Grid item xs={4}>
-                          <Paper className={classes.paperBig}>
-                            <Typography>Location</Typography>
-                          </Paper>
-                        </Grid>
-                        <Grid item xs={8}>
-                          <Paper className={classes.paper}>
-                            <Typography>{rowData.Location}</Typography>
-                          </Paper>
-                        </Grid>
+                          <Grid item xs={4}>
+                            <Paper className={classes.paperBig}>
+                              <Typography>Location</Typography>
+                            </Paper>
+                          </Grid>
+                          <Grid item xs={8}>
+                            <Paper className={classes.paper}>
+                              <Typography>{rowData.Location}</Typography>
+                            </Paper>
+                          </Grid>
 
-                        <Grid item xs={4}>
-                          <Paper className={classes.paperBig}>
-                            <Typography>Expertise</Typography>
-                          </Paper>
-                        </Grid>
-                        <Grid item xs={8}>
-                          <Paper className={classes.paper}>
-                            <Typography>{rowData.Expertise}</Typography>
-                          </Paper>
-                        </Grid>
+                          <Grid item xs={4}>
+                            <Paper className={classes.paperBig}>
+                              <Typography>Expertise</Typography>
+                            </Paper>
+                          </Grid>
+                          <Grid item xs={8}>
+                            <Paper className={classes.paper}>
+                              <Typography>{rowData.Expertise}</Typography>
+                            </Paper>
+                          </Grid>
 
-                        <Grid item xs={4}>
-                          <Paper className={classes.paperBig}>
-                            <Typography>Event Description</Typography>
-                          </Paper>
+                          <Grid item xs={4}>
+                            <Paper className={classes.paperBig}>
+                              <Typography>Event Description</Typography>
+                            </Paper>
+                          </Grid>
+                          <Grid item xs={8}>
+                            <Paper className={classes.paper}>
+                              <Typography>
+                                {rowData.Event_Description}
+                              </Typography>
+                            </Paper>
+                          </Grid>
                         </Grid>
-                        <Grid item xs={8}>
-                          <Paper className={classes.paper}>
-                            <Typography>{rowData.Event_Description}</Typography>
-                          </Paper>
-                        </Grid>
-                      </Grid>
-                    </div>
-                  )
-                );
-              }}
-              onRowClick={(event, rowData, togglePanel) => togglePanel()}
-            />
+                      </div>
+                    );
+                  }}
+                  onRowClick={(event, rowData, togglePanel) => togglePanel()}
+                />
+              </React.Fragment>
+            ) : (
+              <React.Fragment>
+                <Grid container item xs={12}>
+                  <Grid item xs={4}>
+                    <Typography
+                      component="h1"
+                      variant="h4"
+                      className={classes.heading}
+                    >
+                      Loading
+                    </Typography>
+                  </Grid>
+                </Grid>
+              </React.Fragment>
+            )}
           </React.Fragment>
         ) : (
           <Redirect to="/login" />
