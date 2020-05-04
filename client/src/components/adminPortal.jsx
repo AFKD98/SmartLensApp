@@ -41,6 +41,9 @@ const useStyles = (theme) => ({
     padding: theme.spacing(2),
     textAlign: "center",
   },
+  heading: {
+    padding: theme.spacing(2),
+  },
 });
 
 class OrdersList extends Component {
@@ -120,9 +123,19 @@ class OrdersList extends Component {
       <Container maxWidth="xl">
         {this.props.isAuthenticated ? (
           <React.Fragment>
-            <Typography component="h1" variant="h4">
-              Welcome!
-            </Typography>
+            <React.Fragment>
+              <Grid container item xs={12} spacing={3}>
+                <Grid item xs={4}>
+                  <Typography
+                    component="h1"
+                    variant="h4"
+                    className={classes.heading}
+                  >
+                    Welcome!
+                  </Typography>
+                </Grid>
+              </Grid>
+            </React.Fragment>
             <MaterialTable
               title="Booking requests"
               columns={this.state.columns}
