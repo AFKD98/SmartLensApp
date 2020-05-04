@@ -35,7 +35,7 @@ const useStyles = (theme) => ({
   paperBig: {
     padding: theme.spacing(2),
     textAlign: "center",
-    background: "lightgrey",
+    background: "#E8E8E8",
   },
   paper: {
     padding: theme.spacing(2),
@@ -123,7 +123,7 @@ class OrdersList extends Component {
       <Container maxWidth="xl">
         {this.props.isAuthenticated ? (
           <React.Fragment>
-            <Grid container item xs={12} spacing={3}>
+            <Grid container item xs={12}>
               <Grid item xs={4}>
                 <Typography
                   component="h1"
@@ -178,109 +178,67 @@ class OrdersList extends Component {
                   console.log(rowData),
                   (
                     <div className={classes.root}>
-                      <Grid container item xs={12} spacing={3}>
-                        <React.Fragment>
-                          <Grid item xs={4}>
-                            <Paper className={classes.paperBig}>
-                              <Typography variant="subtitle2">
-                                ContactNumber
-                              </Typography>
-                            </Paper>
-                          </Grid>
-                          <Grid item xs={8}>
-                            <Paper className={classes.paper}>
-                              {rowData.ContactNumber}
-                            </Paper>
-                          </Grid>
-                        </React.Fragment>
-                        <React.Fragment>
-                          <Grid item xs={4}>
-                            <Paper className={classes.paperBig}>
-                              <Typography variant="subtitle2">Email</Typography>
-                            </Paper>
-                          </Grid>
-                          <Grid item xs={8}>
-                            <Paper className={classes.paper}>
-                              {rowData.Email}
-                            </Paper>
-                          </Grid>
-                        </React.Fragment>
-                        <React.Fragment>
-                          <Grid item xs={4}>
-                            <Paper className={classes.paperBig}>
-                              <Typography variant="subtitle2">
-                                Location
-                              </Typography>
-                            </Paper>
-                          </Grid>
-                          <Grid item xs={8}>
-                            <Paper className={classes.paper}>
-                              {rowData.Location}
-                            </Paper>
-                          </Grid>
-                        </React.Fragment>
-                        <React.Fragment>
-                          <Grid item xs={4}>
-                            <Paper className={classes.paperBig}>
-                              <Typography variant="subtitle2">
-                                Expertise
-                              </Typography>
-                            </Paper>
-                          </Grid>
-                          <Grid item xs={8}>
-                            <Paper className={classes.paper}>
-                              {rowData.Expertise}
-                            </Paper>
-                          </Grid>
-                        </React.Fragment>
-                        <React.Fragment>
-                          <Grid item xs={4}>
-                            <Paper className={classes.paperBig}>
-                              <Typography variant="subtitle2">
-                                Event Description
-                              </Typography>
-                            </Paper>
-                          </Grid>
-                          <Grid item xs={8}>
-                            <Paper className={classes.paper}>
-                              {rowData.Event_Description}
-                            </Paper>
-                          </Grid>
-                        </React.Fragment>
-                      </Grid>
+                      <Grid container spacing={3} justify="center">
+                        <Grid item xs={4}>
+                          <Paper className={classes.paperBig}>
+                            <Typography>ContactNumber</Typography>
+                          </Paper>
+                        </Grid>
+                        <Grid item xs={8}>
+                          <Paper className={classes.paper}>
+                            <Typography>{rowData.ContactNumber}</Typography>
+                          </Paper>
+                        </Grid>
 
-                      {/* <MaterialTable
-                      title="Details"
-                      columns={[
-                        { title: "ContactNumber", field: "ContactNumber" },
-                        { title: "Email", field: "Email" },
-                        { title: "Location", field: "Location" },
-                        { title: "Budget", field: "Budget", type: "numeric" },
-                        {
-                          title: "Expertise",
-                          field: "Expertise",
-                          type: "date",
-                        },
-                      ]}
-                      data={rowData}
-                      icons={tableIcons}
-                      ></MaterialTable> */}
+                        <Grid item xs={4}>
+                          <Paper className={classes.paperBig}>
+                            <Typography>Email</Typography>
+                          </Paper>
+                        </Grid>
+                        <Grid item xs={8}>
+                          <Paper className={classes.paper}>
+                            <Typography>{rowData.Email}</Typography>
+                          </Paper>
+                        </Grid>
+
+                        <Grid item xs={4}>
+                          <Paper className={classes.paperBig}>
+                            <Typography>Location</Typography>
+                          </Paper>
+                        </Grid>
+                        <Grid item xs={8}>
+                          <Paper className={classes.paper}>
+                            <Typography>{rowData.Location}</Typography>
+                          </Paper>
+                        </Grid>
+
+                        <Grid item xs={4}>
+                          <Paper className={classes.paperBig}>
+                            <Typography>Expertise</Typography>
+                          </Paper>
+                        </Grid>
+                        <Grid item xs={8}>
+                          <Paper className={classes.paper}>
+                            <Typography>{rowData.Expertise}</Typography>
+                          </Paper>
+                        </Grid>
+
+                        <Grid item xs={4}>
+                          <Paper className={classes.paperBig}>
+                            <Typography>Event Description</Typography>
+                          </Paper>
+                        </Grid>
+                        <Grid item xs={8}>
+                          <Paper className={classes.paper}>
+                            <Typography>{rowData.Event_Description}</Typography>
+                          </Paper>
+                        </Grid>
+                      </Grid>
                     </div>
                   )
                 );
               }}
               onRowClick={(event, rowData, togglePanel) => togglePanel()}
-              // return (
-              //   <div>
-              //     <Typography component="h4" variant="h4">
-              //       rowData.ClientName
-              //       {/* rowData.ClientName,{rowData.ContactNumber},{rowData.Email},
-              //   {rowData.Location},{rowData.Category},{rowData.Photographer},
-              //   {rowData.Budget},{rowData.Expertise},
-              //   {rowData.Event_Description},{rowData.Approved},{rowData.date} */}
-              //     </Typography>
-              //   </div>
-              // );
             />
           </React.Fragment>
         ) : (
