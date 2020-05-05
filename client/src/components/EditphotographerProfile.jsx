@@ -6,6 +6,7 @@ import "../styles/photographerProfile.css";
 import "../styles/EditphotographerProfile.css";
 import axios from "axios";
 import ImageUploader from "react-images-upload";
+import HomePhoto3 from "../assets/homephoto3.jpg";
 
 class Profile extends Component {
   constructor(props) {
@@ -79,40 +80,73 @@ class Profile extends Component {
       [valHolder]: false,
     });
     // console.log(this.state.photographer);
-    // axios
-    //   .post(
-    //     "http://localhost:5000/photographers/update/5eadc2a882d5d9458437ab4d",
-    //     {
-    //       //  this.state.photographer
-    //   Name = this.state.name,
-    //   Username = this.state.userName,
-    //   Password = this.state.password,
-    //   ContactNumber = this.state.contact,
-    //   Email = this.state.email,
-    //   Calendar = this.state.calendar, //calendar link
-    //   Level = this.state.level,
-    //   Range = this.state.price,
-    //   Address = this.state.location,
-    //   Equipment = this.state.equipment,
-    //   Bio = this.state.aboutme,
-    //   Category = this.state.categories, //check number of categories
-    //   ProfilePic = this.state.profilePic, //profile picture link
-    //   CoverPic = this.state.coverPic,
-    //   photos=this.state.photos,
-    //   date = this.state.date,
-    //     }
-    //   )
-    //   .then(function (response) {
-    //     console.log(response);
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //   });
+    axios
+      .post(
+        "http://localhost:5000/photographers/update/5eadc2a882d5d9458437ab4d",
+        {
+          //  this.state.photographer
+          Name: this.state.name,
+          Username: this.state.userName,
+          Password: this.state.password,
+          ContactNumber: this.state.contact,
+          Email: this.state.email,
+          Calendar: this.state.calendar, //calendar link
+          Level: this.state.level,
+          Range: this.state.price,
+          Address: this.state.location,
+          Equipment: this.state.equipment,
+          Bio: this.state.aboutme,
+          Category: this.state.categories, //check number of categories
+          ProfilePic: this.state.profilePic, //profile picture link
+          CoverPic: this.state.coverPic,
+          photos: this.state.photos,
+          videos: this.state.videos,
+          date: this.state.date,
+        }
+      )
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
   onDrop(picture) {
+    // event.preventDefault();
     this.setState({
       pictures: this.state.pictures.concat(picture),
+      // pictures: picture,
     });
+    axios
+      .post(
+        "http://localhost:5000/photographers/update/5eadc2a882d5d9458437ab4d",
+        {
+          //  this.state.photographer
+          Name: this.state.name,
+          Username: this.state.userName,
+          Password: this.state.password,
+          ContactNumber: this.state.contact,
+          Email: this.state.email,
+          Calendar: this.state.calendar, //calendar link
+          Level: this.state.level,
+          Range: this.state.price,
+          Address: this.state.location,
+          Equipment: this.state.equipment,
+          Bio: this.state.aboutme,
+          Category: this.state.categories, //check number of categories
+          ProfilePic: this.state.profilePic, //profile picture link
+          CoverPic: this.state.coverPic,
+          photos: this.state.photos,
+          videos: this.state.videos,
+          date: this.state.date,
+        }
+      )
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
     console.log(this.state.pictures);
   }
   componentWillMount() {
@@ -261,7 +295,7 @@ class Profile extends Component {
         {/* START JUMBOTRON */}
         <div
           style={{
-            backgroundImage: require("../" + this.state.profilePic),
+            backgroundImage: "url(" + HomePhoto3 + ")",
           }}
           className="jumbotron jumbotron-fluid edit"
         >

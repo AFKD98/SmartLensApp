@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 // import bg from "../assets/wedding_cover.jpg";
 import "../styles/photographerProfile.css";
 import axios from "axios";
+import HomePhoto3 from "../assets/homephoto3.jpg";
 
 class Profile extends Component {
   constructor(props) {
@@ -129,7 +130,7 @@ class Profile extends Component {
         {/* START JUMBOTRON */}
         <div
           style={{
-            backgroundImage: require("../" + this.state.coverPic),
+            backgroundImage: "url(" + HomePhoto3 + ")",
           }}
           className="jumbotron jumbotron-fluid one"
         >
