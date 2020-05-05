@@ -43,6 +43,7 @@ class NavBar extends Component {
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="ml-auto">
               <Nav.Link onClick={this.props.logout}>Log out</Nav.Link>
+              <Nav.Link href="/detail">Order details</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Navbar>

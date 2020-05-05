@@ -4,6 +4,7 @@ import {
   ADD_ORDER,
   DELETE_ORDER,
   UPDATE_ORDER,
+  GET_SINGLE_ORDER,
 } from "./types";
 import { returnErrors } from "./errorActions";
 import { tokenConfig } from "./authActions";
@@ -16,6 +17,21 @@ export const getOrders = () => (dispatch, getState) => {
     .then((res) =>
       dispatch({
         type: GET_ORDERS,
+        payload: res.data,
+      })
+    )
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const getSingleOrder = (id) => (dispatch, getState) => {
+  dispatch(setOrdersLoading());
+  axios
+    .get(`http://localhost:5000/orders/${id}`, tokenConfig(getState))
+    .then((res) =>
+      dispatch({
+        type: GET_SINGLE_ORDER,
         payload: res.data,
       })
     )

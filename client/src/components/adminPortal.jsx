@@ -4,6 +4,7 @@ import MaterialTable from "material-table";
 import Container from "@material-ui/core/Container";
 import AddBox from "@material-ui/icons/AddBox";
 import ArrowUpward from "@material-ui/icons/ArrowUpward";
+import Button from "@material-ui/core/Button";
 import Check from "@material-ui/icons/Check";
 import ChevronLeft from "@material-ui/icons/ChevronLeft";
 import ChevronRight from "@material-ui/icons/ChevronRight";
@@ -63,14 +64,24 @@ class OrdersList extends Component {
         },
       ],
       data: [],
+      loaded: false,
     };
   }
 
   async componentDidMount() {
     await this.props.getOrders();
     this.setState({
-      data: this.props.orders.ordersList,
+      data: [...this.props.orders.ordersList],
     });
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.orders.loading !== prevProps.orders.loading) {
+      console.log("updated");
+      this.setState({
+        data: [...this.props.orders.ordersList],
+      });
+    }
   }
 
   static propTypes = {
