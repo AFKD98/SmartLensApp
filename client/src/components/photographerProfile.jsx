@@ -70,6 +70,7 @@ class Profile extends Component {
           calendar: res.data.Calendar,
           photos: res.data.photos,
           email: res.data.Email,
+          videos: res.data.videos,
         });
 
         //);

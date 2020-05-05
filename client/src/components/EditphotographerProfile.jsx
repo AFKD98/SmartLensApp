@@ -5,6 +5,7 @@ import bg from "../assets/wedding_cover.jpg";
 import "../styles/photographerProfile.css";
 import "../styles/EditphotographerProfile.css";
 import axios from "axios";
+import ImageUploader from "react-images-upload";
 
 class Profile extends Component {
   constructor(props) {
@@ -12,6 +13,7 @@ class Profile extends Component {
     this.state = {
       profilePic: "",
       coverPic: "",
+      pictures: [],
       photos: [
         // "assets/home2.jpg",
         // "assets/homephoto2.png",
@@ -41,6 +43,7 @@ class Profile extends Component {
     this.videoClick = this.videoClick.bind(this);
     this.editClick = this.editClick.bind(this);
     this.updateClick = this.updateClick.bind(this);
+    this.onDrop = this.onDrop.bind(this);
   }
 
   photoClick() {
@@ -106,7 +109,12 @@ class Profile extends Component {
     //     console.log(error);
     //   });
   }
-
+  onDrop(picture) {
+    this.setState({
+      pictures: this.state.pictures.concat(picture),
+    });
+    console.log(this.state.pictures);
+  }
   componentWillMount() {
     //function runs at the start of component loading
     axios //sending a get request to get all the photographer info from Mongo
@@ -353,6 +361,13 @@ class Profile extends Component {
                 Show Videos
               </Button>
               {this.state.displayVideos ? videoCode : null}
+              <ImageUploader
+                withIcon={true}
+                buttonText="Choose images"
+                onChange={this.onDrop}
+                imgExtension={[".jpg", ".gif", ".png", ".gif"]}
+                maxFileSize={5242880}
+              />
             </div>
           </div>
         </div>
