@@ -17,6 +17,8 @@ class PhotographersCard extends Component {
       name: this.props.Photographer.name,
       level: this.props.Photographer.level,
       range: this.props.Photographer.range,
+      profilePic: this.props.Photographer.profilePic,
+      coverPic: this.props.Photographer.coverPic,
     };
     this.confirmLevel = this.confirmLevel.bind(this);
   }
@@ -32,7 +34,10 @@ class PhotographersCard extends Component {
         <Col className="col-12 col-md-4">
           <Card>
             {/* card image will come from the DB once the images storage is enabled */}
-            <Card.Img width="100%" src={p2} />
+            <Card.Img
+              width="100%"
+              src={require("../" + this.state.profilePic)}
+            />
             <Card.Body className="py-auto px-auto mx-auto my-auto">
               <Card.Title className="py-auto px-auto mx-auto my-auto">
                 {this.state.name}
