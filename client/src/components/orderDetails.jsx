@@ -245,7 +245,7 @@ class orderDetails extends Component {
                       color="primary"
                       className={classes.submit}
                     >
-                      Update
+                      Update order
                     </Button>
                   </form>
                 </React.Fragment>
