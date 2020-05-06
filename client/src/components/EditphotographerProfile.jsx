@@ -5,27 +5,22 @@ import bg from "../assets/wedding_cover.jpg";
 import "../styles/photographerProfile.css";
 import "../styles/EditphotographerProfile.css";
 import axios from "axios";
-import ImageUploader from "react-images-upload";
-import HomePhoto3 from "../assets/homephoto3.jpg";
 
 class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      profilePic: "",
-      coverPic: "",
-      pictures: [],
       photos: [
-        // "assets/home2.jpg",
-        // "assets/homephoto2.png",
-        // "assets/homephoto3.jpg",
-        // "assets/Recommend.jpg",
+        "assets/home2.jpg",
+        "assets/homephoto2.png",
+        "assets/homephoto3.jpg",
+        "assets/Recommend.jpg",
       ],
 
       videos: [
-        // "https://www.youtube.com/embed/O41OuELay_A",
-        // "https://www.youtube.com/embed/A6zLsU7RhX4",
-        // "https://www.youtube.com/embed/C0_uv535Gzw",
+        "https://www.youtube.com/embed/O41OuELay_A",
+        "https://www.youtube.com/embed/A6zLsU7RhX4",
+        "https://www.youtube.com/embed/C0_uv535Gzw",
       ],
       name: "",
       aboutme: "",
@@ -44,7 +39,6 @@ class Profile extends Component {
     this.videoClick = this.videoClick.bind(this);
     this.editClick = this.editClick.bind(this);
     this.updateClick = this.updateClick.bind(this);
-    this.onDrop = this.onDrop.bind(this);
   }
 
   photoClick() {
@@ -79,73 +73,20 @@ class Profile extends Component {
       [valHolder]: false,
     });
   }
-  onDrop(picture) {
-    // event.preventDefault();
-    this.setState({
-      pictures: this.state.pictures.concat(picture),
-      // pictures: picture,
-    });
-    axios
-      .post(
-        "http://localhost:5000/photographers/update/5eadc2a882d5d9458437ab4d",
-        {
-          //  this.state.photographer
-          Name: this.state.name,
-          Username: this.state.userName,
-          Password: this.state.password,
-          ContactNumber: this.state.contact,
-          Email: this.state.email,
-          Calendar: this.state.calendar, //calendar link
-          Level: this.state.level,
-          Range: this.state.price,
-          Address: this.state.location,
-          Equipment: this.state.equipment,
-          Bio: this.state.aboutme,
-          Category: this.state.categories, //check number of categories
-          ProfilePic: this.state.profilePic, //profile picture link
-          CoverPic: this.state.coverPic,
-          photos: this.state.photos,
-          videos: this.state.videos,
-          date: this.state.date,
-        }
-      )
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-    console.log(this.state.pictures);
-  }
-  componentWillMount() {
+
+  componentDidMount() {
     //function runs at the start of component loading
     axios //sending a get request to get all the photographer info from Mongo
-      .get(
-        "https://smartlensapplication.herokuapp.com/photographers/5e9e1e4dcceec825cc352271"
-      )
+      .get("http://localhost:5000/photographers/5e9e1e4dcceec825cc352271")
       .then((res) => {
         //res.data.map((entree) =>
-        // console.log(res.data);
         this.setState({
           name: res.data.Name,
-          userName: res.data.Username,
-          password: res.data.Password,
           aboutme: res.data.Bio,
-          categories: res.data.Category,
           location: res.data.Address,
           price: res.data.Range,
-          contact: res.data.ContactNumber,
           equipment: res.data.Equipment,
-          coverPic: res.data.CoverPic,
-          profilePic: res.data.ProfilePic,
-          level: res.data.Level,
-          calendar: res.data.Calendar,
-          photos: res.data.photos,
-          email: res.data.Email,
-          videos: res.data.videos,
-          // photographer: res.data,
         });
-        console.log(this.state.coverPic);
       })
       .catch((error) => {
         console.log(error);
@@ -157,7 +98,7 @@ class Profile extends Component {
       <div>
         <br />
         {this.state.photos.map((photo, index) => (
-          <div key={index}>
+          <div>
             <img
               key={index}
               src={require(`../${photo}`)}
@@ -175,7 +116,7 @@ class Profile extends Component {
       <div>
         <br />
         {this.state.videos.map((video, index) => (
-          <div key={index}>
+          <div>
             <iframe
               key={index}
               width="560"
@@ -263,12 +204,7 @@ class Profile extends Component {
     return (
       <div>
         {/* START JUMBOTRON */}
-        <div
-          style={{
-            backgroundImage: "url(" + HomePhoto3 + ")",
-          }}
-          className="jumbotron jumbotron-fluid edit"
-        >
+        <div className="jumbotron jumbotron-fluid one">
           <div className="container"></div>
         </div>
         {/* END JUMBOTRON */}
@@ -282,10 +218,11 @@ class Profile extends Component {
             </div>
             <div className="col moveup" id="main">
               <img
-                src={require("../" + this.state.profilePic)}
+                src={require("../assets/p2.jpg")}
                 alt="Avatar"
                 className="prof1"
               ></img>
+
               {this.state.editname ? (
                 editNameCode
               ) : (
@@ -315,7 +252,9 @@ class Profile extends Component {
                   {this.state.aboutme}
                 </p>
               )}
+
               <hr className="solid"></hr>
+
               <h2 className="pt-5">Details</h2>
               <p className="paratext pb-5">
                 {this.state.editlocation ? (
@@ -363,17 +302,11 @@ class Profile extends Component {
                 Show Photos
               </Button>
               {this.state.displayPhotos ? photoCode : null}
+
               <Button variant="primary" onClick={this.videoClick}>
                 Show Videos
               </Button>
               {this.state.displayVideos ? videoCode : null}
-              <ImageUploader
-                withIcon={true}
-                buttonText="Choose images"
-                onChange={this.onDrop}
-                imgExtension={[".jpg", ".gif", ".png", ".gif"]}
-                maxFileSize={5242880}
-              />
             </div>
           </div>
         </div>

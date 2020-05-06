@@ -23,7 +23,7 @@ function Container() {
     <Switch>
       <Route exact path="/" component={HomeView} />
       <Route path="/recommendation/:type" component={Recommendation} />
-      <Route path="/CategoriesPage" component={Categories} />
+      <Route path="/CategoryPage" component={Categories} />
       <Route path="/profile/:id" component={Profile} />
       <Route path="/photoreg" component={PhotoReg} />
       <Route path="/editprofile" component={EditProfile} />
