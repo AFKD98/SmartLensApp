@@ -131,12 +131,7 @@ class Profile extends Component {
     return (
       <div>
         {/* START JUMBOTRON */}
-        <div
-          style={{
-            backgroundImage: "url(" + HomePhoto3 + ")",
-          }}
-          className="jumbotron jumbotron-fluid one"
-        >
+        <div className="jumbotron jumbotron-fluid one">
           <div className="container"></div>
         </div>
         {/* END JUMBOTRON */}

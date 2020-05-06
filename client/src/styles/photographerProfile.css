@@ -1,6 +1,7 @@
 /* Avatars must have square images */
 
 .jumbotron.one {
+  background-image: url(../assets/homephoto3.jpg);
   background-size: 2000px;
   background-repeat: no-repeat;
   background-position: 10% 40%;
