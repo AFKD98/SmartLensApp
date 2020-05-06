@@ -13,10 +13,10 @@ class Profile extends Component {
       profilePic: "",
       coverPic: "",
       photos: [
-        // "assets/home2.jpg",
-        // "assets/homephoto2.png",
-        // "assets/homephoto3.jpg",
-        // "assets/Recommend.jpg",
+        "assets/home2.jpg",
+        "assets/homephoto2.png",
+        "assets/homephoto3.jpg",
+        "assets/Recommend.jpg",
       ],
 
       videos: [
@@ -72,7 +72,7 @@ class Profile extends Component {
           profilePic: res.data.ProfilePic,
           level: res.data.Level,
           calendar: res.data.Calendar,
-          photos: res.data.photos,
+          // photos: res.data.photos,
           email: res.data.Email,
           videos: res.data.videos,
         });

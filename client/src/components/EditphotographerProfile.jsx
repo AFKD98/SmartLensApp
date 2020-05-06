@@ -16,10 +16,10 @@ class Profile extends Component {
       coverPic: "",
       pictures: [],
       photos: [
-        // "assets/home2.jpg",
-        // "assets/homephoto2.png",
-        // "assets/homephoto3.jpg",
-        // "assets/Recommend.jpg",
+        "assets/home2.jpg",
+        "assets/homephoto2.png",
+        "assets/homephoto3.jpg",
+        "assets/Recommend.jpg",
       ],
 
       videos: [
@@ -82,7 +82,7 @@ class Profile extends Component {
     // console.log(this.state.photographer);
     axios
       .post(
-        "http://localhost:5000/photographers/update/5eadc2a882d5d9458437ab4d",
+        "https://smartlensapplication.herokuapp.com/photographers/update/5eadc2a882d5d9458437ab4d",
         {
           //  this.state.photographer
           Name: this.state.name,
@@ -119,7 +119,7 @@ class Profile extends Component {
     });
     axios
       .post(
-        "http://localhost:5000/photographers/update/5eadc2a882d5d9458437ab4d",
+        "https://smartlensapplication.herokuapp.com/photographers/update/5eadc2a882d5d9458437ab4d",
         {
           //  this.state.photographer
           Name: this.state.name,
@@ -152,7 +152,9 @@ class Profile extends Component {
   componentWillMount() {
     //function runs at the start of component loading
     axios //sending a get request to get all the photographer info from Mongo
-      .get("http://localhost:5000/photographers/5eadc2a882d5d9458437ab4d")
+      .get(
+        "https://smartlensapplication.herokuapp.com/photographers/5eadc2a882d5d9458437ab4d"
+      )
       .then((res) => {
         //res.data.map((entree) =>
         // console.log(res.data);
@@ -170,7 +172,7 @@ class Profile extends Component {
           profilePic: res.data.ProfilePic,
           level: res.data.Level,
           calendar: res.data.Calendar,
-          photos: res.data.photos,
+          // photos: res.data.photos,
           email: res.data.Email,
           videos: res.data.videos,
           // photographer: res.data,
