@@ -51,18 +51,21 @@ class photographerRegistration extends Component {
   onSubmitHandler = (event) => {
     event.preventDefault();
     axios
-      .post("http://localhost:5000/registration_photographer/add", {
-        Name: this.state.name,
-        Username: this.state.username, //unique
-        ContactNumber: this.state.contact,
-        Email: this.state.email,
-        Occupation: this.state.occupation,
-        Equipment: this.state.equipment, //list
-        Category: this.state.category, //list
-        Self_rating: this.state.rating,
-        Description: this.state.description,
-        Sample_work: this.state.sampleWork, //Link
-      })
+      .post(
+        "https://smartlensapplication.herokuapp.com/registration_photographer/add",
+        {
+          Name: this.state.name,
+          Username: this.state.username, //unique
+          ContactNumber: this.state.contact,
+          Email: this.state.email,
+          Occupation: this.state.occupation,
+          Equipment: this.state.equipment, //list
+          Category: this.state.category, //list
+          Self_rating: this.state.rating,
+          Description: this.state.description,
+          Sample_work: this.state.sampleWork, //Link
+        }
+      )
       .then(function (response) {
         console.log(response);
       })
@@ -75,7 +78,7 @@ class photographerRegistration extends Component {
   componentWillMount() {
     //function runs at the start of component loading
     axios //sending a get request to get all the categories from Mongo
-      .get("http://localhost:5000/categories/")
+      .get("https://smartlensapplication.herokuapp.com/categories/")
       .then((res) => {
         res.data.map((entree) =>
           this.setState({

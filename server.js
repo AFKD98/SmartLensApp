@@ -12,7 +12,11 @@ app.use(express.json()); //middleware to parse json
 
 //DB
 const uri = process.env.ATLAS_URI; //ATLAS_URI is the env variable. set it
-mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true }); //uri is where DB is stored
+mongoose.connect(uri, {
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  useUnifiedTopology: true,
+}); //uri is where DB is stored
 const connection = mongoose.connection;
 
 connection.once("open", () => {
@@ -20,16 +24,18 @@ connection.once("open", () => {
 });
 
 //routes
-const clientsRouter = require("./routes/clients");
+const ordersRouter = require("./routes/orders");
 const categoriesRouter = require("./routes/categories");
 const photographersRouter = require("./routes/photographers");
 const registration_photographerRouter = require("./routes/registration_photographer");
+const usersRouter = require("./routes/users");
 
-app.use("/clients", clientsRouter); //it will load everything in the user
+app.use("/orders", ordersRouter); //it will load everything in the user
 app.use("/categories", categoriesRouter); //it will load everything in the categories
 app.use("/photographers", photographersRouter); //it will load everything in the photographers
 app.use("/registration_photographer", registration_photographerRouter); //it will load everything in the registration_photographer
 app.use("/uploads", express.static("uploads"));
+app.use("/users", usersRouter);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));

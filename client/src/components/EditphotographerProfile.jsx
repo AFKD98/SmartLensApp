@@ -70,7 +70,10 @@ class Profile extends Component {
   }
 
   updateClick(parameter, event) {
+<<<<<<< HEAD
     event.preventDefault();
+=======
+>>>>>>> merge-try
     let keyHolder = parameter;
     let valHolder = "edit" + parameter;
     let refHolder = "this.refs." + parameter + "Input.value";
@@ -79,6 +82,7 @@ class Profile extends Component {
       [keyHolder]: eval(refHolder),
       [valHolder]: false,
     });
+<<<<<<< HEAD
     // console.log(this.state.photographer);
     axios
       .post(
@@ -110,6 +114,8 @@ class Profile extends Component {
       .catch(function (error) {
         console.log(error);
       });
+=======
+>>>>>>> merge-try
   }
   onDrop(picture) {
     // event.preventDefault();
@@ -152,7 +158,13 @@ class Profile extends Component {
   componentWillMount() {
     //function runs at the start of component loading
     axios //sending a get request to get all the photographer info from Mongo
+<<<<<<< HEAD
       .get("http://localhost:5000/photographers/5eadc2a882d5d9458437ab4d")
+=======
+      .get(
+        "https://smartlensapplication.herokuapp.com/photographers/5e9e1e4dcceec825cc352271"
+      )
+>>>>>>> merge-try
       .then((res) => {
         //res.data.map((entree) =>
         // console.log(res.data);
@@ -316,6 +328,10 @@ class Profile extends Component {
                 alt="Avatar"
                 className="prof1"
               ></img>
+<<<<<<< HEAD
+=======
+
+>>>>>>> merge-try
               {this.state.editname ? (
                 editNameCode
               ) : (
@@ -326,7 +342,13 @@ class Profile extends Component {
                   {this.state.name}
                 </h2>
               )}
+<<<<<<< HEAD
               <hr className="solid nameline"></hr>
+=======
+
+              <hr className="solid nameline"></hr>
+
+>>>>>>> merge-try
               <h2
                 className="pt-5"
                 onDoubleClick={(event) => this.editClick("aboutme", event)}
@@ -343,6 +365,10 @@ class Profile extends Component {
                   {this.state.aboutme}
                 </p>
               )}
+<<<<<<< HEAD
+=======
+
+>>>>>>> merge-try
               <hr className="solid"></hr>
               <h2 className="pt-5">Details</h2>
               <p className="paratext pb-5">

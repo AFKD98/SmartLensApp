@@ -13,6 +13,9 @@ import Vision from "./vision";
 import About from "./about";
 import Table from "./adminPortal";
 import Error from "./Error";
+import login from "./login";
+import signup from "./signup";
+import detail from "./orderDetails";
 
 function Container() {
   return (
@@ -20,7 +23,11 @@ function Container() {
     <Switch>
       <Route exact path="/" component={HomeView} />
       <Route path="/recommendation/:type" component={Recommendation} />
+<<<<<<< HEAD
       <Route path="/CategoryPage" component={Categories} />
+=======
+      <Route path="/CategoriesPage" component={Categories} />
+>>>>>>> merge-try
       <Route path="/profile/:id" component={Profile} />
       <Route path="/photoreg" component={PhotoReg} />
       <Route path="/editprofile" component={EditProfile} />
@@ -31,6 +38,9 @@ function Container() {
         component={PhotographerSelection}
       />
       <Route path="/adminPortal" component={Table} />
+      <Route path="/login" component={login} />
+      <Route path="/signup" component={signup} />
+      <Route path="/detail" component={detail} />
       <Route component={Error} />
     </Switch>
     // </Wrapper>

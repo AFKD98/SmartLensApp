@@ -19,10 +19,15 @@ const photographersSchema = new Schema(
     Bio: { type: String, required: true },
     Category: { type: String, required: true }, //check number of categories
     ProfilePic: { type: String, required: true }, //profile picture link
+<<<<<<< HEAD
     CoverPic: { type: String },
     photos: [{ type: String }],
     videos: [{ type: String }],
     //photos: [{ category: String, Link: String }],
+=======
+    CoverPic: { type: String, required: true },
+    photos: [{ type: String }],
+>>>>>>> merge-try
     date: { type: Date, required: true },
   },
   {
