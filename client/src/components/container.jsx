@@ -23,11 +23,7 @@ function Container() {
     <Switch>
       <Route exact path="/" component={HomeView} />
       <Route path="/recommendation/:type" component={Recommendation} />
-<<<<<<< HEAD
-      <Route path="/CategoryPage" component={Categories} />
-=======
       <Route path="/CategoriesPage" component={Categories} />
->>>>>>> merge-try
       <Route path="/profile/:id" component={Profile} />
       <Route path="/photoreg" component={PhotoReg} />
       <Route path="/editprofile" component={EditProfile} />

@@ -19,35 +19,6 @@ class HomeView extends Component {
           className="jumbotron jumbotron-fluid"
         >
           <div className="container">
-<<<<<<< HEAD
-            <Row className="row-md-12 mt-5 justify-content-md-end">
-              <Col className="col-md-8">
-                <h1 className="display-4">Photography made simple</h1>
-                <Row>
-                  <Col className="col-8">
-                    <p className="lead">
-                      Need a talented individual to cover an occasion? Browse
-                      through our list of curated photographers or let us find
-                      one for you
-                    </p>
-
-                    <a
-                      className="btn btn-outline-light buts mr-3 mb-2 d-md-inline"
-                      href="/CategoryPage"
-                    >
-                      Book Now
-                    </a>
-                    <a
-                      className=" btn btn-outline-light buts d-md-inline"
-                      href="/recommendation/none"
-                    >
-                      Recommendation
-                    </a>
-                  </Col>
-                </Row>
-              </Col>
-            </Row>
-=======
             <h2 className="display-4 text-right pr-5 pt-5 mt-5">
               Photography made simple
             </h2>
@@ -68,7 +39,6 @@ class HomeView extends Component {
             >
               Recommendation
             </a>
->>>>>>> merge-try
           </div>
 
           {/*<Row className="justify-content-right">
