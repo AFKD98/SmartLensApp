@@ -23,6 +23,7 @@
     "react-bootstrap": "^1.0.0",
     "react-bootstrap-range-slider": "^0.3.2",
     "react-dom": "^16.13.1",
+    "react-images-upload": "^1.2.8",
     "react-nouislider": "^2.0.1",
     "react-rangeslider": "^2.2.0",
     "react-redux": "^7.2.0",

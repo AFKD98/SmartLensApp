@@ -1,10 +1,11 @@
-.jumbotron {
+.jumbotron.cats {
     background-image: url("../assets/sideview.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     height: 100vh;
     color: white;
+    margin-bottom: 0px;
 }
 
 .jumbotron .container.cont .conte {

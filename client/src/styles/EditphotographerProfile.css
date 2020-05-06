@@ -1,20 +1,27 @@
+.jumbotron.edit {
+  background-size: 2000px;
+  background-repeat: no-repeat;
+  background-position: 10% 40%;
+  height: 50vh;
+}
+
 .nametext {
-    position: relative;
-    bottom: -30px;
-    display: block;
-    font-size: 1.5em;
-    margin-top: 0.83em;
-    margin-bottom: 0.83em;
-    margin-left: 0;
-    margin-right: 0;
-    font-weight: bold;
+  position: relative;
+  bottom: -30px;
+  display: block;
+  font-size: 1.5em;
+  margin-top: 0.83em;
+  margin-bottom: 0.83em;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
 }
 
 .abouttextbox {
-    width: 350px;
+  width: 350px;
 }
 
 .aboutbutton {
-    position: relative;
-    top: -20px;
+  position: relative;
+  top: -20px;
 }

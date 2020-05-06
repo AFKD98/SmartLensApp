@@ -7,7 +7,7 @@ class NavBar extends Component {
   render() {
     return (
       <React.Fragment>
-        <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
+        <Navbar collapseOnSelect expand="md" bg="light" variant="light">
           <Navbar.Brand href="/">SmartLens</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">

@@ -46,12 +46,12 @@ class PhotographerSelection extends Component {
           backgroundPosition: "center",
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
-          height: "70vh",
+          height: "40vh",
         }}
         className="jumbotron jumbotron-fluid pb-5"
       >
         <div className="container">
-          <h1 className="display-4 text-center text-white pr-auto pt-auto pb-auto mt-auto">
+          <h1 className="display-3 text-center mt-5">
             {this.state.categoryName}
           </h1>
         </div>

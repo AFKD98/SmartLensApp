@@ -44,11 +44,11 @@ class Categories extends Component {
     //   backgroundPosition: "center",
     // };
     return (
-      <div className="jumbotron jumbotron-fluid text-center">
+      <div className="jumbotron jumbotron-fluid text-center cats">
         <div className="container cont">
           <h2 className="conte">Lets find you a photographer</h2>
           <p className="conte">
-            Choose the categories you wish to browse <br />
+            Choose the category you wish to browse <br />
           </p>
           <ul className="catlist">
             {/* displays the buttons, by passing key and value parameters to categoryButton component which then stores it in its state */}

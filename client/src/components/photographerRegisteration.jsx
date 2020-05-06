@@ -33,14 +33,17 @@ class photographerRegistration extends Component {
     this.ratingHandler = this.ratingHandler.bind(this);
   }
   onChangeHandler(event) {
+    event.preventDefault();
     let nam = event.target.name;
     let val = event.target.value;
     this.setState({ [nam]: val });
   }
   ratingHandler(event) {
+    event.preventDefault();
     this.setState({ rating: parseInt(event.target.value, 10) });
   }
   onCategoryChange(event) {
+    event.preventDefault();
     this.setState({
       category: this.state.category.concat([event.target.value]),
     });
@@ -93,15 +96,15 @@ class photographerRegistration extends Component {
         {/* START JUMBOTRON */}
         <div className="jumbotron jumbotron-fluid one">
           <div className="container">
-            <h3 className="text-center text-white pr-auto pt-auto pb-auto mt-auto">
-              Hello {this.state.name} <br /> Register with us and become a part
-              of SmartLens!
-            </h3>
+            <h1 className="display-4 text-center mt-5">Hello</h1>
+            <p className="text-center lead">
+              Register with us and become a part of SmartLens!
+            </p>
           </div>
         </div>
         {/* END JUMBOTRON */}
 
-        <div className="container farm">
+        <div className="container-md farm">
           <Form onSubmit={this.onSubmitHandler}>
             <Form.Row>
               <Col>
@@ -118,8 +121,8 @@ class photographerRegistration extends Component {
             </Form.Row>
 
             <Form.Row>
-              <Col>
-                <Form.Group controlId="email" className="pr-2">
+              <Col className="col-12 col-md-6">
+                <Form.Group controlId="email" className="pr-md-2">
                   <Form.Label>Email</Form.Label>
                   <Form.Control
                     type="text"
@@ -131,7 +134,7 @@ class photographerRegistration extends Component {
               </Col>
 
               <Col>
-                <Form.Group controlId="username" className="pl-2">
+                <Form.Group controlId="username" className="pl-md-2">
                   <Form.Label>Username</Form.Label>
                   <Form.Control
                     type="text"
@@ -158,8 +161,8 @@ class photographerRegistration extends Component {
             </Form.Row>
 
             <Form.Row>
-              <Col>
-                <Form.Group controlId="contact" className="pr-2">
+              <Col className="col-12 col-md-6">
+                <Form.Group controlId="contact" className="pr-md-2">
                   <Form.Label>Contact Number</Form.Label>
                   <Form.Control
                     type="text"
@@ -171,7 +174,7 @@ class photographerRegistration extends Component {
               </Col>
 
               <Col>
-                <Form.Group controlId="occupation" className="pl-2">
+                <Form.Group controlId="occupation" className="pl-md-2">
                   <Form.Label>Occupation</Form.Label>
                   <Form.Control
                     type="text"
@@ -229,7 +232,7 @@ class photographerRegistration extends Component {
             </Form.Row>
 
             <Form.Row>
-              <Col className="col-8">
+              <Col className="col-12 col-md-8">
                 <Form.Group controlId="samplework">
                   <Form.Label>
                     Sample Work (insert link to portfolio)
@@ -260,7 +263,7 @@ class photographerRegistration extends Component {
             </Form.Row>
 
             <Form.Row>
-              <Button className="mt-3" className="btn btn-dark" type="submit">
+              <Button className="mt-3 btn btn-dark" type="submit">
                 Submit
               </Button>
             </Form.Row>

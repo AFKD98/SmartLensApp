@@ -29,6 +29,7 @@ app.use("/clients", clientsRouter); //it will load everything in the user
 app.use("/categories", categoriesRouter); //it will load everything in the categories
 app.use("/photographers", photographersRouter); //it will load everything in the photographers
 app.use("/registration_photographer", registration_photographerRouter); //it will load everything in the registration_photographer
+app.use("/uploads", express.static("uploads"));
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));

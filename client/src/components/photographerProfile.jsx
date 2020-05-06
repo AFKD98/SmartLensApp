@@ -4,22 +4,25 @@ import Button from "react-bootstrap/Button";
 // import bg from "../assets/wedding_cover.jpg";
 import "../styles/photographerProfile.css";
 import axios from "axios";
+import HomePhoto3 from "../assets/homephoto3.jpg";
 
 class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      profilePic: "",
+      coverPic: "",
       photos: [
-        "assets/home2.jpg",
-        "assets/homephoto2.png",
-        "assets/homephoto3.jpg",
-        "assets/Recommend.jpg",
+        // "assets/home2.jpg",
+        // "assets/homephoto2.png",
+        // "assets/homephoto3.jpg",
+        // "assets/Recommend.jpg",
       ],
 
       videos: [
-        "https://www.youtube.com/embed/O41OuELay_A",
-        "https://www.youtube.com/embed/A6zLsU7RhX4",
-        "https://www.youtube.com/embed/C0_uv535Gzw",
+        // "https://www.youtube.com/embed/O41OuELay_A",
+        // "https://www.youtube.com/embed/A6zLsU7RhX4",
+        // "https://www.youtube.com/embed/C0_uv535Gzw",
       ],
       name: "",
       aboutme: "",
@@ -58,6 +61,17 @@ class Profile extends Component {
           location: res.data.Address,
           price: res.data.Range,
           equipment: res.data.Equipment,
+          userName: res.data.Username,
+          password: res.data.Password,
+          categories: res.data.Category,
+          contact: res.data.ContactNumber,
+          coverPic: res.data.CoverPic,
+          profilePic: res.data.ProfilePic,
+          level: res.data.Level,
+          calendar: res.data.Calendar,
+          photos: res.data.photos,
+          email: res.data.Email,
+          videos: res.data.videos,
         });
 
         //);
@@ -114,7 +128,12 @@ class Profile extends Component {
     return (
       <div>
         {/* START JUMBOTRON */}
-        <div className="jumbotron jumbotron-fluid one">
+        <div
+          style={{
+            backgroundImage: "url(" + HomePhoto3 + ")",
+          }}
+          className="jumbotron jumbotron-fluid one"
+        >
           <div className="container"></div>
         </div>
         {/* END JUMBOTRON */}
@@ -127,7 +146,7 @@ class Profile extends Component {
             </div>
             <div className="col moveup" id="main">
               <img
-                src={require("../assets/p2.jpg")}
+                src={require("../" + this.state.profilePic)}
                 alt="Avatar"
                 className="prof1"
               ></img>

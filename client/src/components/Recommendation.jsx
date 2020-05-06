@@ -63,17 +63,17 @@ class MyForm extends React.Component {
     this.setState({ [nam]: val });
   };
   onExpertiseChange(event) {
-    this.setState({ expertise: parseInt(event.target.value, 10) });
+    this.setState({ expertise: event.target.value });
   }
   getExpertise() {
     if (this.props.match.params.type === "none") {
       return (
         <Form.Group controlId="expertise">
-          <Form.Label>Expertise</Form.Label>
+          <Form.Label className="ml-md-5">Expertise</Form.Label>
           <Form.Row>
-            <Col className="expertise">
+            <Col className="col-6 col-md-12 ml-md-5">
               <ToggleButtonGroup
-                className="pb-5 expertise"
+                className="pb-2"
                 type="radio"
                 name="options"
                 defaultValue={1}
@@ -129,14 +129,18 @@ class MyForm extends React.Component {
       <div>
         {/* START JUMBOTRON */}
         <div className="jumbotron jumbotron-fluid one">
-          <div className="container"></div>
+          <div className="container">
+            <h1 className="display-4 text-center mt-5">
+              Photographer Selection
+            </h1>
+          </div>
         </div>
         {/* END JUMBOTRON */}
 
-        <div className="container farm">
+        <div className="container-md farm">
           <Form onSubmit={this.onSubmitHandler}>
             <Form.Row>
-              <Col>
+              <Col className="col-12">
                 <Form.Group
                   controlId="fullname"
                   onChange={this.onChangeHandler}
@@ -152,10 +156,10 @@ class MyForm extends React.Component {
             </Form.Row>
 
             <Form.Row>
-              <Col>
+              <Col className="col-12 col-md-6">
                 <Form.Group
                   controlId="email"
-                  className="pr-2"
+                  className="pr-md-2"
                   onChange={this.onChangeHandler}
                 >
                   <Form.Label>Email</Form.Label>
@@ -170,7 +174,7 @@ class MyForm extends React.Component {
               <Col>
                 <Form.Group
                   controlId="contact"
-                  className="pl-2"
+                  className="pl-md-2"
                   onChange={this.onChangeHandler}
                 >
                   <Form.Label>Contact Number</Form.Label>
@@ -184,10 +188,10 @@ class MyForm extends React.Component {
             </Form.Row>
 
             <Form.Row>
-              <Col>
+              <Col className="col-12 col-md-6">
                 <Form.Group
                   controlId="location"
-                  className="pr-2"
+                  className="pr-md-2"
                   onChange={this.onChangeHandler}
                 >
                   <Form.Label>Location</Form.Label>
@@ -202,7 +206,7 @@ class MyForm extends React.Component {
               <Col>
                 <Form.Group
                   controlId="budget"
-                  className="pl-2"
+                  className="pl-md-2"
                   onChange={this.onChangeHandler}
                 >
                   <Form.Label>Budget</Form.Label>
@@ -217,14 +221,14 @@ class MyForm extends React.Component {
 
             <Form.Row>
               <Form.Label className="pb-2">
-                Categories (tick all that apply){" "}
+                Categories (tick all that apply)
               </Form.Label>
             </Form.Row>
             <Form.Row className="pb-3" onChange={this.categoryHandler}>
               {this.state.categories.map((Category) => (
                 <Form.Check
                   name="category"
-                  className="ml-2"
+                  className="mr-2"
                   value={Category.categoryName}
                   label={Category.categoryName}
                   type="checkbox"
@@ -235,7 +239,7 @@ class MyForm extends React.Component {
             </Form.Row>
 
             <Form.Row>
-              <Col className="col-6">
+              <Col className="col-12 col-md-6">
                 <Form.Group controlId="date" onChange={this.onChangeHandler}>
                   <Form.Label>Date</Form.Label>
                   <Form.Control
@@ -246,20 +250,20 @@ class MyForm extends React.Component {
                 </Form.Group>
               </Col>
 
-              <Col>{this.getExpertise()}</Col>
+              <Col className="col-12 col-md-6">{this.getExpertise()}</Col>
             </Form.Row>
 
             <Form.Row>
-              <Col>
+              <Col className="col-12">
                 <Form.Group onChange={this.onChangeHandler}>
                   <Form.Label>Comments</Form.Label>
-                  <Form.Control name="description" as="textarea" rows="3" />
+                  <Form.Control name="description" as="textarea" rows="4" />
                 </Form.Group>
               </Col>
             </Form.Row>
 
             <Form.Row>
-              <Button className="mt-3" className="btn btn-dark" type="submit">
+              <Button className="mt-3 btn btn-dark" type="submit">
                 Submit
               </Button>
             </Form.Row>
