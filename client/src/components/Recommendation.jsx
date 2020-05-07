@@ -55,10 +55,6 @@ class MyForm extends React.Component {
       date: this.state.date,
     };
     this.props.addOrder(newOrder);
-    let contact = this.state.contact;
-    if (!Number(contact)) {
-      alert("Your contact must be a number");
-    }
   };
 
   onChangeHandler = (event) => {

@@ -92,7 +92,7 @@ class Profile extends Component {
           <div key={index}>
             <img
               key={index}
-              src={`http://localhost:5000/${photo}`}
+              src={`https://smartlensapplication.herokuapp.com/${photo}`}
               onerror="this.style.display='none';"
               alt="profilePhoto"
               className="profilePhoto pb-5"
@@ -145,7 +145,10 @@ class Profile extends Component {
             </div>
             <div className="col moveup" id="main">
               <img
-                src={"http://localhost:5000/" + this.state.profilePic}
+                src={
+                  "https://smartlensapplication.herokuapp.com/" +
+                  this.state.profilePic
+                }
                 onerror="this.style.display='none';"
                 alt="Avatar"
                 className="prof1"

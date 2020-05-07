@@ -34,13 +34,13 @@ class HomeView extends Component {
                       className="btn btn-outline-light buts mr-3 mb-2 d-md-inline"
                       href="/CategoryPage"
                     >
-                      Book Now
+                      Browse categories
                     </a>
                     <a
                       className=" btn btn-outline-light buts d-md-inline"
                       href="/recommendation/none"
                     >
-                      Recommendation
+                      Book Now
                     </a>
                   </Col>
                 </Row>

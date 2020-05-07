@@ -36,7 +36,10 @@ class PhotographersCard extends Component {
             {/* card image will come from the DB once the images storage is enabled */}
             <Card.Img
               width="100%"
-              src={"http://localhost:5000/" + this.state.profilePic}
+              src={
+                "https://smartlensapplication.herokuapp.com/" +
+                this.state.profilePic
+              }
               onerror="this.style.display='none';"
             />
             <Card.Body className="py-auto px-auto mx-auto my-auto">
