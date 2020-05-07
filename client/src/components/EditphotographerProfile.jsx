@@ -14,7 +14,7 @@ class Profile extends Component {
     this.state = {
       profilePic: "",
       coverPic: "",
-      pictures: [],
+      profilePicture: {},
       photos: [
         // "assets/home2.jpg",
         // "assets/homephoto2.png",
@@ -58,7 +58,6 @@ class Profile extends Component {
       displayVideos: !this.state.displayVideos,
     });
   }
-
   editClick(parameter, event) {
     let keyHolder = "edit" + parameter;
     let valHolder = "this.state.edit" + parameter;
@@ -79,10 +78,10 @@ class Profile extends Component {
       [keyHolder]: eval(refHolder),
       [valHolder]: false,
     });
-    // console.log(this.state.photographer);
+    console.log(this.state.date);
     axios
       .post(
-        "http://localhost:5000/photographers/update/5eadc2a882d5d9458437ab4d",
+        "http://localhost:5000/photographers/update/5eadc32082d5d9458437ab4e",
         {
           //  this.state.photographer
           Name: this.state.name,
@@ -114,12 +113,13 @@ class Profile extends Component {
   onDrop(picture) {
     // event.preventDefault();
     this.setState({
-      pictures: this.state.pictures.concat(picture),
+      // pictures: this.state.pictures.concat(picture),
+      profilePicture: picture,
       // pictures: picture,
     });
     axios
       .post(
-        "http://localhost:5000/photographers/update/5eadc2a882d5d9458437ab4d",
+        "http://localhost:5000/photographers/update/5eadc32082d5d9458437ab4e",
         {
           //  this.state.photographer
           Name: this.state.name,
@@ -147,12 +147,11 @@ class Profile extends Component {
       .catch(function (error) {
         console.log(error);
       });
-    console.log(this.state.pictures);
   }
-  componentWillMount() {
+  componentDidMount() {
     //function runs at the start of component loading
     axios //sending a get request to get all the photographer info from Mongo
-      .get("http://localhost:5000/photographers/5eadc2a882d5d9458437ab4d")
+      .get("http://localhost:5000/photographers/5eadc32082d5d9458437ab4e")
       .then((res) => {
         //res.data.map((entree) =>
         // console.log(res.data);
@@ -173,9 +172,10 @@ class Profile extends Component {
           photos: res.data.photos,
           email: res.data.Email,
           videos: res.data.videos,
+          date: res.data.date,
           // photographer: res.data,
         });
-        console.log(this.state.coverPic);
+        console.log(res.data);
       })
       .catch((error) => {
         console.log(error);
@@ -190,7 +190,8 @@ class Profile extends Component {
           <div key={index}>
             <img
               key={index}
-              src={require(`../${photo}`)}
+              src={`http://localhost:5000/${photo}`}
+              onerror="this.style.display='none';"
               alt="profilePhoto"
               className="profilePhoto pb-5"
             ></img>
@@ -211,6 +212,7 @@ class Profile extends Component {
               width="560"
               height="315"
               src={`${video}`}
+              onerror="this.style.display='none';"
               frameborder="0"
               allow="accelerometer; autoplay; encrypted-media; 
                     gyroscope; picture-in-picture"
@@ -293,7 +295,13 @@ class Profile extends Component {
     return (
       <div>
         {/* START JUMBOTRON */}
-        <div className="jumbotron jumbotron-fluid edit">
+
+        <div
+          styles={{
+            backgroundImage: "http://localhost:5000/" + this.state.coverPic,
+          }}
+          className="jumbotron jumbotron-fluid edit"
+        >
           <div className="container"></div>
         </div>
         {/* END JUMBOTRON */}
@@ -307,7 +315,8 @@ class Profile extends Component {
             </div>
             <div className="col moveup" id="main">
               <img
-                src={require("../" + this.state.profilePic)}
+                src={"http://localhost:5000/" + this.state.profilePic}
+                onerror="this.style.display='none';"
                 alt="Avatar"
                 className="prof1"
               ></img>

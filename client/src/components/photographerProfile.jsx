@@ -13,10 +13,10 @@ class Profile extends Component {
       profilePic: "",
       coverPic: "",
       photos: [
-        "assets/home2.jpg",
-        "assets/homephoto2.png",
-        "assets/homephoto3.jpg",
-        "assets/Recommend.jpg",
+        // "assets/home2.jpg",
+        // "assets/homephoto2.png",
+        // "assets/homephoto3.jpg",
+        // "assets/Recommend.jpg",
       ],
 
       videos: [
@@ -42,7 +42,6 @@ class Profile extends Component {
       displayPhotos: !this.state.displayPhotos,
     });
   }
-
   videoClick() {
     this.setState({
       displayVideos: !this.state.displayVideos,
@@ -72,13 +71,13 @@ class Profile extends Component {
           profilePic: res.data.ProfilePic,
           level: res.data.Level,
           calendar: res.data.Calendar,
-          // photos: res.data.photos,
+          photos: res.data.photos,
           email: res.data.Email,
           videos: res.data.videos,
         });
 
         //);
-        console.log(res.data);
+        // console.log(res.data);
       })
       .catch((error) => {
         console.log(error);
@@ -93,7 +92,8 @@ class Profile extends Component {
           <div key={index}>
             <img
               key={index}
-              src={require(`../${photo}`)}
+              src={`http://localhost:5000/${photo}`}
+              onerror="this.style.display='none';"
               alt="profilePhoto"
               className="profilePhoto pb-5"
             ></img>
@@ -114,6 +114,7 @@ class Profile extends Component {
               width="560"
               height="315"
               src={`${video}`}
+              onerror="this.style.display='none';"
               frameborder="0"
               allow="accelerometer; autoplay; encrypted-media; 
                     gyroscope; picture-in-picture"
@@ -144,7 +145,8 @@ class Profile extends Component {
             </div>
             <div className="col moveup" id="main">
               <img
-                src={require("../" + this.state.profilePic)}
+                src={"http://localhost:5000/" + this.state.profilePic}
+                onerror="this.style.display='none';"
                 alt="Avatar"
                 className="prof1"
               ></img>

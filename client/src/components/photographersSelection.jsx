@@ -15,6 +15,8 @@ class PhotographerSelection extends Component {
     // constructor
     super(props);
     this.state = {
+      profilePic: "",
+      coverPic: "",
       photographers: [],
       categoryKey: this.props.match.params.id, //to catch the Category ID recieved from previous page use console.log(this.props) to see props coming from previous pages
       photographerKeys: [],
@@ -33,8 +35,11 @@ class PhotographerSelection extends Component {
     this.handleClick = this.handleClick.bind(this);
     this.handleRangeChange = this.handleRangeChange.bind(this);
     this.handleSortby = this.handleSortby.bind(this);
+    this.addDefaultSrc = this.addDefaultSrc.bind(this);
   }
-
+  addDefaultSrc(ev) {
+    ev.target.src = Recphoto;
+  }
   jumbotronCode() {
     return (
       <div
@@ -76,6 +81,8 @@ class PhotographerSelection extends Component {
                 name: res.data.Name,
                 level: res.data.Level,
                 range: res.data.Range,
+                coverPic: res.data.CoverPic,
+                profilePic: res.data.ProfilePic,
                 rangeNumber:
                   res.data.Range === "Silver"
                     ? 0
