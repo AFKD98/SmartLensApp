@@ -26,9 +26,9 @@ class NavBar extends Component {
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="ml-auto">
               <Nav.Link href="/photoreg">Register</Nav.Link>
-              <Nav.Link href="/login">Sign In</Nav.Link>
               <Nav.Link href="/vision">Vision</Nav.Link>
               <Nav.Link href="/about">About</Nav.Link>
+              <Nav.Link href="/login">Sign In</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
@@ -42,8 +42,13 @@ class NavBar extends Component {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="ml-auto">
-              <Nav.Link href="/detail">Order details</Nav.Link>
-              <Nav.Link onClick={this.props.logout}>Log out</Nav.Link>
+              <Nav.Link href="/adminPortal">Bookings</Nav.Link>
+              <Nav.Link href="/registrations">Registrations</Nav.Link>
+              <Nav.Link href="/myphotographers">Photographers</Nav.Link>
+              <Nav.Link href="/signup">Create Account</Nav.Link>
+              <Nav.Link href="/adminPortal" onClick={this.props.logout}>
+                Log out
+              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
@@ -53,6 +58,7 @@ class NavBar extends Component {
     return (
       <React.Fragment>
         {isAuthenticated ? authLinks : guestLinks}
+        {/* {isAuthenticated ? authLinks : authLinks} */}
       </React.Fragment>
     );
   }

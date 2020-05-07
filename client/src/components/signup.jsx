@@ -116,7 +116,6 @@ class SignUp extends Component {
             name="email"
             type="email"
             autoComplete="email"
-            autoFocus
             onChange={this.onChange}
           />
           <TextField

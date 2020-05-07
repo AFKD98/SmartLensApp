@@ -3,6 +3,8 @@ let photographers = require("../models/photographers.model"); //moongoose model 
 let category = require("../models/category.model"); //moongoose model we created
 const multer = require("multer");
 const mongoose = require("mongoose");
+const auth = require("../middleware/auth");
+
 //const upload = multer({ dest: "uploads/" });
 
 const storage = multer.diskStorage({
@@ -146,7 +148,8 @@ router.route("/:id").delete((req, res) => {
     .catch((err) => res.status(400).json("Error " + err));
 });
 
-router.route("/update/:id").post(cpUpload, (req, res) => {
+router.route("/update/:id").post(auth, cpUpload, (req, res) => {
+  console.log("routes", req.body);
   photographers
     .findById(req.params.id)
     .then((photographers) => {
@@ -180,7 +183,7 @@ router.route("/update/:id").post(cpUpload, (req, res) => {
       photographers
         .save()
         .then(() => res.json("Photographer updated!"))
-        .catch((err) => res.status(400).json("Error" + err));
+        .catch((err) => res.status(400).json("save par Error" + err));
     })
     .catch((err) => res.status(400).json("Error " + err));
 });
