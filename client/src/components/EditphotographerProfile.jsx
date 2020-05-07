@@ -81,7 +81,7 @@ class Profile extends Component {
     console.log(this.state.date);
     axios
       .post(
-        "https://smartlensapplication.herokuapp.com/photographers/update/" +
+        "http://localhost:5000/photographers/updatetext/" +
           this.props.match.params.id,
         {
           //  this.state.photographer
@@ -97,9 +97,6 @@ class Profile extends Component {
           Equipment: this.state.equipment,
           Bio: this.state.aboutme,
           Category: this.state.categories, //check number of categories
-          ProfilePic: this.state.profilePic, //profile picture link
-          CoverPic: this.state.coverPic,
-          photos: this.state.photos,
           videos: this.state.videos,
           date: this.state.date,
         }
