@@ -35,8 +35,11 @@ class PhotographerSelection extends Component {
     this.handleClick = this.handleClick.bind(this);
     this.handleRangeChange = this.handleRangeChange.bind(this);
     this.handleSortby = this.handleSortby.bind(this);
+    this.addDefaultSrc = this.addDefaultSrc.bind(this);
   }
-
+  addDefaultSrc(ev) {
+    ev.target.src = Recphoto;
+  }
   jumbotronCode() {
     return (
       <div

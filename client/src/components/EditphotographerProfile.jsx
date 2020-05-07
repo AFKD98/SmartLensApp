@@ -14,7 +14,7 @@ class Profile extends Component {
     this.state = {
       profilePic: "",
       coverPic: "",
-      pictures: [],
+      profilePicture: {},
       photos: [
         // "assets/home2.jpg",
         // "assets/homephoto2.png",
@@ -45,6 +45,7 @@ class Profile extends Component {
     this.editClick = this.editClick.bind(this);
     this.updateClick = this.updateClick.bind(this);
     this.onDrop = this.onDrop.bind(this);
+    this.addDefaultSrc = this.addDefaultSrc.bind(this);
   }
 
   photoClick() {
@@ -58,7 +59,9 @@ class Profile extends Component {
       displayVideos: !this.state.displayVideos,
     });
   }
-
+  addDefaultSrc(ev) {
+    ev.target.src = "../assets/homephoto3.jpg";
+  }
   editClick(parameter, event) {
     let keyHolder = "edit" + parameter;
     let valHolder = "this.state.edit" + parameter;
@@ -82,7 +85,7 @@ class Profile extends Component {
     // console.log(this.state.photographer);
     axios
       .post(
-        "http://localhost:5000/photographers/update/5eadc2a882d5d9458437ab4d",
+        "http://localhost:5000/photographers/update/5eadc4c882d5d9458437ab51",
         {
           //  this.state.photographer
           Name: this.state.name,
@@ -114,12 +117,13 @@ class Profile extends Component {
   onDrop(picture) {
     // event.preventDefault();
     this.setState({
-      pictures: this.state.pictures.concat(picture),
+      // pictures: this.state.pictures.concat(picture),
+      profilePicture: picture,
       // pictures: picture,
     });
     axios
       .post(
-        "http://localhost:5000/photographers/update/5eadc2a882d5d9458437ab4d",
+        "http://localhost:5000/photographers/update/5eadc4c882d5d9458437ab51",
         {
           //  this.state.photographer
           Name: this.state.name,
@@ -134,10 +138,10 @@ class Profile extends Component {
           Equipment: this.state.equipment,
           Bio: this.state.aboutme,
           Category: this.state.categories, //check number of categories
-          ProfilePic: this.state.profilePic, //profile picture link
-          CoverPic: this.state.coverPic,
-          photos: this.state.photos,
-          videos: this.state.videos,
+          // ProfilePic: this.state.profilePicture, //profile picture link
+          // CoverPic: this.state.coverPic,
+          // photos: this.state.photos,
+          // videos: this.state.videos,
           date: this.state.date,
         }
       )
@@ -152,7 +156,7 @@ class Profile extends Component {
   componentWillMount() {
     //function runs at the start of component loading
     axios //sending a get request to get all the photographer info from Mongo
-      .get("http://localhost:5000/photographers/5eadc2a882d5d9458437ab4d")
+      .get("http://localhost:5000/photographers/5eadc4c882d5d9458437ab51")
       .then((res) => {
         //res.data.map((entree) =>
         // console.log(res.data);
@@ -189,8 +193,9 @@ class Profile extends Component {
         {this.state.photos.map((photo, index) => (
           <div key={index}>
             <img
+              onError={this.addDefaultSrc}
               key={index}
-              src={require(`../${photo}`)}
+              src={`http://localhost:5000/${photo}`}
               alt="profilePhoto"
               className="profilePhoto pb-5"
             ></img>
@@ -293,7 +298,13 @@ class Profile extends Component {
     return (
       <div>
         {/* START JUMBOTRON */}
-        <div className="jumbotron jumbotron-fluid edit">
+
+        <div
+          styles={{
+            backgroundImage: "http://localhost:5000/" + this.state.coverPic,
+          }}
+          className="jumbotron jumbotron-fluid edit"
+        >
           <div className="container"></div>
         </div>
         {/* END JUMBOTRON */}
@@ -307,7 +318,8 @@ class Profile extends Component {
             </div>
             <div className="col moveup" id="main">
               <img
-                src={require("../" + this.state.profilePic)}
+                onError={this.addDefaultSrc}
+                src={"http://localhost:5000/" + this.state.profilePic}
                 alt="Avatar"
                 className="prof1"
               ></img>
