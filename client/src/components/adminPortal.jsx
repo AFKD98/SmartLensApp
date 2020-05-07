@@ -45,6 +45,14 @@ const useStyles = (theme) => ({
   heading: {
     padding: theme.spacing(2),
   },
+  subtitle1: {
+    fontWeight: 600,
+    // fontSize: 14,
+  },
+  subtitle2: {
+    fontWeight: 500,
+    // fontSize: 14,
+  },
 });
 
 class OrdersList extends Component {
@@ -53,10 +61,13 @@ class OrdersList extends Component {
     this.state = {
       columns: [
         { title: "Name", field: "ClientName" },
+        { title: "ContactNumber", field: "ContactNumber" },
         { title: "Budget", field: "Budget", type: "numeric" },
         { title: "Date", field: "date", type: "date" },
         { title: "Category", field: "Category" },
         { title: "Photographer", field: "Photographer" },
+        { title: "Location", field: "Location" },
+        { title: "Expertise", field: "Expertise" },
         {
           title: "Approved",
           field: "Approved",
@@ -192,62 +203,16 @@ class OrdersList extends Component {
                   detailPanel={(rowData) => {
                     return (
                       <div className={classes.root}>
-                        <Grid container spacing={3} justify="center">
-                          <Grid item xs={4}>
-                            <Paper className={classes.paperBig}>
-                              <Typography>ContactNumber</Typography>
-                            </Paper>
+                        <Grid container spacing={2} justify="center">
+                          <Grid item xs={2}>
+                            <Typography className={classes.subtitle2}>
+                              Event Description
+                            </Typography>
                           </Grid>
                           <Grid item xs={8}>
-                            <Paper className={classes.paper}>
-                              <Typography>{rowData.ContactNumber}</Typography>
-                            </Paper>
-                          </Grid>
-
-                          <Grid item xs={4}>
-                            <Paper className={classes.paperBig}>
-                              <Typography>Email</Typography>
-                            </Paper>
-                          </Grid>
-                          <Grid item xs={8}>
-                            <Paper className={classes.paper}>
-                              <Typography>{rowData.Email}</Typography>
-                            </Paper>
-                          </Grid>
-
-                          <Grid item xs={4}>
-                            <Paper className={classes.paperBig}>
-                              <Typography>Location</Typography>
-                            </Paper>
-                          </Grid>
-                          <Grid item xs={8}>
-                            <Paper className={classes.paper}>
-                              <Typography>{rowData.Location}</Typography>
-                            </Paper>
-                          </Grid>
-
-                          <Grid item xs={4}>
-                            <Paper className={classes.paperBig}>
-                              <Typography>Expertise</Typography>
-                            </Paper>
-                          </Grid>
-                          <Grid item xs={8}>
-                            <Paper className={classes.paper}>
-                              <Typography>{rowData.Expertise}</Typography>
-                            </Paper>
-                          </Grid>
-
-                          <Grid item xs={4}>
-                            <Paper className={classes.paperBig}>
-                              <Typography>Event Description</Typography>
-                            </Paper>
-                          </Grid>
-                          <Grid item xs={8}>
-                            <Paper className={classes.paper}>
-                              <Typography>
-                                {rowData.Event_Description}
-                              </Typography>
-                            </Paper>
+                            <Typography className={classes.subtitle1}>
+                              {rowData.Event_Description}
+                            </Typography>
                           </Grid>
                         </Grid>
                       </div>
