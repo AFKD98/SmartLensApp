@@ -202,7 +202,7 @@ router.route("/updatetext/:id").post((req, res) => {
       photographers.Category = req.body.Category; //check number of categories
 
       photographers.date = Date.parse(req.body.date);
-      // photographers.videos = req.body.videos;
+      photographers.videos = req.body.videos;
 
       photographers
         .save()
