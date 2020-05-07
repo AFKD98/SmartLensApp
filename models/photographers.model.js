@@ -6,21 +6,22 @@ const photographersSchema = new Schema(
   {
     //not much validations
     _id: mongoose.Schema.Types.ObjectId,
-    Name: { type: String, required: true },
-    Username: { type: String, required: true },
-    Password: { type: String, required: true },
-    ContactNumber: { type: String, required: true },
-    Email: { type: String, required: true },
-    Calendar: { type: String, required: true }, //calendar link
-    Level: { type: String, required: true },
-    Range: { type: Number, required: true },
-    Address: { type: String, required: true },
-    Equipment: { type: String, required: true },
-    Bio: { type: String, required: true },
-    Category: { type: String, required: true }, //check number of categories
-    ProfilePic: { type: String, required: true }, //profile picture link
-    CoverPic: { type: String, required: true },
+    Name: { type: String },
+    Username: { type: String },
+    Password: { type: String },
+    ContactNumber: { type: String },
+    Email: { type: String },
+    Calendar: { type: String }, //calendar link
+    Level: { type: String },
+    Range: { type: Number },
+    Address: { type: String },
+    Equipment: { type: String },
+    Bio: { type: String },
+    Category: { type: String }, //check number of categories
+    ProfilePic: { type: String }, //profile picture link
+    CoverPic: { type: String },
     photos: [{ type: String }],
+    videos: [{ type: String }],
     date: { type: Date, required: true },
   },
   {

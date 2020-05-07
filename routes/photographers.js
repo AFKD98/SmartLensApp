@@ -71,6 +71,7 @@ router.route("/add").post(cpUpload, (req, res) => {
   const ProfilePic = req.files["ProfilePic"][0].path.replace(/\\/g, "/"); //profile picture link
   const CoverPic = req.files["CoverPic"][0].path.replace(/\\/g, "/");
   const date = Date.parse(req.body.date);
+  const videos = req.body.videos;
 
   const newphotographers = new photographers({
     _id: _id,
@@ -89,6 +90,7 @@ router.route("/add").post(cpUpload, (req, res) => {
     ProfilePic, //profile picture link
     CoverPic,
     date,
+    videos,
   });
   newphotographers
     .save() //save the usker
@@ -160,6 +162,7 @@ router.route("/update/:id").post(cpUpload, (req, res) => {
       photographers.Equipment = req.body.Equipment;
       photographers.Bio = req.body.Bio;
       photographers.Category = req.body.Category; //check number of categories
+
       photographers.ProfilePic = req.files["ProfilePic"][0].path.replace(
         /\\/g,
         "/"
@@ -172,6 +175,7 @@ router.route("/update/:id").post(cpUpload, (req, res) => {
         req.files["photos"][0].path.replace(/\\/g, "/")
       );
       photographers.date = Date.parse(req.body.date);
+      photographers.videos.push(req.body.videos);
 
       photographers
         .save()
