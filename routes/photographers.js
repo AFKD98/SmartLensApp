@@ -53,7 +53,7 @@ var cpUpload = upload.fields([
 ]);
 
 router.route("/add").post(cpUpload, (req, res) => {
-  console.log(req.file);
+  console.log(req.files);
 
   const _id = new mongoose.Types.ObjectId();
   const Name = req.body.Name;
@@ -68,9 +68,8 @@ router.route("/add").post(cpUpload, (req, res) => {
   const Equipment = req.body.Equipment;
   const Bio = req.body.Bio;
   var Category = req.body.Category; //check number of categories
-  const ProfilePic = req.files["ProfilePic"][0].path; //profile picture link
-  const CoverPic = req.files["CoverPic"][0].path;
-  const photos = req.body.photos;
+  const ProfilePic = req.files["ProfilePic"][0].path.replace(/\\/g, "/"); //profile picture link
+  const CoverPic = req.files["CoverPic"][0].path.replace(/\\/g, "/");
   const date = Date.parse(req.body.date);
 
   const newphotographers = new photographers({
@@ -89,7 +88,6 @@ router.route("/add").post(cpUpload, (req, res) => {
     Category, //check number of categories
     ProfilePic, //profile picture link
     CoverPic,
-    photos,
     date,
   });
   newphotographers
@@ -162,9 +160,17 @@ router.route("/update/:id").post(cpUpload, (req, res) => {
       photographers.Equipment = req.body.Equipment;
       photographers.Bio = req.body.Bio;
       photographers.Category = req.body.Category; //check number of categories
-      photographers.ProfilePic = req.files["ProfilePic"][0].path; //profile picture link
-      photographers.CoverPic = req.files["CoverPic"][0].path;
-      photographers.photos.push(req.files["photos"][0].path);
+      photographers.ProfilePic = req.files["ProfilePic"][0].path.replace(
+        /\\/g,
+        "/"
+      ); //profile picture link
+      photographers.CoverPic = req.files["CoverPic"][0].path.replace(
+        /\\/g,
+        "/"
+      );
+      photographers.photos.push(
+        req.files["photos"][0].path.replace(/\\/g, "/")
+      );
       photographers.date = Date.parse(req.body.date);
 
       photographers
