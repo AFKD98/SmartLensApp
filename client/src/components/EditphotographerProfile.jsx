@@ -81,7 +81,7 @@ class Profile extends Component {
     console.log(this.state.date);
     axios
       .post(
-        "http://localhost:5000/photographers/update/5eadc32082d5d9458437ab4e",
+        "https://smartlensapplication.herokuapp.com/photographers/update/5eadc32082d5d9458437ab4e",
         {
           //  this.state.photographer
           Name: this.state.name,
@@ -119,7 +119,7 @@ class Profile extends Component {
     });
     axios
       .post(
-        "http://localhost:5000/photographers/update/5eadc32082d5d9458437ab4e",
+        "https://smartlensapplication.herokuapp.com/photographers/update/5eadc32082d5d9458437ab4e",
         {
           //  this.state.photographer
           Name: this.state.name,
@@ -151,7 +151,9 @@ class Profile extends Component {
   componentDidMount() {
     //function runs at the start of component loading
     axios //sending a get request to get all the photographer info from Mongo
-      .get("http://localhost:5000/photographers/5eadc32082d5d9458437ab4e")
+      .get(
+        "https://smartlensapplication.herokuapp.com/photographers/5eadc32082d5d9458437ab4e"
+      )
       .then((res) => {
         //res.data.map((entree) =>
         // console.log(res.data);
@@ -190,7 +192,7 @@ class Profile extends Component {
           <div key={index}>
             <img
               key={index}
-              src={`http://localhost:5000/${photo}`}
+              src={`https://smartlensapplication.herokuapp.com/${photo}`}
               onerror="this.style.display='none';"
               alt="profilePhoto"
               className="profilePhoto pb-5"
@@ -298,7 +300,9 @@ class Profile extends Component {
 
         <div
           styles={{
-            backgroundImage: "http://localhost:5000/" + this.state.coverPic,
+            backgroundImage:
+              "https://smartlensapplication.herokuapp.com/" +
+              this.state.coverPic,
           }}
           className="jumbotron jumbotron-fluid edit"
         >
@@ -315,7 +319,10 @@ class Profile extends Component {
             </div>
             <div className="col moveup" id="main">
               <img
-                src={"http://localhost:5000/" + this.state.profilePic}
+                src={
+                  "https://smartlensapplication.herokuapp.com/" +
+                  this.state.profilePic
+                }
                 onerror="this.style.display='none';"
                 alt="Avatar"
                 className="prof1"
