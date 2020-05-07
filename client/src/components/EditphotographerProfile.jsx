@@ -45,7 +45,6 @@ class Profile extends Component {
     this.editClick = this.editClick.bind(this);
     this.updateClick = this.updateClick.bind(this);
     this.onDrop = this.onDrop.bind(this);
-    this.addDefaultSrc = this.addDefaultSrc.bind(this);
   }
 
   photoClick() {
@@ -58,9 +57,6 @@ class Profile extends Component {
     this.setState({
       displayVideos: !this.state.displayVideos,
     });
-  }
-  addDefaultSrc(ev) {
-    ev.target.src = "../assets/homephoto3.jpg";
   }
   editClick(parameter, event) {
     let keyHolder = "edit" + parameter;
@@ -82,10 +78,10 @@ class Profile extends Component {
       [keyHolder]: eval(refHolder),
       [valHolder]: false,
     });
-    // console.log(this.state.photographer);
+    console.log(this.state.date);
     axios
       .post(
-        "http://localhost:5000/photographers/update/5eadc4c882d5d9458437ab51",
+        "http://localhost:5000/photographers/update/5eadc32082d5d9458437ab4e",
         {
           //  this.state.photographer
           Name: this.state.name,
@@ -123,7 +119,7 @@ class Profile extends Component {
     });
     axios
       .post(
-        "http://localhost:5000/photographers/update/5eadc4c882d5d9458437ab51",
+        "http://localhost:5000/photographers/update/5eadc32082d5d9458437ab4e",
         {
           //  this.state.photographer
           Name: this.state.name,
@@ -138,10 +134,10 @@ class Profile extends Component {
           Equipment: this.state.equipment,
           Bio: this.state.aboutme,
           Category: this.state.categories, //check number of categories
-          // ProfilePic: this.state.profilePicture, //profile picture link
-          // CoverPic: this.state.coverPic,
-          // photos: this.state.photos,
-          // videos: this.state.videos,
+          ProfilePic: this.state.profilePic, //profile picture link
+          CoverPic: this.state.coverPic,
+          photos: this.state.photos,
+          videos: this.state.videos,
           date: this.state.date,
         }
       )
@@ -151,12 +147,11 @@ class Profile extends Component {
       .catch(function (error) {
         console.log(error);
       });
-    console.log(this.state.pictures);
   }
-  componentWillMount() {
+  componentDidMount() {
     //function runs at the start of component loading
     axios //sending a get request to get all the photographer info from Mongo
-      .get("http://localhost:5000/photographers/5eadc4c882d5d9458437ab51")
+      .get("http://localhost:5000/photographers/5eadc32082d5d9458437ab4e")
       .then((res) => {
         //res.data.map((entree) =>
         // console.log(res.data);
@@ -177,9 +172,10 @@ class Profile extends Component {
           photos: res.data.photos,
           email: res.data.Email,
           videos: res.data.videos,
+          date: res.data.date,
           // photographer: res.data,
         });
-        console.log(this.state.coverPic);
+        console.log(res.data);
       })
       .catch((error) => {
         console.log(error);
@@ -193,9 +189,9 @@ class Profile extends Component {
         {this.state.photos.map((photo, index) => (
           <div key={index}>
             <img
-              onError={this.addDefaultSrc}
               key={index}
               src={`http://localhost:5000/${photo}`}
+              onerror="this.style.display='none';"
               alt="profilePhoto"
               className="profilePhoto pb-5"
             ></img>
@@ -318,8 +314,8 @@ class Profile extends Component {
             </div>
             <div className="col moveup" id="main">
               <img
-                onError={this.addDefaultSrc}
                 src={"http://localhost:5000/" + this.state.profilePic}
+                onerror="this.style.display='none';"
                 alt="Avatar"
                 className="prof1"
               ></img>
