@@ -84,7 +84,7 @@ class Profile extends Component {
         try {
           await axios
             .post(
-              "http://localhost:5000/photographers/updatetext/" +
+              "https://smartlensapplication.herokuapp.com/photographers/updatetext/" +
                 this.props.match.params.id,
               {
                 //  this.state.photographer
@@ -138,7 +138,7 @@ class Profile extends Component {
         try {
           await axios
             .post(
-              "http://localhost:5000/photographers/updatetext/" +
+              "https://smartlensapplication.herokuapp.com/photographers/updatetext/" +
                 this.props.match.params.id,
               {
                 //  this.state.photographer
