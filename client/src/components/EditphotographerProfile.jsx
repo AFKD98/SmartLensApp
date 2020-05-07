@@ -85,6 +85,7 @@ class Profile extends Component {
           this.props.match.params.id,
         {
           //  this.state.photographer
+          _id: this.props.match.params.id,
           Name: this.state.name,
           Username: this.state.userName,
           Password: this.state.password,
@@ -97,7 +98,7 @@ class Profile extends Component {
           Equipment: this.state.equipment,
           Bio: this.state.aboutme,
           Category: this.state.categories, //check number of categories
-          videos: this.state.videos,
+          // videos: this.state.videos,
           date: this.state.date,
         }
       )
