@@ -46,12 +46,10 @@ const useStyles = (theme) => ({
     padding: theme.spacing(2),
   },
   subtitle1: {
-    fontWeight: 600,
-    // fontSize: 14,
+    fontSize: "1rem",
   },
   subtitle2: {
-    fontWeight: 500,
-    // fontSize: 14,
+    fontSize: "1rem",
   },
 });
 
