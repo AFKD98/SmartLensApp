@@ -26,7 +26,7 @@ function Container() {
       <Route path="/CategoryPage" component={Categories} />
       <Route path="/profile/:id" component={Profile} />
       <Route path="/photoreg" component={PhotoReg} />
-      <Route path="/editprofile" component={EditProfile} />
+      <Route path="/editprofile/:id" component={EditProfile} />
       <Route path="/vision" component={Vision} />
       <Route path="/about" component={About} />
       <Route

@@ -81,7 +81,8 @@ class Profile extends Component {
     console.log(this.state.date);
     axios
       .post(
-        "https://smartlensapplication.herokuapp.com/photographers/update/5eadc32082d5d9458437ab4e",
+        "https://smartlensapplication.herokuapp.com/photographers/update/" +
+          this.props.match.params.id,
         {
           //  this.state.photographer
           Name: this.state.name,
@@ -119,7 +120,8 @@ class Profile extends Component {
     });
     axios
       .post(
-        "https://smartlensapplication.herokuapp.com/photographers/update/5eadc32082d5d9458437ab4e",
+        "https://smartlensapplication.herokuapp.com/photographers/update/" +
+          this.props.match.params.id,
         {
           //  this.state.photographer
           Name: this.state.name,
@@ -152,7 +154,8 @@ class Profile extends Component {
     //function runs at the start of component loading
     axios //sending a get request to get all the photographer info from Mongo
       .get(
-        "https://smartlensapplication.herokuapp.com/photographers/5eadc32082d5d9458437ab4e"
+        "https://smartlensapplication.herokuapp.com/photographers/" +
+          this.props.match.params.id
       )
       .then((res) => {
         //res.data.map((entree) =>
