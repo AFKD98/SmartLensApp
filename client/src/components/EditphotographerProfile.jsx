@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Button from "react-bootstrap/Button";
 import ToggleButton from "react-bootstrap/ToggleButton";
 import bg from "../assets/wedding_cover.jpg";
 import "../styles/photographerProfile.css";
@@ -7,6 +6,9 @@ import "../styles/EditphotographerProfile.css";
 import axios from "axios";
 import ImageUploader from "react-images-upload";
 import HomePhoto3 from "../assets/homephoto3.jpg";
+import Form from "react-bootstrap/Form";
+import { Col } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
 
 class Profile extends Component {
   constructor(props) {
@@ -32,6 +34,7 @@ class Profile extends Component {
       location: "",
       price: "",
       equipment: "",
+      videoURL: "",
       displayPhotos: false,
       displayVideos: false,
       editname: false,
@@ -39,12 +42,15 @@ class Profile extends Component {
       editlocation: false,
       editprice: false,
       editequipment: false,
+      editvideos: false,
     };
     this.photoClick = this.photoClick.bind(this);
     this.videoClick = this.videoClick.bind(this);
     this.editClick = this.editClick.bind(this);
     this.updateClick = this.updateClick.bind(this);
     this.onDrop = this.onDrop.bind(this);
+    this.videoHandler = this.videoHandler.bind(this);
+    this.onChangeHandler = this.onChangeHandler.bind(this);
   }
 
   photoClick() {
@@ -68,48 +74,101 @@ class Profile extends Component {
     console.log("After the state is ", this.state.editname);
   }
 
+  videoHandler(event) {
+    event.preventDefault();
+    this.setState(
+      {
+        videos: this.state.videos.concat(this.state.videoURL),
+      },
+      async () => {
+        try {
+          await axios
+            .post(
+              "http://localhost:5000/photographers/updatetext/" +
+                this.props.match.params.id,
+              {
+                //  this.state.photographer
+                Name: this.state.name,
+                Username: this.state.userName,
+                Password: this.state.password,
+                ContactNumber: this.state.contact,
+                Email: this.state.email,
+                Calendar: this.state.calendar, //calendar link
+                Level: this.state.level,
+                Range: this.state.price,
+                Address: this.state.location,
+                Equipment: this.state.equipment,
+                Bio: this.state.aboutme,
+                Category: this.state.categories, //check number of categories
+                videos: this.state.videos,
+                date: this.state.date,
+              }
+            )
+            .then(function (response) {
+              console.log(response);
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+        } catch (e) {
+          console.log("error in post request");
+        }
+      }
+    );
+  }
+  onChangeHandler(event) {
+    let nam = event.target.name;
+    let val = event.target.value;
+    this.setState({ [nam]: val });
+  }
   updateClick(parameter, event) {
     event.preventDefault();
     let keyHolder = parameter;
     let valHolder = "edit" + parameter;
     let refHolder = "this.refs." + parameter + "Input.value";
     let a = parameter + "Input";
-    this.setState({
-      [keyHolder]: eval(refHolder),
-      [valHolder]: false,
-    });
-    console.log(this.state.date);
-    axios
-      .post(
-        "https://smartlensapplication.herokuapp.com/photographers/update/" +
-          this.props.match.params.id,
-        {
-          //  this.state.photographer
-          Name: this.state.name,
-          Username: this.state.userName,
-          Password: this.state.password,
-          ContactNumber: this.state.contact,
-          Email: this.state.email,
-          Calendar: this.state.calendar, //calendar link
-          Level: this.state.level,
-          Range: this.state.price,
-          Address: this.state.location,
-          Equipment: this.state.equipment,
-          Bio: this.state.aboutme,
-          Category: this.state.categories, //check number of categories
-          ProfilePic: this.state.profilePic, //profile picture link
-          CoverPic: this.state.coverPic,
-          photos: this.state.photos,
-          videos: this.state.videos,
-          date: this.state.date,
+    console.log(event.target);
+    // this.setState({
+    //   [keyHolder]: eval(refHolder),
+    //   [valHolder]: false,
+    // });
+    this.setState(
+      { [keyHolder]: eval(refHolder), [valHolder]: false },
+      async () => {
+        try {
+          await axios
+            .post(
+              "http://localhost:5000/photographers/updatetext/" +
+                this.props.match.params.id,
+              {
+                //  this.state.photographer
+                Name: this.state.name,
+                Username: this.state.userName,
+                Password: this.state.password,
+                ContactNumber: this.state.contact,
+                Email: this.state.email,
+                Calendar: this.state.calendar, //calendar link
+                Level: this.state.level,
+                Range: this.state.price,
+                Address: this.state.location,
+                Equipment: this.state.equipment,
+                Bio: this.state.aboutme,
+                Category: this.state.categories, //check number of categories
+                videos: this.state.videos,
+                date: this.state.date,
+              }
+            )
+            .then(function (response) {
+              console.log(response);
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+        } catch (e) {
+          console.log("error in post request");
         }
-      )
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+      }
+    );
   }
   onDrop(picture) {
     // event.preventDefault();
@@ -186,7 +245,20 @@ class Profile extends Component {
         console.log(error);
       });
   }
-
+  editVideo() {
+    return (
+      <div className="nametext pb-5">
+        <input type="text" ref="videoInput" />
+        <button
+          className="btn btn-dark"
+          onClick={(event) => this.updateClick("videos", event)}
+        >
+          ADD
+        </button>
+        <br />
+      </div>
+    );
+  }
   render() {
     var photoCode = (
       <div>
@@ -204,6 +276,13 @@ class Profile extends Component {
             <br />
           </div>
         ))}
+        <ImageUploader
+          withIcon={true}
+          buttonText="Choose images"
+          onChange={this.onDrop}
+          imgExtension={[".jpg", ".gif", ".png", ".gif"]}
+          maxFileSize={5242880}
+        />
       </div>
     );
 
@@ -229,6 +308,23 @@ class Profile extends Component {
             <br />
           </div>
         ))}
+        <Form onSubmit={this.videoHandler}>
+          <Form.Group
+            controlId="videos"
+            className="pr-md-2"
+            onChange={this.onChangeHandler}
+          >
+            <Form.Label>Add videos</Form.Label>
+            <Form.Control
+              name="videoURL"
+              type="text"
+              placeholder="Enter video URL"
+            />
+            <Button className="mt-3" className="btn btn-dark" type="submit">
+              Submit
+            </Button>
+          </Form.Group>
+        </Form>
       </div>
     );
 
@@ -401,21 +497,23 @@ class Profile extends Component {
               <h2 class="pt-5">My Work</h2>
               <br />
               <br />
-              <Button variant="primary fbutton" onClick={this.photoClick}>
+              <Button
+                className="btn btn-dark"
+                variant="primary fbutton"
+                onClick={this.photoClick}
+              >
                 Show Photos
               </Button>
               {this.state.displayPhotos ? photoCode : null}
-              <Button variant="primary" onClick={this.videoClick}>
+              <Button
+                className="btn btn-dark"
+                variant="primary"
+                onClick={this.videoClick}
+              >
                 Show Videos
               </Button>
+
               {this.state.displayVideos ? videoCode : null}
-              <ImageUploader
-                withIcon={true}
-                buttonText="Choose images"
-                onChange={this.onDrop}
-                imgExtension={[".jpg", ".gif", ".png", ".gif"]}
-                maxFileSize={5242880}
-              />
             </div>
           </div>
         </div>

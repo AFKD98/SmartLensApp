@@ -187,5 +187,32 @@ router.route("/update/:id").post(auth, cpUpload, (req, res) => {
     })
     .catch((err) => res.status(400).json("Error " + err));
 });
+router.route("/updatetext/:id").post((req, res) => {
+  photographers
+    .findById(req.params.id)
+    .then((photographers) => {
+      photographers.Name = req.body.Name;
+      photographers.Username = req.body.Username;
+      photographers.Password = req.body.Password;
+      photographers.ContactNumber = req.body.ContactNumber;
+      photographers.Email = req.body.Email;
+      photographers.Calendar = req.body.Calendar; //calendar link
+      photographers.Level = req.body.Level;
+      photographers.Range = req.body.Range;
+      photographers.Address = req.body.Address;
+      photographers.Equipment = req.body.Equipment;
+      photographers.Bio = req.body.Bio;
+      photographers.Category = req.body.Category; //check number of categories
+
+      photographers.date = Date.parse(req.body.date);
+      photographers.videos = req.body.videos;
+
+      photographers
+        .save()
+        .then(() => res.json("Photographer updated!"))
+        .catch((err) => res.status(400).json("Error" + err));
+    })
+    .catch((err) => res.status(400).json("Error " + err));
+});
 
 module.exports = router;
