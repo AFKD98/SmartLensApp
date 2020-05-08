@@ -4,7 +4,6 @@ import MaterialTable from "material-table";
 import Container from "@material-ui/core/Container";
 import AddBox from "@material-ui/icons/AddBox";
 import ArrowUpward from "@material-ui/icons/ArrowUpward";
-import Button from "@material-ui/core/Button";
 import Check from "@material-ui/icons/Check";
 import ChevronLeft from "@material-ui/icons/ChevronLeft";
 import ChevronRight from "@material-ui/icons/ChevronRight";
@@ -22,11 +21,15 @@ import ViewColumn from "@material-ui/icons/ViewColumn";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
-import { getOrders, deleteOrder, updateOrder } from "../actions/orderActions"; //stored as a prop
+import {
+  getPhotographers,
+  deletePhotographer,
+  updatePhotographerText,
+} from "../actions/photographerActions"; //stored as a prop
 import { loadUser } from "../actions/authActions";
 import PropTypes from "prop-types"; // validation
 import { withStyles } from "@material-ui/core/styles";
+import axios from "axios";
 
 const useStyles = (theme) => ({
   root: {
@@ -53,24 +56,20 @@ const useStyles = (theme) => ({
   },
 });
 
-class OrdersList extends Component {
+class PhotographersList extends Component {
   constructor(props) {
     super(props);
     this.state = {
       columns: [
-        { title: "Name", field: "ClientName" },
-        { title: "ContactNumber", field: "ContactNumber" },
-        { title: "Budget", field: "Budget", type: "numeric" },
-        { title: "Date", field: "date", type: "date" },
+        { title: "Name", field: "Name" },
+        { title: "Username", field: "Username" },
+        { title: "ContactNumber", field: "ContactNumber", type: "numeric" },
+        { title: "Email", field: "Email" },
+        { title: "Level", field: "Level", type: "numeric" },
+        { title: "Range", field: "Range" },
+        { title: "Address", field: "Address" },
+        { title: "Equipment", field: "Equipment" },
         { title: "Category", field: "Category" },
-        { title: "Photographer", field: "Photographer" },
-        { title: "Location", field: "Location" },
-        { title: "Expertise", field: "Expertise" },
-        {
-          title: "Approved",
-          field: "Approved",
-          lookup: { true: "Yes", false: "No" },
-        },
       ],
       data: [],
       loaded: false,
@@ -79,26 +78,27 @@ class OrdersList extends Component {
 
   async componentDidMount() {
     await this.props.loadUser();
-    await this.props.getOrders();
+    await this.props.getPhotographers();
     this.setState({
-      data: [...this.props.orders.ordersList],
+      data: [...this.props.photographers.photographersList],
     });
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.orders.loading !== prevProps.orders.loading) {
+    if (this.props.photographers.loading !== prevProps.photographers.loading) {
       console.log("updated");
       this.setState({
-        data: [...this.props.orders.ordersList],
+        data: [...this.props.photographers.photographersList],
       });
     }
   }
-
   static propTypes = {
-    getOrders: PropTypes.func.isRequired,
-    deleteOrder: PropTypes.func.isRequired,
-    updateOrder: PropTypes.func.isRequired,
+    getPhotographers: PropTypes.func.isRequired,
+    deletePhotographer: PropTypes.func.isRequired,
+    updatePhotographerText: PropTypes.func.isRequired,
+    loadUser: PropTypes.func.isRequired,
     orders: PropTypes.object.isRequired,
+    photographers: PropTypes.object.isRequired,
     isAuthenticated: PropTypes.bool,
     error: PropTypes.object.isRequired,
   };
@@ -140,7 +140,7 @@ class OrdersList extends Component {
       )),
     };
     const { classes } = this.props;
-    const { loading } = this.props.orders;
+    const { loading } = this.props.photographers;
     return (
       <Container maxWidth="xl">
         {this.props.isAuthenticated ? (
@@ -154,12 +154,12 @@ class OrdersList extends Component {
                       variant="h4"
                       className={classes.heading}
                     >
-                      Welcome!
+                      Photographers
                     </Typography>
                   </Grid>
                 </Grid>
                 <MaterialTable
-                  title="Booking requests"
+                  title="Current Photographers"
                   columns={this.state.columns}
                   data={this.state.data}
                   editable={{
@@ -172,7 +172,7 @@ class OrdersList extends Component {
                             const temp_old = data.filter(
                               (order) => order._id !== data[index]._id
                             );
-                            this.props.updateOrder(newData);
+                            this.props.updatePhotographerText(newData);
                             this.setState((prevState) => ({
                               data: [...temp_old, newData],
                             }));
@@ -187,7 +187,7 @@ class OrdersList extends Component {
                             let data = this.state.data;
                             const index = data.indexOf(oldData);
                             const del_id = data[index]._id;
-                            this.props.deleteOrder(del_id);
+                            this.props.deletePhotographer(del_id);
                             this.setState({
                               data: data.filter(
                                 (order) => order._id !== del_id
@@ -205,12 +205,12 @@ class OrdersList extends Component {
                         <Grid container spacing={2} justify="center">
                           <Grid item xs={2}>
                             <Typography className={classes.subtitle2}>
-                              Event Description
+                              Photographer Bio
                             </Typography>
                           </Grid>
                           <Grid item xs={8}>
                             <Typography className={classes.subtitle1}>
-                              {rowData.Event_Description}
+                              {rowData.Bio}
                             </Typography>
                           </Grid>
                         </Grid>
@@ -245,13 +245,14 @@ class OrdersList extends Component {
 const mapStateToProps = (state) => ({
   // to use the state as props
   orders: state.orders, // orders is coming from root reducer at /reducers/index.js
+  photographers: state.photographers,
   isAuthenticated: state.auth.isAuthenticated,
   error: state.error,
 });
 
 export default connect(mapStateToProps, {
-  getOrders,
-  deleteOrder,
-  updateOrder,
+  getPhotographers,
+  deletePhotographer,
+  updatePhotographerText,
   loadUser,
-})(withStyles(useStyles)(OrdersList)); //exporting a component make it reusable and this is the beauty of react
+})(withStyles(useStyles)(PhotographersList)); //exporting a component make it reusable and this is the beauty of react

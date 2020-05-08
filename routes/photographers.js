@@ -3,6 +3,11 @@ let photographers = require("../models/photographers.model"); //moongoose model 
 let category = require("../models/category.model"); //moongoose model we created
 const multer = require("multer");
 const mongoose = require("mongoose");
+const auth = require("../middleware/auth");
+const bcrypt = require("bcryptjs");
+const config = require("config");
+const jwt = require("jsonwebtoken");
+
 //const upload = multer({ dest: "uploads/" });
 
 const storage = multer.diskStorage({
@@ -52,15 +57,27 @@ var cpUpload = upload.fields([
   { name: "photos", maxCount: 1 },
 ]);
 
-router.route("/add").post(cpUpload, (req, res) => {
-  console.log(req.files);
+router.route("/add").post(auth, cpUpload, (req, res) => {
+  // console.log("req files", req.files);
+  var { Name, Email, Password } = req.body;
+
+  // Simple validation
+  if (!Name || !Email || !Password) {
+    return res.status(400).json({ msg: "Please enter all fields" });
+  }
+
+  // Check for exisiting user
+  photographers
+    .findOne({ Email })
+    .then((user) => {
+      if (user)
+        return res.status(400).json({ msg: `User already exists${user}` });
+    })
+    .catch((err) => res.status(400).json("findOne " + err)); //else error message
 
   const _id = new mongoose.Types.ObjectId();
-  const Name = req.body.Name;
   const Username = req.body.Username;
-  const Password = req.body.Password;
   const ContactNumber = req.body.ContactNumber;
-  const Email = req.body.Email;
   const Calendar = req.body.Calendar; //calendar link
   const Level = req.body.Level;
   const Range = req.body.Range;
@@ -68,8 +85,10 @@ router.route("/add").post(cpUpload, (req, res) => {
   const Equipment = req.body.Equipment;
   const Bio = req.body.Bio;
   var Category = req.body.Category; //check number of categories
-  const ProfilePic = req.files["ProfilePic"][0].path.replace(/\\/g, "/"); //profile picture link
-  const CoverPic = req.files["CoverPic"][0].path.replace(/\\/g, "/");
+  const ProfilePic = req.body.ProfilePic; //profile picture link
+  const CoverPic = req.body.CoverPic;
+  // const ProfilePic = req.files["ProfilePic"][0].path.replace(/\\/g, "/"); //profile picture link
+  // const CoverPic = req.files["CoverPic"][0].path.replace(/\\/g, "/");
   const date = Date.parse(req.body.date);
   const videos = req.body.videos;
 
@@ -92,42 +111,103 @@ router.route("/add").post(cpUpload, (req, res) => {
     date,
     videos,
   });
-  newphotographers
-    .save() //save the usker
-    .then(() => {
-      Category = JSON.parse(Category);
-      //console.log(Category);
-      var i = 0;
-      var br = 0;
-      for (i = 0; i < Category.length && br != 1; i++) {
-        console.log(i);
-        console.log(Category[i]);
-        category
-          .find({ categoryname: Category[i] })
-          .then((category) => {
-            console.log(category);
-            category[0].categoryname = category[0].categoryname;
-            if (category[0].photographers[0] == "undefined") {
-              category[0].photographers = [];
+
+  bcrypt.genSalt(10, (err, salt) => {
+    bcrypt.hash(newphotographers.Password, salt, (err, hash) => {
+      if (err) console.log("hash err", err);
+      newphotographers.Password = hash;
+
+      newphotographers
+        .save() //save the user
+        .then((user) => {
+          jwt.sign(
+            { id: user.id },
+            config.get("jwtSecret"),
+            { expiresIn: 3600 },
+            (err, token) => {
+              if (err) throw err;
+              res.json({
+                token: token,
+                user: {
+                  id: user.id,
+                  name: user.name,
+                  email: user.email,
+                },
+              });
             }
-            category[0].photographers.push(_id);
-            console.log(category);
-            category[0]
-              .save()
-              .then(() => {
-                console.log(i);
-                console.log(Category.length);
-                if (i == Category.length) {
-                  res.json("category updated & photographers added!");
-                  br = 1;
-                }
-              })
-              .catch((err) => res.status(400).json("Error " + err));
-          })
-          .catch((err) => res.status(400).json("Error " + err));
-      }
-    })
-    .catch((err) => res.status(400).json("Error " + err)); //else error message
+          );
+          // console.log(newphotographers);
+          // Category = JSON.parse(Category);
+          // console.log(Category);
+          // var i = 0;
+          // var br = 0;
+          // for (i = 0; i < Category.length && br != 1; i++) {
+          //   console.log(i);
+          //   console.log(Category[i]);
+          //   category
+          //     .find({ categoryname: Category[i] })
+          //     .then((category) => {
+          //       console.log(category);
+          //       category[0].categoryname = category[0].categoryname;
+          //       if (category[0].photographers[0] == "undefined") {
+          //         category[0].photographers = [];
+          //       }
+          //       category[0].photographers.push(_id);
+          //       console.log(category);
+          //       category[0]
+          //         .save()
+          //         .then(() => {
+          //           console.log(i);
+          //           console.log(Category.length);
+          //           if (i == Category.length) {
+          //             res.json("category updated & photographers added!");
+          //             br = 1;
+          //           }
+          //         })
+          //         .catch((err) => console.log("1Error " + err));
+          //     })
+          //     .catch((err) => console.log("2Error " + err));
+          // }
+        });
+    });
+  });
+  // .catch((err) => console.log("3Error " + err)); //else error message
+});
+
+router.post("/login", (req, res) => {
+  const { Email, Password } = req.body;
+
+  // Simple validation
+  if (!Email || !Password) {
+    return res.status(400).json({ msg: "Please enter all fields" });
+  }
+
+  // Check for exisiting user
+  photographers.findOne({ Email }).then((user) => {
+    if (!user) return res.status(400).json({ msg: "User does not exist" });
+
+    // Validate password
+    bcrypt.compare(Password, user.Password).then((isMatch) => {
+      if (!isMatch) return res.status(400).json({ msg: "Invalid credentials" });
+
+      jwt.sign(
+        { id: user.id },
+        config.get("jwtSecret"),
+        { expiresIn: 3600 },
+        (err, token) => {
+          if (err) throw err;
+          res.json({
+            token: token,
+            user: {
+              id: user.id,
+              name: user.name,
+              email: user.email,
+            },
+          });
+        }
+      );
+    });
+  });
 });
 
 router.route("/:id").get((req, res) => {
@@ -138,7 +218,7 @@ router.route("/:id").get((req, res) => {
     .catch((err) => res.status(400).json("Error " + err));
 });
 
-router.route("/:id").delete((req, res) => {
+router.route("/:id").delete(auth, (req, res) => {
   //delete photographer by id
   photographers
     .findByIdAndDelete(req.params.id)
@@ -180,10 +260,11 @@ router.route("/update/:id").post(cpUpload, (req, res) => {
       photographers
         .save()
         .then(() => res.json("Photographer updated!"))
-        .catch((err) => res.status(400).json("Error" + err));
+        .catch((err) => res.status(400).json("save par Error" + err));
     })
     .catch((err) => res.status(400).json("Error " + err));
 });
+
 router.route("/updatetext/:id").post((req, res) => {
   photographers
     .findById(req.params.id)
@@ -202,7 +283,7 @@ router.route("/updatetext/:id").post((req, res) => {
       photographers.Category = req.body.Category; //check number of categories
 
       photographers.date = Date.parse(req.body.date);
-      // photographers.videos = req.body.videos;
+      photographers.videos = req.body.videos;
 
       photographers
         .save()
@@ -210,6 +291,16 @@ router.route("/updatetext/:id").post((req, res) => {
         .catch((err) => res.status(400).json("Error" + err));
     })
     .catch((err) => res.status(400).json("Error " + err));
+});
+
+// @route   GET api/aith/user
+// @desc    Get user data
+// @access  Private
+router.get("/getuser", auth, (req, res) => {
+  photographers
+    .findById(req.user.id)
+    .select("-password")
+    .then((user) => res.json(user));
 });
 
 module.exports = router;

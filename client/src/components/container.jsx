@@ -15,7 +15,8 @@ import Table from "./adminPortal";
 import Error from "./Error";
 import login from "./login";
 import signup from "./signup";
-import detail from "./orderDetails";
+import registrations from "./orderDetails";
+import myphotographers from "./myphotographers";
 
 function Container() {
   return (
@@ -36,7 +37,8 @@ function Container() {
       <Route path="/adminPortal" component={Table} />
       <Route path="/login" component={login} />
       <Route path="/signup" component={signup} />
-      <Route path="/detail" component={detail} />
+      <Route path="/registrations" component={registrations} />
+      <Route path="/myphotographers" component={myphotographers} />
       <Route component={Error} />
     </Switch>
     // </Wrapper>

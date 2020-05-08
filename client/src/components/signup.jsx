@@ -7,7 +7,8 @@ import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { register } from "../actions/authActions";
+import { addPhotographer } from "../actions/photographerActions";
+import { loadUser } from "../actions/authActions";
 import { clearErrors } from "../actions/errorActions";
 import { Redirect } from "react-router-dom";
 
@@ -31,17 +32,34 @@ class SignUp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
-      email: "",
-      password: "",
+      Name: "",
+      Username: "",
+      Password: "",
+      ContactNumber: "",
+      Email: "",
+      Calendar: "", //calendar link
+      Level: "",
+      Range: "",
+      Address: "",
+      Equipment: "",
+      Bio: "",
+      Category: "", //check number of categories
+      photos: "",
+      videos: "",
+      date: new Date(),
+      ProfilePic: "",
+      CoverPic: "",
       msg: null,
     };
+  }
+  async componentDidMount() {
+    await this.props.loadUser();
   }
 
   static propTypes = {
     isAuthenticated: PropTypes.bool,
     error: PropTypes.object.isRequired,
-    register: PropTypes.func.isRequired,
+    addPhotographer: PropTypes.func.isRequired,
     clearErrors: PropTypes.func.isRequired,
   };
 
@@ -64,17 +82,30 @@ class SignUp extends Component {
   onSubmit = (e) => {
     e.preventDefault();
 
-    const { name, email, password } = this.state;
-
     // create user obj
-    const newUser = {
-      name,
-      email,
-      password,
+    const newLad = {
+      //  this.state.photographer
+      Name: this.state.Name,
+      Username: this.state.Username,
+      Password: this.state.Password,
+      ContactNumber: this.state.ContactNumber,
+      Email: this.state.Email,
+      Calendar: this.state.Calendar, //calendar link
+      Level: this.state.Level,
+      Range: this.state.Range,
+      Address: this.state.Address,
+      Equipment: this.state.Equipment,
+      Bio: this.state.Bio,
+      Category: this.state.Category, //check number of categories
+      photos: this.state.photos,
+      videos: this.state.videos,
+      date: this.state.date,
+      ProfilePic: "",
+      CoverPic: "",
     };
 
     //attempt to register
-    this.props.register(newUser);
+    this.props.addPhotographer(newLad);
 
     // // close modal
     // this.toggle();
@@ -86,61 +117,151 @@ class SignUp extends Component {
     return (
       <Container component="main" maxWidth="xs" className={classes.paper}>
         {this.props.isAuthenticated ? (
-          <Redirect to="/login" />
-        ) : (
-          console.log("not resgistered")
-        )}
-        <Typography component="h1" variant="h4">
-          Create an account
-        </Typography>
-        <form onSubmit={this.onSubmit} className={classes.form}>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="Name"
-            label="Username"
-            name="name"
-            autoComplete="name"
-            autoFocus
-            onChange={this.onChange}
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email"
-            name="email"
-            type="email"
-            autoComplete="email"
-            autoFocus
-            onChange={this.onChange}
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-            onChange={this.onChange}
-          />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Sign Up
-          </Button>
-        </form>
+          <React.Fragment>
+            <Typography component="h1" variant="h4">
+              Create a Photographer account
+            </Typography>
+            <form onSubmit={this.onSubmit} className={classes.form}>
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="Name"
+                label="Name"
+                name="Name"
+                autoComplete="name"
+                autoFocus
+                onChange={this.onChange}
+              />
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="Username"
+                label="Username"
+                name="Username"
+                autoComplete="name"
+                onChange={this.onChange}
+              />
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="Email"
+                label="Email"
+                name="Email"
+                type="email"
+                autoComplete="email"
+                onChange={this.onChange}
+              />
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                name="Password"
+                label="Password"
+                type="password"
+                id="Password"
+                onChange={this.onChange}
+              />
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="ContactNumber"
+                label="Contact Number"
+                name="ContactNumber"
+                type="number"
+                onChange={this.onChange}
+              />
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="Calendar"
+                label="Calendar Link"
+                name="Calendar"
+                onChange={this.onChange}
+              />
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="Level"
+                label="Level"
+                name="Level"
+                onChange={this.onChange}
+              />
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="Range"
+                label="Range"
+                name="Range"
+                type="number"
+                onChange={this.onChange}
+              />
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="Address"
+                label="Address"
+                name="Address"
+                onChange={this.onChange}
+              />
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="Equipment"
+                label="Equipment"
+                name="Equipment"
+                onChange={this.onChange}
+              />
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="Bio"
+                label="Bio"
+                name="Bio"
+                onChange={this.onChange}
+              />
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="Category"
+                label="Category"
+                name="Category"
+                onChange={this.onChange}
+              />
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+              >
+                Create account
+              </Button>
+            </form>
+          </React.Fragment>
+        ) : null}
       </Container>
     );
   }
@@ -152,6 +273,8 @@ const mapStateToProps = (state) => ({
   error: state.error,
 });
 
-export default connect(mapStateToProps, { register, clearErrors })(
-  withStyles(useStyles)(SignUp)
-);
+export default connect(mapStateToProps, {
+  addPhotographer,
+  clearErrors,
+  loadUser,
+})(withStyles(useStyles)(SignUp));

@@ -15,15 +15,15 @@ class MyForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "Name from",
-      contact: "090078601",
-      email: "af79614@gmail.com",
-      location: "Model Town",
-      category: ["Wedding", "Food", "Party"],
+      name: "",
+      contact: "",
+      email: "",
+      location: "",
+      category: [],
       photographer: this.props.match.params.type,
-      budget: 100000,
-      expertise: "Gold",
-      description: "Give me a photographer",
+      budget: 0,
+      expertise: "",
+      description: "",
       categories: [],
       date: new Date(),
     };
@@ -132,8 +132,11 @@ class MyForm extends React.Component {
         {/* START JUMBOTRON */}
         <div className="jumbotron jumbotron-fluid one">
           <div className="container">
-            <h1 className="display-4 text-center mt-5">
-              Photographer Selection
+            <h2 className="display-4 text-center mt-1">
+              Hello {this.state.name}
+            </h2>
+            <h1 className="display-4 text-center mt-1">
+              Please fill form for booking
             </h1>
           </div>
         </div>
