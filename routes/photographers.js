@@ -226,7 +226,7 @@ router.route("/:id").delete(auth, (req, res) => {
     .catch((err) => res.status(400).json("Error " + err));
 });
 
-router.route("/update/:id").post(auth, cpUpload, (req, res) => {
+router.route("/update/:id").post(cpUpload, (req, res) => {
   photographers
     .findById(req.params.id)
     .then((photographers) => {
@@ -265,7 +265,7 @@ router.route("/update/:id").post(auth, cpUpload, (req, res) => {
     .catch((err) => res.status(400).json("Error " + err));
 });
 
-router.route("/updatetext/:id").post(auth, (req, res) => {
+router.route("/updatetext/:id").post((req, res) => {
   photographers
     .findById(req.params.id)
     .then((photographers) => {
