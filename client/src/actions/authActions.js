@@ -18,7 +18,7 @@ export const loadUser = () => (dispatch, getState) => {
   dispatch({ type: USER_LOADING });
 
   axios
-    .get("http://localhost:5000/users/getuser", tokenConfig(getState))
+    .get("http://smartlensapplication.herokuapp.com/users/getuser", tokenConfig(getState))
     .then((res) =>
       dispatch({
         type: USER_LOADED,
@@ -46,7 +46,7 @@ export const register = ({ name, email, password }) => (dispatch) => {
   const body = JSON.stringify({ name, email, password });
 
   axios
-    .post("http://localhost:5000/users/register", body, config)
+    .post("http://smartlensapplication.herokuapp.com/users/register", body, config)
     .then((res) =>
       dispatch({
         type: REGISTER_SUCCESS,
@@ -76,7 +76,7 @@ export const login = ({ email, password }) => (dispatch) => {
   const body = JSON.stringify({ email, password });
 
   axios
-    .post("http://localhost:5000/users/login", body, config)
+    .post("http://smartlensapplication.herokuapp.com/users/login", body, config)
     .then((res) =>
       dispatch({
         type: LOGIN_SUCCESS,
