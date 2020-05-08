@@ -5,10 +5,81 @@ import {
   REGISTER_FAIL,
   DELETE_PHOTOGRAPHER,
   UPDATE_PHOTOGRAPHER,
+  LOGOUT_SUCCESS,
+  LOGIN_SUCCESS,
+  LOGIN_FAIL,
+  USER_LOADED,
+  USER_LOADING,
+  AUTH_ERROR,
 } from "./types";
 import { returnErrors } from "./errorActions";
 import { tokenConfig } from "./authActions";
 import axios from "axios";
+
+// Login
+export const loginPhoto = ({ Email, Password }) => (dispatch) => {
+  // Headers
+  const config = {
+    headers: {
+      "Content-type": "application/json",
+    },
+  };
+
+  // request body
+  const body = JSON.stringify({ Email, Password });
+
+  axios
+    .post(
+      "https://smartlensapplication.herokuapp.com/photographers/login",
+      body,
+      config
+    )
+    .then((res) =>
+      dispatch({
+        type: LOGIN_SUCCESS,
+        payload: res.data,
+      })
+    )
+    .catch((err) => {
+      dispatch(
+        returnErrors(err.response.data, err.response.status, "LOGIN_FAIL")
+      );
+      dispatch({
+        type: LOGIN_FAIL,
+      });
+    });
+};
+
+// Logout
+export const logoutPhoto = () => {
+  return {
+    type: LOGOUT_SUCCESS,
+  };
+};
+
+// Check token & load user
+export const loadPhotographer = () => (dispatch, getState) => {
+  // USer loading
+  dispatch({ type: USER_LOADING });
+
+  axios
+    .get(
+      "https://smartlensapplication.herokuapp.com/photographers/getuser",
+      tokenConfig(getState)
+    )
+    .then((res) =>
+      dispatch({
+        type: USER_LOADED,
+        payload: res.data,
+      })
+    )
+    .catch((err) => {
+      dispatch(returnErrors(err.response.data, err.response.status));
+      dispatch({
+        type: AUTH_ERROR,
+      });
+    });
+};
 
 export const getPhotographers = () => (dispatch, getState) => {
   dispatch(setPhotographersLoading());

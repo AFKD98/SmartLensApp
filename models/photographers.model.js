@@ -8,9 +8,9 @@ const photographersSchema = new Schema(
     _id: mongoose.Schema.Types.ObjectId,
     Name: { type: String },
     Username: { type: String },
-    Password: { type: String },
+    Password: { type: String, required: true },
     ContactNumber: { type: String },
-    Email: { type: String },
+    Email: { type: String, unique: true, required: true },
     Calendar: { type: String }, //calendar link
     Level: { type: String },
     Range: { type: Number },
