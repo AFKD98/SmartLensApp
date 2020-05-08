@@ -57,7 +57,7 @@ var cpUpload = upload.fields([
   { name: "photos", maxCount: 1 },
 ]);
 
-router.route("/add").post(cpUpload, (req, res) => {
+router.route("/add").post(auth, cpUpload, (req, res) => {
   // console.log("req files", req.files);
   var { Name, Email, Password } = req.body;
 
@@ -218,7 +218,7 @@ router.route("/:id").get((req, res) => {
     .catch((err) => res.status(400).json("Error " + err));
 });
 
-router.route("/:id").delete((req, res) => {
+router.route("/:id").delete(auth, (req, res) => {
   //delete photographer by id
   photographers
     .findByIdAndDelete(req.params.id)
@@ -265,7 +265,7 @@ router.route("/update/:id").post(auth, cpUpload, (req, res) => {
     .catch((err) => res.status(400).json("Error " + err));
 });
 
-router.route("/updatetext/:id").post((req, res) => {
+router.route("/updatetext/:id").post(auth, (req, res) => {
   photographers
     .findById(req.params.id)
     .then((photographers) => {
