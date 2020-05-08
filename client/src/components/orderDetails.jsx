@@ -74,6 +74,7 @@ class OrdersList extends Component {
   }
 
   async componentDidMount() {
+    await this.props.loadUser();
     axios //sending a get request to get all the categories from Mongo
       .get(
         "https://smartlensapplication.herokuapp.com/registration_photographer/"
