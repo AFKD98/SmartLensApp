@@ -104,7 +104,7 @@ export const addPhotographer = (photolad) => (dispatch, getState) => {
   };
   axios
     .post(
-      "http://localhost:5000/photographers/add",
+      "https://smartlensapplication.herokuapp.com/photographers/add",
       photolad,
       config,
       tokenConfig(getState)
@@ -146,7 +146,7 @@ export const updatePhotographer = (photolad) => (dispatch, getState) => {
   const id = photolad._id;
   axios
     .post(
-      `http://localhost:5000/photographers/update/${id}`,
+      `https://smartlensapplication.herokuapp.com/photographers/update/${id}`,
       photolad,
       tokenConfig(getState)
     )
@@ -166,7 +166,7 @@ export const updatePhotographerText = (photolad) => (dispatch, getState) => {
 
   axios
     .post(
-      `http://localhost:5000/photographers/updatetext/${id}`,
+      `https://smartlensapplication.herokuapp.com/photographers/updatetext/${id}`,
       {
         //  this.state.photographer
         Name: photolad.Name,
