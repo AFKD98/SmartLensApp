@@ -24,7 +24,7 @@ import Grid from "@material-ui/core/Grid";
 import {
   getPhotographers,
   deletePhotographer,
-  updatePhotographer,
+  updatePhotographerText,
 } from "../actions/photographerActions"; //stored as a prop
 import { loadUser } from "../actions/authActions";
 import PropTypes from "prop-types"; // validation
@@ -95,7 +95,7 @@ class PhotographersList extends Component {
   static propTypes = {
     getPhotographers: PropTypes.func.isRequired,
     deletePhotographer: PropTypes.func.isRequired,
-    updatePhotographer: PropTypes.func.isRequired,
+    updatePhotographerText: PropTypes.func.isRequired,
     loadUser: PropTypes.func.isRequired,
     orders: PropTypes.object.isRequired,
     photographers: PropTypes.object.isRequired,
@@ -154,7 +154,7 @@ class PhotographersList extends Component {
                       variant="h4"
                       className={classes.heading}
                     >
-                      Welcome!
+                      Photographers
                     </Typography>
                   </Grid>
                 </Grid>
@@ -172,7 +172,7 @@ class PhotographersList extends Component {
                             const temp_old = data.filter(
                               (order) => order._id !== data[index]._id
                             );
-                            this.props.updatePhotographer(newData);
+                            this.props.updatePhotographerText(newData);
                             this.setState((prevState) => ({
                               data: [...temp_old, newData],
                             }));
@@ -253,6 +253,6 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, {
   getPhotographers,
   deletePhotographer,
-  updatePhotographer,
+  updatePhotographerText,
   loadUser,
 })(withStyles(useStyles)(PhotographersList)); //exporting a component make it reusable and this is the beauty of react

@@ -147,7 +147,7 @@ class OrdersList extends Component {
                     variant="h4"
                     className={classes.heading}
                   >
-                    Welcome!
+                    Bookings
                   </Typography>
                 </Grid>
               </Grid>
