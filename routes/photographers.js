@@ -71,106 +71,110 @@ router.route("/add").post(auth, cpUpload, (req, res) => {
     .findOne({ Email })
     .then((user) => {
       if (user)
-        return res.status(400).json({ msg: `User already exists${user}` });
+        return res
+          .status(400)
+          .json({ msg: `User already exists ${user.Email}` });
+      else {
+        const _id = new mongoose.Types.ObjectId();
+        const Username = req.body.Username;
+        const ContactNumber = req.body.ContactNumber;
+        const Calendar = req.body.Calendar; //calendar link
+        const Level = req.body.Level;
+        const Range = req.body.Range;
+        const Address = req.body.Address;
+        const Equipment = req.body.Equipment;
+        const Bio = req.body.Bio;
+        var Category = req.body.Category; //check number of categories
+        const ProfilePic = req.body.ProfilePic; //profile picture link
+        const CoverPic = req.body.CoverPic;
+        // const ProfilePic = req.files["ProfilePic"][0].path.replace(/\\/g, "/"); //profile picture link
+        // const CoverPic = req.files["CoverPic"][0].path.replace(/\\/g, "/");
+        const date = Date.parse(req.body.date);
+        const videos = req.body.videos;
+
+        const newphotographers = new photographers({
+          _id: _id,
+          Name,
+          Username,
+          Password,
+          ContactNumber,
+          Email,
+          Calendar, //calendar link
+          Level,
+          Range,
+          Address,
+          Equipment,
+          Bio,
+          Category, //check number of categories
+          ProfilePic, //profile picture link
+          CoverPic,
+          date,
+          videos,
+        });
+
+        bcrypt.genSalt(10, (err, salt) => {
+          bcrypt.hash(newphotographers.Password, salt, (err, hash) => {
+            if (err) console.log("hash err", err);
+            newphotographers.Password = hash;
+
+            newphotographers
+              .save() //save the user
+              .then((user) => {
+                jwt.sign(
+                  { id: user.id },
+                  config.get("jwtSecret"),
+                  { expiresIn: 3600 },
+                  (err, token) => {
+                    if (err) throw err;
+                    res.json({
+                      token: token,
+                      user: {
+                        id: user.id,
+                        name: user.name,
+                        email: user.email,
+                      },
+                    });
+                  }
+                );
+                // console.log(newphotographers);
+                // Category = JSON.parse(Category);
+                // console.log(Category);
+                // var i = 0;
+                // var br = 0;
+                // for (i = 0; i < Category.length && br != 1; i++) {
+                //   console.log(i);
+                //   console.log(Category[i]);
+                //   category
+                //     .find({ categoryname: Category[i] })
+                //     .then((category) => {
+                //       console.log(category);
+                //       category[0].categoryname = category[0].categoryname;
+                //       if (category[0].photographers[0] == "undefined") {
+                //         category[0].photographers = [];
+                //       }
+                //       category[0].photographers.push(_id);
+                //       console.log(category);
+                //       category[0]
+                //         .save()
+                //         .then(() => {
+                //           console.log(i);
+                //           console.log(Category.length);
+                //           if (i == Category.length) {
+                //             res.json("category updated & photographers added!");
+                //             br = 1;
+                //           }
+                //         })
+                //         .catch((err) => console.log("1Error " + err));
+                //     })
+                //     .catch((err) => console.log("2Error " + err));
+                // }
+              });
+          });
+        });
+      }
     })
     .catch((err) => res.status(400).json("findOne " + err)); //else error message
 
-  const _id = new mongoose.Types.ObjectId();
-  const Username = req.body.Username;
-  const ContactNumber = req.body.ContactNumber;
-  const Calendar = req.body.Calendar; //calendar link
-  const Level = req.body.Level;
-  const Range = req.body.Range;
-  const Address = req.body.Address;
-  const Equipment = req.body.Equipment;
-  const Bio = req.body.Bio;
-  var Category = req.body.Category; //check number of categories
-  const ProfilePic = req.body.ProfilePic; //profile picture link
-  const CoverPic = req.body.CoverPic;
-  // const ProfilePic = req.files["ProfilePic"][0].path.replace(/\\/g, "/"); //profile picture link
-  // const CoverPic = req.files["CoverPic"][0].path.replace(/\\/g, "/");
-  const date = Date.parse(req.body.date);
-  const videos = req.body.videos;
-
-  const newphotographers = new photographers({
-    _id: _id,
-    Name,
-    Username,
-    Password,
-    ContactNumber,
-    Email,
-    Calendar, //calendar link
-    Level,
-    Range,
-    Address,
-    Equipment,
-    Bio,
-    Category, //check number of categories
-    ProfilePic, //profile picture link
-    CoverPic,
-    date,
-    videos,
-  });
-
-  bcrypt.genSalt(10, (err, salt) => {
-    bcrypt.hash(newphotographers.Password, salt, (err, hash) => {
-      if (err) console.log("hash err", err);
-      newphotographers.Password = hash;
-
-      newphotographers
-        .save() //save the user
-        .then((user) => {
-          jwt.sign(
-            { id: user.id },
-            config.get("jwtSecret"),
-            { expiresIn: 3600 },
-            (err, token) => {
-              if (err) throw err;
-              res.json({
-                token: token,
-                user: {
-                  id: user.id,
-                  name: user.name,
-                  email: user.email,
-                },
-              });
-            }
-          );
-          // console.log(newphotographers);
-          // Category = JSON.parse(Category);
-          // console.log(Category);
-          // var i = 0;
-          // var br = 0;
-          // for (i = 0; i < Category.length && br != 1; i++) {
-          //   console.log(i);
-          //   console.log(Category[i]);
-          //   category
-          //     .find({ categoryname: Category[i] })
-          //     .then((category) => {
-          //       console.log(category);
-          //       category[0].categoryname = category[0].categoryname;
-          //       if (category[0].photographers[0] == "undefined") {
-          //         category[0].photographers = [];
-          //       }
-          //       category[0].photographers.push(_id);
-          //       console.log(category);
-          //       category[0]
-          //         .save()
-          //         .then(() => {
-          //           console.log(i);
-          //           console.log(Category.length);
-          //           if (i == Category.length) {
-          //             res.json("category updated & photographers added!");
-          //             br = 1;
-          //           }
-          //         })
-          //         .catch((err) => console.log("1Error " + err));
-          //     })
-          //     .catch((err) => console.log("2Error " + err));
-          // }
-        });
-    });
-  });
   // .catch((err) => console.log("3Error " + err)); //else error message
 });
 

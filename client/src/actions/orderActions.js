@@ -13,7 +13,10 @@ import axios from "axios";
 export const getOrders = () => (dispatch, getState) => {
   dispatch(setOrdersLoading());
   axios
-    .get("https://smartlensapplication.herokuapp.com/orders", tokenConfig(getState))
+    .get(
+      "https://smartlensapplication.herokuapp.com/orders",
+      tokenConfig(getState)
+    )
     .then((res) =>
       dispatch({
         type: GET_ORDERS,
@@ -28,7 +31,10 @@ export const getOrders = () => (dispatch, getState) => {
 export const getSingleOrder = (id) => (dispatch, getState) => {
   dispatch(setOrdersLoading());
   axios
-    .get(`https://smartlensapplication.herokuapp.com/orders/${id}`, tokenConfig(getState))
+    .get(
+      `https://smartlensapplication.herokuapp.com/orders/${id}`,
+      tokenConfig(getState)
+    )
     .then((res) =>
       dispatch({
         type: GET_SINGLE_ORDER,
@@ -56,7 +62,10 @@ export const addOrder = (order) => (dispatch) => {
 
 export const deleteOrder = (id) => (dispatch, getState) => {
   axios
-    .delete(`https://smartlensapplication.herokuapp.com/orders/${id}`, tokenConfig(getState))
+    .delete(
+      `https://smartlensapplication.herokuapp.com/orders/${id}`,
+      tokenConfig(getState)
+    )
     .then((res) =>
       dispatch({
         type: DELETE_ORDER,
@@ -70,6 +79,7 @@ export const deleteOrder = (id) => (dispatch, getState) => {
 
 export const updateOrder = (order) => (dispatch, getState) => {
   const id = order._id;
+  console.log("order:", tokenConfig(getState));
   axios
     .post(
       `https://smartlensapplication.herokuapp.com/orders/update/${id}`,

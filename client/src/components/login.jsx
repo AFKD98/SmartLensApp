@@ -104,7 +104,7 @@ class LoginPage extends Component {
             label="Password"
             type="password"
             id="password"
-            autoComplete="current-password"
+            autoComplete="off"
             onChange={this.onChange}
           />
           <FormControlLabel

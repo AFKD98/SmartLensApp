@@ -11,6 +11,7 @@ import {
   USER_LOADED,
   USER_LOADING,
   AUTH_ERROR,
+  ADD_PHOTOGRAPHER_FAIL,
 } from "./types";
 import { returnErrors } from "./errorActions";
 import { tokenConfig } from "./authActions";
@@ -97,16 +98,11 @@ export const getPhotographers = () => (dispatch, getState) => {
 };
 
 export const addPhotographer = (photolad) => (dispatch, getState) => {
-  const config = {
-    headers: {
-      "Content-type": "application/json",
-    },
-  };
+  console.log("photo:", tokenConfig(getState));
   axios
     .post(
       "https://smartlensapplication.herokuapp.com/photographers/add",
       photolad,
-      config,
       tokenConfig(getState)
     )
     .then((res) =>
@@ -117,10 +113,14 @@ export const addPhotographer = (photolad) => (dispatch, getState) => {
     )
     .catch((err) => {
       dispatch(
-        returnErrors(err.response.data, err.response.status, "REGISTER_FAIL")
+        returnErrors(
+          err.response.data,
+          err.response.status,
+          "ADD_PHOTOGRAPHER_FAIL"
+        )
       );
       dispatch({
-        type: REGISTER_FAIL,
+        type: ADD_PHOTOGRAPHER_FAIL,
       });
     });
 };
