@@ -98,7 +98,6 @@ export const getPhotographers = () => (dispatch, getState) => {
 };
 
 export const addPhotographer = (photolad) => (dispatch, getState) => {
-  console.log("photo:", tokenConfig(getState));
   axios
     .post(
       "https://smartlensapplication.herokuapp.com/photographers/add",

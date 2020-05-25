@@ -79,7 +79,6 @@ export const deleteOrder = (id) => (dispatch, getState) => {
 
 export const updateOrder = (order) => (dispatch, getState) => {
   const id = order._id;
-  console.log("order:", tokenConfig(getState));
   axios
     .post(
       `https://smartlensapplication.herokuapp.com/orders/update/${id}`,

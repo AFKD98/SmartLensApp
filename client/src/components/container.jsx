@@ -15,8 +15,9 @@ import Table from "./adminPortal";
 import Error from "./Error";
 import login from "./login";
 import signup from "./signup";
-import registrations from "./orderDetails";
+import registrations from "./photographerRegistrationDetails";
 import myphotographers from "./myphotographers";
+import photographerlogin from "./login_photo";
 
 function Container() {
   return (
@@ -39,6 +40,7 @@ function Container() {
       <Route path="/signup" component={signup} />
       <Route path="/registrations" component={registrations} />
       <Route path="/myphotographers" component={myphotographers} />
+      <Route path="/photographerLogin" component={photographerlogin} />
       <Route component={Error} />
     </Switch>
     // </Wrapper>

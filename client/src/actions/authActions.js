@@ -70,7 +70,7 @@ export const register = ({ name, email, password }) => (dispatch) => {
     });
 };
 
-// Login
+// Login user
 export const login = ({ email, password }) => (dispatch) => {
   // Headers
   const config = {
@@ -106,6 +106,47 @@ export const login = ({ email, password }) => (dispatch) => {
 
 // Logout
 export const logout = () => {
+  return {
+    type: LOGOUT_SUCCESS,
+  };
+};
+
+// Login photographer
+export const loginPhotographer = ({ Email, Password }) => (dispatch) => {
+  // Headers
+  const config = {
+    headers: {
+      "Content-type": "application/json",
+    },
+  };
+
+  // request body
+  const body = JSON.stringify({ Email, Password });
+
+  axios
+    .post(
+      "https://smartlensapplication.herokuapp.com/photographers/login",
+      body,
+      config
+    )
+    .then((res) =>
+      dispatch({
+        type: LOGIN_SUCCESS,
+        payload: res.data,
+      })
+    )
+    .catch((err) => {
+      dispatch(
+        returnErrors(err.response.data, err.response.status, "LOGIN_FAIL")
+      );
+      dispatch({
+        type: LOGIN_FAIL,
+      });
+    });
+};
+
+// Logout photographer
+export const logoutPhotographer = () => {
   return {
     type: LOGOUT_SUCCESS,
   };

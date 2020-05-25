@@ -17,18 +17,8 @@ class Profile extends Component {
       profilePic: "",
       coverPic: "",
       profilePicture: {},
-      photos: [
-        // "assets/home2.jpg",
-        // "assets/homephoto2.png",
-        // "assets/homephoto3.jpg",
-        // "assets/Recommend.jpg",
-      ],
-
-      videos: [
-        // "https://www.youtube.com/embed/O41OuELay_A",
-        // "https://www.youtube.com/embed/A6zLsU7RhX4",
-        // "https://www.youtube.com/embed/C0_uv535Gzw",
-      ],
+      photos: [],
+      videos: [],
       name: "",
       aboutme: "",
       location: "",

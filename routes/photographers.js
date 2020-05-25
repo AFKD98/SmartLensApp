@@ -187,15 +187,16 @@ router.post("/login", (req, res) => {
   }
 
   // Check for exisiting user
-  photographers.findOne({ Email }).then((user) => {
-    if (!user) return res.status(400).json({ msg: "User does not exist" });
+  photographers.findOne({ Email }).then((photographer) => {
+    if (!photographer)
+      return res.status(400).json({ msg: "Photographer does not exist" });
 
     // Validate password
-    bcrypt.compare(Password, user.Password).then((isMatch) => {
+    bcrypt.compare(Password, photographer.Password).then((isMatch) => {
       if (!isMatch) return res.status(400).json({ msg: "Invalid credentials" });
 
       jwt.sign(
-        { id: user.id },
+        { id: photographer.id },
         config.get("jwtSecret"),
         { expiresIn: 3600 },
         (err, token) => {
@@ -203,9 +204,9 @@ router.post("/login", (req, res) => {
           res.json({
             token: token,
             user: {
-              id: user.id,
-              name: user.name,
-              email: user.email,
+              id: photographer.id,
+              name: photographer.Name,
+              email: photographer.Email,
             },
           });
         }
