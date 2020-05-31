@@ -53,7 +53,7 @@ const useStyles = (theme) => ({
   },
 });
 
-class OrdersList extends Component {
+class PhotographerRegistrationDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -148,7 +148,7 @@ class OrdersList extends Component {
                     variant="h4"
                     className={classes.heading}
                   >
-                    Bookings
+                    Photographer Registrations
                   </Typography>
                 </Grid>
               </Grid>
@@ -245,4 +245,4 @@ export default connect(mapStateToProps, {
   deleteOrder,
   updateOrder,
   loadUser,
-})(withStyles(useStyles)(OrdersList)); //exporting a component make it reusable and this is the beauty of react
+})(withStyles(useStyles)(PhotographerRegistrationDetails)); //exporting a component make it reusable and this is the beauty of react

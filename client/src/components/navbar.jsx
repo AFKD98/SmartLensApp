@@ -42,7 +42,7 @@ class NavBar extends Component {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="ml-auto">
-              <Nav.Link href="/adminPortal">Bookings</Nav.Link>
+              <Nav.Link href="/bookings">Bookings</Nav.Link>
               <Nav.Link href="/registrations">Registrations</Nav.Link>
               <Nav.Link href="/myphotographers">Photographers</Nav.Link>
               <Nav.Link href="/signup">Create Account</Nav.Link>
