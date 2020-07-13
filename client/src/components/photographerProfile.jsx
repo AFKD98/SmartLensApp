@@ -156,7 +156,12 @@ class Profile extends Component {
               <br />
               <a
                 className="btn btn-dark mx-auto my-auto"
-                href={"/recommendation/" + this.props.match.params.id}
+                href={
+                  "/recommendation/" +
+                  this.props.match.params.id +
+                  "/" +
+                  this.state.level
+                }
               >
                 Book Now
               </a>
