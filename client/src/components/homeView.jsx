@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import HomePhoto from "../assets/homephoto2.png";
+import HomePhoto from "../assets/homephoto2.jpg";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "../styles/homeView.css";
