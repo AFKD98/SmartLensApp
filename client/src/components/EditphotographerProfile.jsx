@@ -9,6 +9,8 @@ import HomePhoto3 from "../assets/homephoto3.jpg";
 import Form from "react-bootstrap/Form";
 import { Col } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
+import { validateUrl } from "youtube-validate";
+import { validateVideoID } from "youtube-validate";
 
 class Profile extends Component {
   constructor(props) {
@@ -41,11 +43,28 @@ class Profile extends Component {
     this.onDrop = this.onDrop.bind(this);
     this.videoHandler = this.videoHandler.bind(this);
     this.onChangeHandler = this.onChangeHandler.bind(this);
+    this.onVideoChangeHandler = this.onVideoChangeHandler.bind(this);
     this.deleteVideo = this.deleteVideo.bind(this);
   }
   deleteVideo(video) {
     console.log(video);
+
+    axios
+      .post(
+        "https://smartlensapplication.herokuapp.com/photographers/deleteVideo/" +
+          this.props.match.params.id,
+        {
+          VideoURL: video,
+        }
+      )
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
+
   photoClick() {
     this.setState({
       displayPhotos: !this.state.displayPhotos,
@@ -113,7 +132,13 @@ class Profile extends Component {
   }
   onChangeHandler(event) {
     let nam = event.target.name;
-    let val = event.target.value.replace("watch?v=", "embed/");
+    let val = event.target.value;
+    this.setState({ [nam]: val });
+  }
+  onVideoChangeHandler(event) {
+    let nam = event.target.name;
+    let val = event.target.value;
+    val = event.target.value.replace("watch?v=", "embed/");
     console.log(val);
     this.setState({ [nam]: val });
   }
@@ -320,7 +345,7 @@ class Profile extends Component {
           <Form.Group
             controlId="videos"
             className="pr-md-2"
-            onChange={this.onChangeHandler}
+            onChange={this.onVideoChangeHandler}
           >
             <Form.Label>Add videos</Form.Label>
             <Form.Control

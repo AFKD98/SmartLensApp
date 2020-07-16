@@ -270,6 +270,21 @@ router.route("/update/:id").post(cpUpload, (req, res) => {
     .catch((err) => res.status(400).json("Error " + err));
 });
 
+router.route("/deleteVideo/:id").post((req, res) => {
+  photographers
+    .findById(req.params.id)
+    .then((photographers) => {
+      photographers.videos.findOneAndDelete(req.body.VideoURL);
+
+      photographers
+        .save()
+        .then(() => res.json("Video Deleted!"))
+        .catch((err) =>
+          res.status(400).json("Error while deleting video" + err)
+        );
+    })
+    .catch((err) => res.status(400).json("Error " + err));
+});
 router.route("/updatetext/:id").post((req, res) => {
   photographers
     .findById(req.params.id)
