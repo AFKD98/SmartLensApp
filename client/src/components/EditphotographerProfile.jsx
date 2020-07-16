@@ -41,8 +41,11 @@ class Profile extends Component {
     this.onDrop = this.onDrop.bind(this);
     this.videoHandler = this.videoHandler.bind(this);
     this.onChangeHandler = this.onChangeHandler.bind(this);
+    this.deleteVideo = this.deleteVideo.bind(this);
   }
-
+  deleteVideo(video) {
+    console.log(video);
+  }
   photoClick() {
     this.setState({
       displayPhotos: !this.state.displayPhotos,
@@ -66,6 +69,7 @@ class Profile extends Component {
 
   videoHandler(event) {
     event.preventDefault();
+
     this.setState(
       {
         videos: this.state.videos.concat(this.state.videoURL),
@@ -96,6 +100,7 @@ class Profile extends Component {
             )
             .then(function (response) {
               console.log(response);
+              console.log(this.state.videoURL);
             })
             .catch(function (error) {
               console.log(error);
@@ -108,9 +113,11 @@ class Profile extends Component {
   }
   onChangeHandler(event) {
     let nam = event.target.name;
-    let val = event.target.value;
+    let val = event.target.value.replace("watch?v=", "embed/");
+    console.log(val);
     this.setState({ [nam]: val });
   }
+
   updateClick(parameter, event) {
     event.preventDefault();
     let keyHolder = parameter;
@@ -262,6 +269,9 @@ class Profile extends Component {
               alt="profilePhoto"
               className="profilePhoto pb-5"
             ></img>
+            <Button className=" btn btn-danger imagedeletebutton">
+              delete
+            </Button>
             <br />
             <br />
           </div>
@@ -287,11 +297,19 @@ class Profile extends Component {
               height="315"
               src={`${video}`}
               onerror="this.style.display='none';"
-              frameborder="0"
+              frameBorder="1"
               allow="accelerometer; autoplay; encrypted-media; 
                     gyroscope; picture-in-picture"
-              allowfullscreen
+              allowFullScreen
             ></iframe>
+            <Button
+              className=" btn btn-danger videodeletebutton"
+              onClick={() => {
+                this.deleteVideo(video);
+              }}
+            >
+              delete
+            </Button>
             <br />
             <br />
             <br />
@@ -307,7 +325,7 @@ class Profile extends Component {
             <Form.Label>Add videos</Form.Label>
             <Form.Control
               name="videoURL"
-              type="text"
+              type="url"
               placeholder="Enter video URL"
             />
             <Button className="mt-3" className="btn btn-dark" type="submit">
@@ -445,7 +463,7 @@ class Profile extends Component {
               )}
               <hr className="solid"></hr>
               <h2 className="pt-5">Details</h2>
-              <p className="paratext pb-5">
+              <div className="paratext pb-5">
                 {this.state.editlocation ? (
                   editLocationCode
                 ) : (
@@ -482,9 +500,9 @@ class Profile extends Component {
                     {this.state.equipment}
                   </div>
                 )}
-              </p>
-              <hr class="solid"></hr>
-              <h2 class="pt-5">My Work</h2>
+              </div>
+              <hr className="solid"></hr>
+              <h2 className="pt-5">My Work</h2>
               <br />
               <br />
               <Button
