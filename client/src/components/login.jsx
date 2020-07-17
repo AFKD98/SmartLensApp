@@ -77,7 +77,11 @@ class LoginPage extends Component {
     // const { errors, username, password, isLoading } = this.state;
     return (
       <Container component="main" maxWidth="xs" className={classes.paper}>
-        {this.props.isAuthenticated ? <Redirect to="/bookings" /> : null}
+        {this.props.isAuthenticated ? (
+          <Redirect to="/bookings" />
+        ) : (
+          <Redirect to="/" />
+        )}
 
         <Typography component="h1" variant="h4">
           Sign in
