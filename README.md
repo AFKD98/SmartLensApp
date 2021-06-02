@@ -38,4 +38,4 @@ Run the following commands inside the client directory:-
 Your default browser should open new tab with the running application.
 
 For further assistance and information regarding the application please contact
-TISHSOFT SOLUTIONS at tishsoftsolutions@gmail.com or 20100204@lums.edu.pk
+20100204@lums.edu.pk
